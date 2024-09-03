@@ -9,6 +9,8 @@ const morganBody = require('morgan-body')
 
 const { dbConnectMySQL } = require('./config/mysql')
 
+const loggerStream = require('./utils/handleLogger')
+
 const app = express()
 app.use(helmet())
 app.use(csurf())
@@ -18,6 +20,7 @@ app.use(express.static('storage'))
 
 morganBody(app, {
   noColors: true,
+  stream: loggerStream,
   skip: function (req, res) {
     return res.statusCode < 400
   }
