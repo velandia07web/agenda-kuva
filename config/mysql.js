@@ -7,15 +7,16 @@ const host = process.env.MYSQL_HOST
 
 const sequelize = new Sequelize(database, username, password, {
   host,
-  dialect: 'mysql'
+  dialect: 'mysql',
+  logging: false
 })
 
 const dbConnectMySQL = async () => {
   try {
     await sequelize.authenticate()
-    console.log('> Conexión establecida con la base de datos MySQL')
+    console.log('> Conexión establecida con la base de datos')
   } catch (error) {
-    console.log(`> MySQL error de conexión: ${error}`)
+    console.log(`> Error de conexión: ${error}`)
   }
 }
 
