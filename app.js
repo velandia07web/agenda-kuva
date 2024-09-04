@@ -31,7 +31,7 @@ const port = process.env.PORT || 4000
 app.use('/api', require('./routes'))
 
 app.get('/', (req, res) => {
-  res.send('<h1>Hello world!</h1>')
+  res.send('<h1>¡Miau!</h1>')
 })
 
 console.clear()
