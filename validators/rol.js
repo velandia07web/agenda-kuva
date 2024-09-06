@@ -20,8 +20,8 @@ const validatorGetItem = [
     .withMessage('El campo id es obligatorio')
     .notEmpty()
     .withMessage('El campo id no debe estar vacío')
-    .isInt()
-    .withMessage('El campo id debe ser un número entero'),
+    .isUUID('4') // Valida que sea un UUID v4
+    .withMessage('El campo id debe ser un UUID válido'),
   validateResults
 ]
 
@@ -31,8 +31,8 @@ const validatorUpdateItem = [
     .withMessage('El campo id es obligatorio')
     .notEmpty()
     .withMessage('El campo id no debe estar vacío')
-    .isInt()
-    .withMessage('El campo id debe ser un número entero'),
+    .isUUID('4') // Valida que sea un UUID v4
+    .withMessage('El campo id debe ser un UUID válido'),
   check('name')
     .optional() // Permite que el campo sea opcional en la actualización
     .isString()
@@ -48,8 +48,8 @@ const validatorDeleteItem = [
     .withMessage('El campo id es obligatorio')
     .notEmpty()
     .withMessage('El campo id no debe estar vacío')
-    .isInt()
-    .withMessage('El campo id debe ser un número entero'),
+    .isUUID('4') // Valida que sea un UUID v4
+    .withMessage('El campo id debe ser un UUID válido'),
   validateResults
 ]
 
