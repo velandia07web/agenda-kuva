@@ -12,7 +12,7 @@ const getOneRol = async function (id) {
   try {
     return await rol.findOne({ where: { id } })
   } catch (error) {
-    throw new Error(`Error al obtener el Rol: ${error.message}`)
+    throw new Error(`Error al obtener el rol: ${error.message}`)
   }
 }
 
@@ -26,7 +26,6 @@ const createRol = async function (body) {
   }
 }
 
-// Función para actualizar un rol existente por su ID
 const updateRol = async function (id, body) {
   try {
     return await rol.update({
@@ -37,12 +36,11 @@ const updateRol = async function (id, body) {
   }
 }
 
-// Función para eliminar un rol por su ID
 const deleteRol = async function (id) {
   try {
     const deletedCount = await rol.destroy({ where: { id } })
     if (deletedCount === 0) {
-      throw new Error(`rol con id ${id} no encontrado`)
+      throw new Error(`Rol con id ${id} no encontrado`)
     }
     return deletedCount
   } catch (error) {
