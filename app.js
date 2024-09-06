@@ -3,8 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
-const csurf = require('csurf')
-
+const rateLimit = require('express-rate-limit')
 const morganBody = require('morgan-body')
 
 const { dbConnectMySQL } = require('./config/mysql')
@@ -12,9 +11,40 @@ const { dbConnectMySQL } = require('./config/mysql')
 const loggerStream = require('./utils/handleLogger')
 
 const app = express()
+
+// Configuración de CORS
+const corsOptions = {
+  // origin: 'https://your-trusted-domain.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization'
+}
+
+app.use(cors(corsOptions))
+
+// Configuración de Helmet
 app.use(helmet())
-app.use(csurf())
-app.use(cors())
+
+// Limitación de tasa
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 100, // límite de 100 solicitudes por ventana
+  message: 'Too many requests, please try again later.'
+})
+
+app.use(limiter)
+
+// Middleware para validar el origen de las solicitudes
+// app.use((req, res, next) => {
+//   const allowedOrigins = ['https://your-trusted-domain.com']
+//   const origin = req.headers.origin
+
+//   if (allowedOrigins.includes(origin)) {
+//     next()
+//   } else {
+//     res.status(403).json({ message: 'Forbidden' })
+//   }
+// })
+
 app.use(express.json())
 app.use(express.static('storage'))
 
