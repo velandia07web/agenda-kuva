@@ -28,7 +28,7 @@ const createSocialMedias = async function (req, res) {
     // Extraer solo los datos validados
     const validData = matchedData(req)
 
-    // Usar los datos validados para crear el rol
+    // Usar los datos validados para crear el social media
     const createSocialMedia = await socialMediaService.createSocialMedia(validData)
     return res.status(201).json({ status: 201, message: 'Social Media creado satisfactoriamente', data: createSocialMedia })
   } catch (error) {
