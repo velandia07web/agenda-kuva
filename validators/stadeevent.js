@@ -3,7 +3,7 @@ const validateResults = require('../utils/handleValidator')
 
 const validatorCreateItem = [
   check('name')
-    .exists()
+    .exists({ checkFalsy: true })
     .withMessage('El campo name es obligatorio')
     .notEmpty()
     .withMessage('El campo name no debe estar vacío')
@@ -16,7 +16,7 @@ const validatorCreateItem = [
 
 const validatorGetItem = [
   check('id')
-    .exists()
+    .exists({ checkFalsy: true })
     .withMessage('El campo id es obligatorio')
     .notEmpty()
     .withMessage('El campo id no debe estar vacío')
@@ -27,7 +27,7 @@ const validatorGetItem = [
 
 const validatorUpdateItem = [
   check('id')
-    .exists()
+    .exists({ checkFalsy: true })
     .withMessage('El campo id es obligatorio')
     .notEmpty()
     .withMessage('El campo id no debe estar vacío')
@@ -44,7 +44,7 @@ const validatorUpdateItem = [
 
 const validatorDeleteItem = [
   check('id')
-    .exists()
+    .exists({ checkFalsy: true })
     .withMessage('El campo id es obligatorio')
     .notEmpty()
     .withMessage('El campo id no debe estar vacío')
