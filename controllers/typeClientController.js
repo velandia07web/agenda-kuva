@@ -28,7 +28,7 @@ const createTypeClients = async function (req, res) {
     // Extraer solo los datos validados
     const validData = matchedData(req)
 
-    // Usar los datos validados para crear el rol
+    // Usar los datos validados para crear el type client
     const createTypeClient = await typeClienteService.createTypeClient(validData)
     return res.status(201).json({ status: 201, message: 'Type Client creado satisfactoriamente', data: createTypeClient })
   } catch (error) {
