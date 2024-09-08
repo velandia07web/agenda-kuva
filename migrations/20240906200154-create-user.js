@@ -23,8 +23,20 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      jwt: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      active: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
+      },
+      failedAttempts: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
       idRol: {
-        type: Sequelize.UUID, // Cambiado de INTEGER a UUID
+        type: Sequelize.UUID,
         references: {
           model: 'Rols',
           key: 'id'
