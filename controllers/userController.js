@@ -25,11 +25,8 @@ const getOneUsers = async function (req, res) {
 
 const createUsers = async function (req, res) {
   try {
-    // Extraer solo los datos validados
-    // const validData = matchedData(req.body)
-    // console.log('data', validData)
-    // Usar los datos validados para crear el user
-    const createUser = await userService.createUser(req.body)
+    const validData = matchedData(req)
+    const createUser = await userService.createUser(validData)
     return res.status(201).json({ status: 201, message: 'User creado satisfactoriamente', data: createUser })
   } catch (error) {
     return res.status(500).json({ status: 500, message: 'Error al crear el user.', error: error.message })
