@@ -1,9 +1,9 @@
-const user = require('../models').User
+const { User } = require('../models')
 const { encrypt } = require('../utils/handlePassword')
 
 const getAllUsers = async function () {
   try {
-    return await user.findAndCountAll({
+    return await User.findAndCountAll({
       attributes: { exclude: ['password'] }
     })
   } catch (error) {
@@ -13,27 +13,34 @@ const getAllUsers = async function () {
 
 const getOneUser = async function (id) {
   try {
-    return await user.findOne(
+    return await User.findOne(
       {
         where: { id },
         attributes: { exclude: ['password'] }
       }
     )
   } catch (error) {
-    throw new Error(`Error al obtener el user: ${error.message}`)
+    throw new Error(`Error al obtener el User: ${error.message}`)
   }
 }
 
 const createUser = async function (body) {
   try {
-    const data = await encrypt(body.password)
-    console.log('password', data)
-    return await user.create({
+    const encryptedPassword = await encrypt(body.password)
+
+    const newUser = await User.create({
       fullName: body.fullName,
       email: body.email,
-      password: data,
+      password: encryptedPassword,
       idRol: body.idRol
     })
+
+    const userWithoutPassword = await User.findOne({
+      where: { id: newUser.id },
+      attributes: { exclude: ['password'] }
+    })
+
+    return userWithoutPassword
   } catch (error) {
     throw new Error(`Error al crear el user: ${error.message}`)
   }
@@ -55,21 +62,21 @@ const updateUser = async function (id, body) {
     }
 
     // Actualizar el usuario solo con los campos presentes en updateData
-    return await user.update(updateData, { where: { id } })
+    return await User.update(updateData, { where: { id } })
   } catch (error) {
-    throw new Error(`Error al actualizar el user: ${error.message}`)
+    throw new Error(`Error al actualizar el User: ${error.message}`)
   }
 }
 
 const deleteUser = async function (id) {
   try {
-    const deletedCount = await user.destroy({ where: { id } })
+    const deletedCount = await User.destroy({ where: { id } })
     if (deletedCount === 0) {
       throw new Error(`User con id ${id} no encontrado`)
     }
     return deletedCount
   } catch (error) {
-    throw new Error(`Error al eliminar el user: ${error.message}`)
+    throw new Error(`Error al eliminar el User: ${error.message}`)
   }
 }
 

@@ -35,8 +35,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    jwt: {
+      allowNull: true,
+      type: DataTypes.STRING
+    },
+    active: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
+    failedAttempts: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
     idRol: {
-      type: DataTypes.UUID, // Cambiado de INTEGER a UUID
+      type: DataTypes.UUID,
       allowNull: false
     }
   }, {
