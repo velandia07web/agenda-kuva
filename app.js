@@ -22,7 +22,52 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 // Configuración de Helmet
-app.use(helmet())
+// Configurar la política de seguridad de contenido (CSP)
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+    imgSrc: ["'self'", 'data:'],
+    fontSrc: ["'self'"],
+    connectSrc: ["'self'"],
+    frameSrc: ["'self'"],
+    objectSrc: ["'none'"],
+    upgradeInsecureRequests: [],
+    blockAllMixedContent: []
+  }
+}))
+
+// Configurar el encabezado DNS Prefetch Control
+app.use(helmet.dnsPrefetchControl({ allow: false }))
+
+// Configurar el encabezado X-Frame-Options
+app.use(helmet.frameguard({ action: 'deny' }))
+
+// Eliminar el encabezado X-Powered-By
+app.use(helmet.hidePoweredBy())
+
+// Configurar el encabezado Strict-Transport-Security (HSTS)
+app.use(helmet.hsts({
+  maxAge: 31536000, // 1 año
+  includeSubDomains: true,
+  preload: true
+}))
+
+// Configurar el encabezado X-Download-Options
+app.use(helmet.ieNoOpen())
+
+// Configurar el encabezado X-Content-Type-Options
+app.use(helmet.noSniff())
+
+// Configurar el encabezado X-Permitted-Cross-Domain-Policies
+app.use(helmet.permittedCrossDomainPolicies({ permittedPolicies: 'none' }))
+
+// Configurar el encabezado Referrer-Policy
+app.use(helmet.referrerPolicy({ policy: 'no-referrer' }))
+
+// Configurar el encabezado X-XSS-Protection
+app.use(helmet.xssFilter())
 
 // Limitación de tasa
 const limiter = rateLimit({
@@ -45,7 +90,13 @@ app.use(limiter)
 //   }
 // })
 
-app.use(express.json())
+app.use(express.json({
+  verify: (req, res, buf) => {
+    req.rawBody = buf
+  },
+  limit: '200mb'
+}))
+
 app.use(express.static('storage'))
 
 morganBody(app, {
