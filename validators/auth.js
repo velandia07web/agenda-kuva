@@ -70,6 +70,7 @@ const validatorLogin = [
     .withMessage('El campo password no debe contener los caracteres < o > para evitar inyecciones'),
   validateResults
 ]
+
 const validatorLogout = [
   check('id')
     .exists({ checkFalsy: true })

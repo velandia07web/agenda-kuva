@@ -8,5 +8,7 @@ router
   .post('/register', validatorCreateItem, authcontroller.registerUsers)
   .post('/login', validatorLogin, authcontroller.loginUsers)
   .post('/:id', validatorLogout, authcontroller.logoutUser)
+  .post('/forgotPassword', authcontroller.forgotPassword)
+  .patch('/resetPassword/:token', authcontroller.resetPassword)
 
 module.exports = router
