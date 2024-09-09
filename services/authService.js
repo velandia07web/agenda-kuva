@@ -33,6 +33,7 @@ const registerUser = async function (body) {
     delete userWithoutPassword.password
     delete userWithoutPassword.jwt
     delete userWithoutPassword.active
+    delete userWithoutPassword.failedAttempts
 
     return { userWithoutPassword, token }
   } catch (error) {
