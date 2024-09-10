@@ -32,8 +32,30 @@ const logoutUser = async function (req, res) {
   }
 }
 
+const forgotPassword = async function (req, res) {
+  try {
+    const validData = matchedData(req)
+    const sendEmail = await authService.forgotPassword(validData)
+    return res.status(200).json({ status: 200, message: 'Envio de correo exitoso', data: sendEmail })
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'Error al enviar el correo.', error: error.message })
+  }
+}
+
+const resetPassword = async function (req, res) {
+  try {
+    const validData = matchedData(req)
+    const password = await authService.resetPassword(validData)
+    return res.status(200).json({ status: 200, message: 'Cambio de contraseña exitoso', data: password })
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'Error al restablecer la contraseña.', error: error.message })
+  }
+}
+
 module.exports = {
   registerUsers,
   loginUsers,
-  logoutUser
+  logoutUser,
+  forgotPassword,
+  resetPassword
 }

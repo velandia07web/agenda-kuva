@@ -1,6 +1,6 @@
 const authcontroller = require('../controllers/authController')
 const { Router } = require('express')
-const { validatorCreateItem, validatorLogin, validatorLogout } = require('../validators/auth')
+const { validatorCreateItem, validatorLogin, validatorLogout, validatorForgotPassword } = require('../validators/auth')
 const router = Router()
 
 router
@@ -8,5 +8,7 @@ router
   .post('/register', validatorCreateItem, authcontroller.registerUsers)
   .post('/login', validatorLogin, authcontroller.loginUsers)
   .post('/:id', validatorLogout, authcontroller.logoutUser)
+  .post('/', validatorForgotPassword, authcontroller.forgotPassword)
+  .patch('/resetPassword/:token', authcontroller.resetPassword)
 
 module.exports = router
