@@ -81,8 +81,19 @@ const validatorLogout = [
     .withMessage('El campo id debe ser un UUID válido'),
   validateResults
 ]
+
+const validatorForgotPassword = [
+  check('email')
+    .exists()
+    .withMessage('El campo email es obligatorio')
+    .isEmail()
+    .withMessage('El campo email debe ser un correo electrónico válido'),
+  validateResults
+]
+
 module.exports = {
   validatorCreateItem,
   validatorLogin,
-  validatorLogout
+  validatorLogout,
+  validatorForgotPassword
 }

@@ -2,7 +2,9 @@ const { User, Rol } = require('../models')
 const { encrypt, compare } = require('../utils/handlePassword')
 const { tokenSign, tokenResetPassword/*, verifyTokenResetPassword */ } = require('../utils/handleJwt')
 const { handleHttpError } = require('../utils/handleError')
-const sendEmail = require('../utils/handleEmail')
+const sendMail = require('../email/email')
+const ejs = require('ejs')
+const path = require('path')
 
 const registerUser = async function (body) {
   try {
@@ -108,7 +110,7 @@ const logoutUser = async function (userId) {
 const forgotPassword = async function (email) {
   try {
     const user = await User.findOne({
-      where: { email }
+      where: { email: email.email }
     })
 
     if (!user) {
@@ -116,17 +118,18 @@ const forgotPassword = async function (email) {
     }
 
     const token = await tokenResetPassword(user)
-
     const resetUrl = `http://localhost:3310/api/resetPassword/${token}`
 
-    const message = `Te emos enviado un restablecimiento de password, click ${resetUrl}`
+    const htmlTemplate = await ejs.renderFile(
+      path.join(__dirname, '../email/templates/password.ejs'),
+      { fullName: user.fullName, resetUrl }
+    )
 
-    await sendEmail({
-      email,
-      subject: 'Password Reset',
-      message
-    })
+    await sendMail(user.email, 'Restablecimiento de Contraseña', htmlTemplate)
+
+    return { message: 'Correo de restablecimiento de contraseña enviado correctamente' }
   } catch (error) {
+    console.log(error)
     throw new Error('Error al enviar el email')
   }
 }
