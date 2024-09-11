@@ -1,6 +1,6 @@
 const { User, Rol } = require('../models')
 const { encrypt, compare } = require('../utils/handlePassword')
-const { tokenSign, tokenResetPassword/*, verifyTokenResetPassword */ } = require('../utils/handleJwt')
+const { tokenSign, tokenResetPassword, verifyTokenResetPassword, decodeJWT } = require('../utils/handleJwt')
 const { handleHttpError } = require('../utils/handleError')
 const sendMail = require('../email/email')
 const ejs = require('ejs')
@@ -134,8 +134,40 @@ const forgotPassword = async function (email) {
   }
 }
 
-const resetPassword = async function (token) {
+const resetPassword = async function (token, body) {
+  try {
+    const verifyToken = await verifyTokenResetPassword(token)
+    if (!verifyToken) {
+      throw new Error('El token no es válido')
+    }
 
+    const decode = await decodeJWT(token)
+    if (!decode) {
+      throw new Error('El token no se decodificó')
+    }
+
+    const user = await User.findOne({
+      where: { email: decode.email }
+    })
+    if (!user) {
+      throw new Error('El email proporcionado no existe')
+    }
+
+    if (body.password !== body.verifyPassword) {
+      throw new Error('Las contraseñas no coinciden')
+    }
+
+    const encryptedPassword = await encrypt(body.password)
+
+    await User.update(
+      { password: encryptedPassword }, // Datos a actualizar
+      { where: { email: decode.email } } // Criterio de selección
+    )
+
+    return { message: 'Cambio de contraseña exitoso' }
+  } catch (error) {
+    throw new Error(`Error al cambiar la contraseña: ${error.message}`)
+  }
 }
 
 module.exports = {
