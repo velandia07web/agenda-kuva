@@ -46,7 +46,7 @@ const resetPassword = async function (req, res) {
   try {
     const validData = req.body
     console.log(validData)
-    const token = req.params.token // Capturamos el token desde la URL
+    const token = req.params.token
     const password = await authService.resetPassword(token, validData)
     return res.status(200).json({ status: 200, message: 'Cambio de contraseña exitoso', data: password })
   } catch (error) {

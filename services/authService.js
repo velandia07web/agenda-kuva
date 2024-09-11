@@ -1,6 +1,6 @@
 const { User, Rol } = require('../models')
 const { encrypt, compare } = require('../utils/handlePassword')
-const { tokenSign, tokenResetPassword, verifyTokenResetPassword, decodeJWT } = require('../utils/handleJwt')
+const { tokenSign, tokenResetPassword, verifyTokenResetPassword } = require('../utils/handleJwt')
 const { handleHttpError } = require('../utils/handleError')
 const sendMail = require('../email/email')
 const ejs = require('ejs')
@@ -141,13 +141,8 @@ const resetPassword = async function (token, body) {
       throw new Error('El token no es válido')
     }
 
-    const decode = await decodeJWT(token)
-    if (!decode) {
-      throw new Error('El token no se decodificó')
-    }
-
     const user = await User.findOne({
-      where: { email: decode.email }
+      where: { email: verifyToken.email }
     })
     if (!user) {
       throw new Error('El email proporcionado no existe')
@@ -160,8 +155,8 @@ const resetPassword = async function (token, body) {
     const encryptedPassword = await encrypt(body.password)
 
     await User.update(
-      { password: encryptedPassword }, // Datos a actualizar
-      { where: { email: decode.email } } // Criterio de selección
+      { password: encryptedPassword },
+      { where: { email: verifyToken.email } }
     )
 
     return { message: 'Cambio de contraseña exitoso' }

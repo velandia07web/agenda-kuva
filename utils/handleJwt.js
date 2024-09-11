@@ -35,13 +35,13 @@ const verifyTokenResetPassword = async (token) => {
   }
 }
 
-const decodeJWT = async (token) => {
-  try {
-    return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString())
-  } catch (error) {
-    console.error('Erro en la decodificación del toke', error)
-    throw new Error('Error en la decodificación del toke')
-  }
-}
+// const decodeJWT = async (token) => {
+//   try {
+//     return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString())
+//   } catch (error) {
+//     console.error('Erro en la decodificación del toke', error)
+//     throw new Error('Error en la decodificación del toke')
+//   }
+// }
 
-module.exports = { tokenSign, verifyToken, tokenResetPassword, verifyTokenResetPassword, decodeJWT }
+module.exports = { tokenSign, verifyToken, tokenResetPassword, verifyTokenResetPassword }
