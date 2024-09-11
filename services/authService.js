@@ -118,8 +118,6 @@ const forgotPassword = async function (email) {
     }
 
     const token = await tokenResetPassword(user)
-    const decode = await decodeJWT(token)
-    console.log('token', decode)
     const resetUrl = `http://localhost:3310/api/resetPassword/${token}`
 
     const htmlTemplate = await ejs.renderFile(
@@ -136,11 +134,39 @@ const forgotPassword = async function (email) {
   }
 }
 
-const resetPassword = async function (token) {
+const resetPassword = async function (token, body) {
   try {
     const verifyToken = await verifyTokenResetPassword(token)
-  } catch (error) {
+    if (!verifyToken) {
+      throw new Error('El token no es válido')
+    }
 
+    const decode = await decodeJWT(token)
+    if (!decode) {
+      throw new Error('El token no se decodificó')
+    }
+
+    const user = await User.findOne({
+      where: { email: decode.email }
+    })
+    if (!user) {
+      throw new Error('El email proporcionado no existe')
+    }
+
+    if (body.password !== body.verifyPassword) {
+      throw new Error('Las contraseñas no coinciden')
+    }
+
+    const encryptedPassword = await encrypt(body.password)
+
+    await User.update(
+      { password: encryptedPassword }, // Datos a actualizar
+      { where: { email: decode.email } } // Criterio de selección
+    )
+
+    return { message: 'Cambio de contraseña exitoso' }
+  } catch (error) {
+    throw new Error(`Error al cambiar la contraseña: ${error.message}`)
   }
 }
 
