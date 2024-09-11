@@ -1,17 +1,18 @@
 const rolController = require('../controllers/rolController')
+const authMiddlewareRol = require('../middlewares/sessionRol')
 const { Router } = require('express')
 const { validatorCreateItem, validatorGetItem, validatorUpdateItem, validatorDeleteItem } = require('../validators/rol')
 const router = Router()
 
+router.use(authMiddlewareRol(['Administrador', 'Superadministrador']))
+
 router
   .get('/', rolController.getAllRols)
-
   .get('/:id', validatorGetItem, rolController.getOneRols)
 
-  .post('/', validatorCreateItem, rolController.createRols)
-
-  .put('/:id', validatorUpdateItem, rolController.updateRol)
-
-  .delete('/:id', validatorDeleteItem, rolController.deleteRol)
+router
+  .post('/', authMiddlewareRol(['Superadministrador']), validatorCreateItem, rolController.createRols)
+  .put('/:id', authMiddlewareRol(['Superadministrador']), validatorUpdateItem, rolController.updateRol)
+  .delete('/:id', authMiddlewareRol(['Superadministrador']), validatorDeleteItem, rolController.deleteRol)
 
 module.exports = router
