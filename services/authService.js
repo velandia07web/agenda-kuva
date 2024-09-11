@@ -1,6 +1,6 @@
 const { User, Rol } = require('../models')
 const { encrypt, compare } = require('../utils/handlePassword')
-const { tokenSign, tokenResetPassword/*, verifyTokenResetPassword */ } = require('../utils/handleJwt')
+const { tokenSign, tokenResetPassword, verifyTokenResetPassword, decodeJWT } = require('../utils/handleJwt')
 const { handleHttpError } = require('../utils/handleError')
 const sendMail = require('../email/email')
 const ejs = require('ejs')
@@ -118,6 +118,8 @@ const forgotPassword = async function (email) {
     }
 
     const token = await tokenResetPassword(user)
+    const decode = await decodeJWT(token)
+    console.log('token', decode)
     const resetUrl = `http://localhost:3310/api/resetPassword/${token}`
 
     const htmlTemplate = await ejs.renderFile(
@@ -135,7 +137,11 @@ const forgotPassword = async function (email) {
 }
 
 const resetPassword = async function (token) {
+  try {
+    const verifyToken = await verifyTokenResetPassword(token)
+  } catch (error) {
 
+  }
 }
 
 module.exports = {
