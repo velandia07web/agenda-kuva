@@ -78,6 +78,11 @@ const validatorUpdateItem = [
     .withMessage('El campo password debe contener al menos un carácter especial')
     .matches(/^[^<>]*$/)
     .withMessage('El campo password no debe contener los caracteres < o > para evitar inyecciones'),
+  check('idRol')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo id rol es obligatorio')
+    .isString()
+    .withMessage('El campo id rol debe ser una cadena de texto'),
   validateResults
 ]
 
