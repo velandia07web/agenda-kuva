@@ -1,20 +1,16 @@
 'use strict'
-const {
-  Model
-} = require('sequelize')
-
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Rol extends Model {
+  class City extends Model {
     static associate (models) {
-      // define association here
-      Rol.hasMany(models.User, {
-        foreignKey: 'idRol',
-        as: 'user'
+      // Define asociación con Zone
+      City.belongsTo(models.Zone, {
+        foreignKey: 'idZone',
+        as: 'zone'
       })
     }
   }
-
-  Rol.init({
+  City.init({
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -25,13 +21,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
+    },
+    idZone: {
+      type: DataTypes.UUID,
+      allowNull: false
     }
   }, {
     sequelize,
-    modelName: 'Rol',
-    tableName: 'Rols',
+    modelName: 'City',
+    tableName: 'Cities',
     timestamps: true
   })
-
-  return Rol
+  return City
 }
