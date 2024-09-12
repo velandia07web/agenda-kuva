@@ -1,8 +1,10 @@
-const rol = require('../models').TypeClient
+const { TypeClient } = require('../models')
 
 const getAllTypeClients = async function () {
   try {
-    return await rol.findAndCountAll()
+    return await TypeClient.findAndCountAll({
+      order: [['name', 'ASC']]
+    })
   } catch (error) {
     throw new Error(`Error al obtener los type clients: ${error.message}`)
   }
@@ -10,7 +12,7 @@ const getAllTypeClients = async function () {
 
 const getOneTypeClient = async function (id) {
   try {
-    return await rol.findOne({ where: { id } })
+    return await TypeClient.findOne({ where: { id } })
   } catch (error) {
     throw new Error(`Error al obtener el type client: ${error.message}`)
   }
@@ -18,7 +20,7 @@ const getOneTypeClient = async function (id) {
 
 const createTypeClient = async function (body) {
   try {
-    return await rol.create({
+    return await TypeClient.create({
       name: body.name
     })
   } catch (error) {
@@ -28,7 +30,7 @@ const createTypeClient = async function (body) {
 
 const updateTypeClient = async function (id, body) {
   try {
-    return await rol.update({
+    return await TypeClient.update({
       name: body.name
     }, { where: { id } })
   } catch (error) {
@@ -38,7 +40,7 @@ const updateTypeClient = async function (id, body) {
 
 const deleteTypeClient = async function (id) {
   try {
-    const deletedCount = await rol.destroy({ where: { id } })
+    const deletedCount = await TypeClient.destroy({ where: { id } })
     if (deletedCount === 0) {
       throw new Error(`Type Client con id ${id} no encontrado`)
     }
