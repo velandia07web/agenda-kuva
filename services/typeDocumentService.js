@@ -1,8 +1,10 @@
-const typeDocument = require('../models').TypeDocument
+const { TypeDocument } = require('../models')
 
 const getAllTypeDocument = async function () {
   try {
-    return await typeDocument.findAndCountAll()
+    return await TypeDocument.findAndCountAll({
+      order: [['name', 'ASC']]
+    })
   } catch (error) {
     throw new Error(`Error al obtener los tipos de documentos: ${error.message}`)
   }
@@ -10,7 +12,7 @@ const getAllTypeDocument = async function () {
 
 const getOneTypeDocument = async function (id) {
   try {
-    return await typeDocument.findOne({ where: { id } })
+    return await TypeDocument.findOne({ where: { id } })
   } catch (error) {
     throw new Error(`Error al obtener el tipo de documento: ${error.message}`)
   }
@@ -18,7 +20,7 @@ const getOneTypeDocument = async function (id) {
 
 const createTypeDocument = async function (body) {
   try {
-    return await typeDocument.create({
+    return await TypeDocument.create({
       name: body.name
     })
   } catch (error) {
@@ -28,7 +30,7 @@ const createTypeDocument = async function (body) {
 
 const updateTypeDocument = async function (id, body) {
   try {
-    return await typeDocument.update({
+    return await TypeDocument.update({
       name: body.name
     }, { where: { id } })
   } catch (error) {
@@ -38,7 +40,7 @@ const updateTypeDocument = async function (id, body) {
 
 const deleteTypeDocument = async function (id) {
   try {
-    const deletedCount = await typeDocument.destroy({ where: { id } })
+    const deletedCount = await TypeDocument.destroy({ where: { id } })
     if (deletedCount === 0) {
       throw new Error(`typeDocument con id ${id} no encontrado`)
     }

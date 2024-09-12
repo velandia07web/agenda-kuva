@@ -1,8 +1,10 @@
-const socialMedia = require('../models').SocialMedia
+const { SocialMedia } = require('../models')
 
 const getAllSocialMedias = async function () {
   try {
-    return await socialMedia.findAndCountAll()
+    return await SocialMedia.findAndCountAll({
+      order: [['name', 'ASC']]
+    })
   } catch (error) {
     throw new Error(`Error al obtener los social medias: ${error.message}`)
   }
@@ -10,7 +12,7 @@ const getAllSocialMedias = async function () {
 
 const getOneSocialMedia = async function (id) {
   try {
-    return await socialMedia.findOne({ where: { id } })
+    return await SocialMedia.findOne({ where: { id } })
   } catch (error) {
     throw new Error(`Error al obtener el rol: ${error.message}`)
   }
@@ -18,7 +20,7 @@ const getOneSocialMedia = async function (id) {
 
 const createSocialMedia = async function (body) {
   try {
-    return await socialMedia.create({
+    return await SocialMedia.create({
       name: body.name
     })
   } catch (error) {
@@ -28,7 +30,7 @@ const createSocialMedia = async function (body) {
 
 const updateSocialMedia = async function (id, body) {
   try {
-    return await socialMedia.update({
+    return await SocialMedia.update({
       name: body.name
     }, { where: { id } })
   } catch (error) {
@@ -38,7 +40,7 @@ const updateSocialMedia = async function (id, body) {
 
 const deleteSocialMedia = async function (id) {
   try {
-    const deletedCount = await socialMedia.destroy({ where: { id } })
+    const deletedCount = await SocialMedia.destroy({ where: { id } })
     if (deletedCount === 0) {
       throw new Error(`Social media con id ${id} no encontrado`)
     }
