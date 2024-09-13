@@ -5,6 +5,8 @@ const cors = require('cors')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
 const morganBody = require('morgan-body')
+const csurf = require('csurf')
+const cookieParser = require('cookie-parser')
 
 const { dbConnectMySQL } = require('./config/mysql')
 
@@ -12,11 +14,14 @@ const loggerStream = require('./utils/handleLogger')
 
 const app = express()
 
+const isProduction = process.env.COOKIE === 'develop'
+const url = process.env.PUBLIC_URL
+
 // Configuración de CORS
 const corsOptions = {
-  // origin: 'https://your-trusted-domain.com',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization'
+  allowedHeaders: 'Content-Type,Authorization',
+  origin: isProduction ? url : '*'
 }
 
 app.use(cors(corsOptions))
@@ -72,23 +77,24 @@ app.use(helmet.xssFilter())
 // Limitación de tasa
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100, // límite de 100 solicitudes por ventana
+  max: isProduction ? 100 : 1000, // límite de 100 solicitudes por ventana
   message: 'Too many requests, please try again later.'
 })
 
 app.use(limiter)
 
-// Middleware para validar el origen de las solicitudes
-// app.use((req, res, next) => {
-//   const allowedOrigins = ['https://your-trusted-domain.com']
-//   const origin = req.headers.origin
+app.use(cookieParser())
 
-//   if (allowedOrigins.includes(origin)) {
-//     next()
-//   } else {
-//     res.status(403).json({ message: 'Forbidden' })
-//   }
-// })
+app.use(csurf({ cookie: true }))
+
+app.use((req, res, next) => {
+  res.cookie('XSRF-TOKEN', req.csrfToken(), {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: 'Strict'
+  })
+  next()
+})
 
 app.use(express.json({
   verify: (req, res, buf) => {
