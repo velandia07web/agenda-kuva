@@ -14,6 +14,20 @@ const validatorCreateItem = [
     .withMessage('El campo email es obligatorio')
     .isEmail()
     .withMessage('El campo email debe ser un correo electrónico válido'),
+  check('cedula')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo cedula es obligatorio')
+    .notEmpty()
+    .withMessage('El campo cedula no debe estar vacío')
+    .isInt({ min: 0 })
+    .withMessage('El campo cedula debe ser un número entero positivo'),
+  check('phone')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo phone es obligatorio')
+    .notEmpty()
+    .withMessage('El campo phone no debe estar vacío')
+    .isInt({ min: 0 })
+    .withMessage('El campo phone debe ser un número entero positivo'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('El campo password es obligatorio')
@@ -30,6 +44,11 @@ const validatorCreateItem = [
     .matches(/^[^<>]*$/)
     .withMessage('El campo password no debe contener los caracteres < o > para evitar inyecciones'),
   check('idRol')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo id rol es obligatorio')
+    .isString()
+    .withMessage('El campo id rol debe ser una cadena de texto'),
+  check('idZone')
     .exists({ checkFalsy: true })
     .withMessage('El campo id rol es obligatorio')
     .isString()
@@ -78,6 +97,11 @@ const validatorUpdateItem = [
     .withMessage('El campo password debe contener al menos un carácter especial')
     .matches(/^[^<>]*$/)
     .withMessage('El campo password no debe contener los caracteres < o > para evitar inyecciones'),
+  check('idRol')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo id rol es obligatorio')
+    .isString()
+    .withMessage('El campo id rol debe ser una cadena de texto'),
   check('idRol')
     .exists({ checkFalsy: true })
     .withMessage('El campo id rol es obligatorio')

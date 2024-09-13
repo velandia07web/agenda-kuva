@@ -31,8 +31,11 @@ const createUser = async function (body) {
     const newUser = await User.create({
       fullName: body.fullName,
       email: body.email,
+      cedula: body.cedula,
+      phone: body.phone,
       password: encryptedPassword,
-      idRol: body.idRol
+      idRol: body.idRol,
+      idZone: body.idZone
     })
 
     const userWithoutPassword = await User.findOne({
@@ -52,7 +55,10 @@ const updateUser = async function (id, body) {
     const updateData = {
       fullName: body.fullName,
       email: body.email,
-      idRol: body.idRol
+      cedula: body.cedula,
+      phone: body.phone,
+      idRol: body.idRol,
+      idZone: body.idZone
     }
 
     // Si la contraseña está presente en el body y no está vacía, encriptarla
