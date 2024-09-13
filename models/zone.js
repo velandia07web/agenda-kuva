@@ -7,6 +7,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idZone',
         as: 'cities'
       })
+
+      Zone.hasMany(models.User, {
+        foreignKey: 'idZone',
+        as: 'User'
+      })
     }
   }
   Zone.init({

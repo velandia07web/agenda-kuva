@@ -19,6 +19,16 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
+      cedula: {
+        allowNull: false,
+        type: Sequelize.BIGINT,
+        unique: true
+      },
+      phone: {
+        allowNull: false,
+        type: Sequelize.BIGINT,
+        unique: true
+      },
       password: {
         allowNull: false,
         type: Sequelize.STRING
@@ -39,6 +49,15 @@ module.exports = {
         type: Sequelize.UUID,
         references: {
           model: 'Rols',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+      },
+      idZone: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'Zones',
           key: 'id'
         },
         onUpdate: 'CASCADE',

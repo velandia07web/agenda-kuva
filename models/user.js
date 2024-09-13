@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idRol',
         as: 'Rol'
       })
+
+      User.belongsTo(models.Zone, {
+        foreignKey: 'idZone',
+        as: 'Zone'
+      })
     }
   }
 
@@ -28,6 +33,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    cedula: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      unique: true
+    },
+    phone: {
+      type: DataTypes.BIGINT,
       allowNull: false,
       unique: true
     },
@@ -49,6 +64,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0
     },
     idRol: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    idZone: {
       type: DataTypes.UUID,
       allowNull: false
     }
