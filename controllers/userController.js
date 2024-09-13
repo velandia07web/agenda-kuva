@@ -43,8 +43,8 @@ const updateUser = async function (req, res) {
 
     const validData = matchedData(req)
 
-    const updatedRol = await userService.updateUser(idUser, validData)
-    return res.status(200).json({ status: 200, message: 'User actualizado satisfactoriamente', data: updatedRol })
+    const updatedUser = await userService.updateUser(idUser, validData)
+    return res.status(200).json({ status: 200, message: 'User actualizado satisfactoriamente', data: updatedUser })
   } catch (error) {
     return res.status(500).json({ status: 500, message: 'Error al actualizar el user.', error: error.message })
   }
