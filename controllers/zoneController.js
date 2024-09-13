@@ -64,10 +64,21 @@ const deleteZones = async function (req, res) {
   }
 }
 
+const getZones = async function (req, res) {
+  try {
+    const validData = matchedData(req)
+    const zone = await zoneServices.getZone(validData)
+    return res.status(200).json({ status: 200, message: 'Zona creada satisfactoriamente', data: zone })
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'Error al obtener la zona por ID.', error: error.message })
+  }
+}
+
 module.exports = {
   getAllZones,
   getOneZones,
   createZones,
   updateZones,
-  deleteZones
+  deleteZones,
+  getZones
 }

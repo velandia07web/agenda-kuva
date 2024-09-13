@@ -21,7 +21,8 @@ const url = process.env.PUBLIC_URL
 const corsOptions = {
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
-  origin: isProduction ? url : '*'
+  origin: isProduction ? url : '*',
+  credentials: true
 }
 
 app.use(cors(corsOptions))
@@ -90,9 +91,10 @@ app.use(csurf({ cookie: true }))
 app.use((req, res, next) => {
   const csrfToken = req.csrfToken()
   console.log('CSRF Token:', csrfToken)
+
   res.cookie('XSRF-TOKEN', csrfToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: isProduction,
     sameSite: 'Strict'
   })
 
