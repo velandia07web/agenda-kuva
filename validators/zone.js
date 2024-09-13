@@ -53,9 +53,23 @@ const validatorDeleteItem = [
   validateResults
 ]
 
+const validatorGet = [
+  check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo name es obligatorio')
+    .notEmpty()
+    .withMessage('El campo name no debe estar vacío')
+    .isString()
+    .withMessage('El campo name debe ser una cadena de texto')
+    .matches(/^[a-zA-Z\s]+$/)
+    .withMessage('El campo name solo puede contener letras y espacios'), // Mensaje corregido
+  validateResults
+]
+
 module.exports = {
   validatorCreateItem,
   validatorGetItem,
   validatorUpdateItem,
-  validatorDeleteItem
+  validatorDeleteItem,
+  validatorGet
 }

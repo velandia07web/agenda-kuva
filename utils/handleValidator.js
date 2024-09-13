@@ -13,7 +13,7 @@ const validateResults = (req, res, next) => {
     const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-      // No se filtran detalles sensibles, solo un mensaje genérico.
+      console.error('Error de validadores', errors.errors)
       return res.status(403).json({
         errors: errors.array().map(err => ({
           field: err.param,
@@ -23,7 +23,6 @@ const validateResults = (req, res, next) => {
     }
     return next()
   } catch (error) {
-    // Como medida de precaución, se puede devolver un mensaje genérico ante cualquier excepción inesperada
     return res.status(500).json({
       message: 'An unexpected error occurred'
     })
