@@ -37,7 +37,7 @@ const createUser = async function (body) {
 
     const userWithoutPassword = await User.findOne({
       where: { id: newUser.id },
-      attributes: { exclude: ['password'] }
+      attributes: { exclude: ['password', 'jwt', 'active', 'failedAttempts'] }
     })
 
     return userWithoutPassword
