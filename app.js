@@ -88,11 +88,14 @@ app.use(cookieParser())
 app.use(csurf({ cookie: true }))
 
 app.use((req, res, next) => {
-  res.cookie('XSRF-TOKEN', req.csrfToken(), {
+  const csrfToken = req.csrfToken()
+  console.log('CSRF Token:', csrfToken)
+  res.cookie('XSRF-TOKEN', csrfToken, {
     httpOnly: true,
-    secure: isProduction,
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'Strict'
   })
+
   next()
 })
 
