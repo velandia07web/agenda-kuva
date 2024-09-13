@@ -8,12 +8,12 @@ module.exports = {
       'SELECT id, name FROM `TypePrices`;',
       { type: queryInterface.sequelize.QueryTypes.SELECT }
     )
+
     const typePrice = {}
     typePrices.forEach(price => {
       if (price.name === 'Precio Publico') typePrice.publico = price.id
       if (price.name === 'Precio con Descuento') typePrice.descuento = price.id
     })
-    console.log(typePrices)
 
     return queryInterface.bulkInsert('Adds', [
       {
