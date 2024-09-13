@@ -1,4 +1,4 @@
-const { Zone } = require('../models')
+const { Zone, City } = require('../models')
 
 const getAllZones = async function () {
   try {
@@ -52,10 +52,26 @@ const deleteZone = async function (id) {
   }
 }
 
+const getZone = async function (body) {
+  try {
+    return await Zone.findOne({
+      where: { name: body.name },
+      include: [{
+        model: City,
+        as: 'cities'
+      }],
+      order: [[{ model: City, as: 'cities' }, 'name', 'ASC']]
+    })
+  } catch (error) {
+    throw new Error(`Error al obtener la Zona y sus ciudades: ${error.message}`)
+  }
+}
+
 module.exports = {
   getAllZones,
   getOneZone,
   createZone,
   updateZone,
-  deleteZone
+  deleteZone,
+  getZone
 }
