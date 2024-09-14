@@ -5,8 +5,6 @@ const cors = require('cors')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
 const morganBody = require('morgan-body')
-// const csurf = require('csurf')
-// const cookieParser = require('cookie-parser')
 
 const { dbConnectMySQL } = require('./config/mysql')
 
@@ -83,23 +81,6 @@ const limiter = rateLimit({
 })
 
 app.use(limiter)
-/*
-app.use(cookieParser())
-
-app.use(csurf({ cookie: true }))
-
-app.use((req, res, next) => {
-  const csrfToken = req.csrfToken()
-  console.log('CSRF Token:', csrfToken)
-
-  res.cookie('XSRF-TOKEN', csrfToken, {
-    httpOnly: true,
-    secure: isProduction,
-    sameSite: 'Strict'
-  })
-
-  next()
-}) */
 
 app.use(express.json({
   verify: (req, res, buf) => {
