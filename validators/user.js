@@ -102,11 +102,11 @@ const validatorUpdateItem = [
     .withMessage('El campo id rol es obligatorio')
     .isString()
     .withMessage('El campo id rol debe ser una cadena de texto'),
-  check('idRol')
+  check('idZone')
     .exists({ checkFalsy: true })
-    .withMessage('El campo id rol es obligatorio')
+    .withMessage('El campo id zone es obligatorio')
     .isString()
-    .withMessage('El campo id rol debe ser una cadena de texto'),
+    .withMessage('El campo id zone debe ser una cadena de texto'),
   validateResults
 ]
 
