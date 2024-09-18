@@ -1,0 +1,67 @@
+const { Product } = require('../models')
+
+const getAllProducts = async function () {
+  try {
+    return await Product.findAndCountAll({
+      order: [['name', 'ASC']]
+    })
+  } catch (error) {
+    throw new Error(`Error al obtener los products: ${error.message}`)
+  }
+}
+
+const getOneProduct = async function (id) {
+  try {
+    return await Product.findOne({ where: { id } })
+  } catch (error) {
+    throw new Error(`Error al obtener el Product: ${error.message}`)
+  }
+}
+
+const createProduct = async function (body) {
+  try {
+    return await Product.create({
+      name: body.name,
+      imagen: body.imagen,
+      description: body.description,
+      count: body.count,
+      idZone: body.idZone
+    })
+  } catch (error) {
+    throw new Error(`Error al crear el Product: ${error.message}`)
+  }
+}
+
+const updateProduct = async function (id, body) {
+  try {
+    return await Product.update({
+      name: body.name,
+      imagen: body.imagen,
+      description: body.description,
+      count: body.count,
+      idZone: body.idZone
+    }, { where: { id } })
+  } catch (error) {
+    throw new Error(`Error al actualizar el Product: ${error.message}`)
+  }
+}
+
+const deleteProduct = async function (id) {
+  try {
+    const deletedCount = await Product.destroy({ where: { id } })
+    if (deletedCount === 0) {
+      throw new Error(`Product con id ${id} no encontrado`)
+    }
+    return deletedCount
+  } catch (error) {
+    throw new Error(`Error al eliminar el Product: ${error.message}`)
+  }
+}
+
+module.exports = {
+  getAllProducts,
+  getOneProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct
+}
