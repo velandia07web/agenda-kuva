@@ -9,32 +9,20 @@ const validatorCreateItem = [
     .withMessage('El campo name debe ser una cadena de texto')
     .matches(/^[a-zA-Z0-9\s]+$/)
     .withMessage('El campo name solo puede contener letras, números y espacios'),
-  check('imagen')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo imagen es obligatorio')
-    .notEmpty()
-    .withMessage('El campo imagen no debe estar vacío'),
   check('description')
     .exists({ checkFalsy: true })
     .withMessage('El campo description es obligatorio')
     .notEmpty()
     .withMessage('El campo description no debe estar vacío')
     .isString()
-    .withMessage('El campo description debe ser una cadena de texto')
+    .withMessage('El campo name debe ser una cadena de texto')
     .matches(/^[a-zA-Z0-9\s]+$/)
-    .withMessage('El campo description solo puede contener letras, números y espacios'),
-  check('count')
+    .withMessage('El campo name solo puede contener letras, números y espacios'),
+  check('idProduct')
     .exists({ checkFalsy: true })
-    .withMessage('El campo count es obligatorio')
-    .notEmpty()
-    .withMessage('El campo count no debe estar vacío')
-    .isInt({ min: 0 })
-    .withMessage('El campo count debe ser un número entero positivo'),
-  check('idZone')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo id zone es obligatorio')
+    .withMessage('El campo id product es obligatorio')
     .isString()
-    .withMessage('El campo id zone debe ser una cadena de texto'),
+    .withMessage('El campo id product debe ser una cadena de texto'),
   validateResults // Esta función es la que se encarga de manejar los resultados de la validación
 ]
 
@@ -61,25 +49,17 @@ const validatorUpdateItem = [
     .withMessage('El campo name debe ser una cadena de texto')
     .matches(/^[a-zA-Z0-9\s]+$/)
     .withMessage('El campo name solo puede contener letras, números y espacios'),
-  check('imagen')
-    .optional()
-    .isString()
-    .withMessage('El campo imagen debe ser una cadena de texto'),
   check('description')
     .optional()
     .isString()
     .withMessage('El campo name debe ser una cadena de texto')
     .matches(/^[a-zA-Z0-9\s]+$/)
     .withMessage('El campo name solo puede contener letras, números y espacios'),
-  check('count')
-    .optional()
-    .isInt({ min: 0 })
-    .withMessage('El campo count debe ser un número entero positivo'),
-  check('idZone')
+  check('idProduct')
     .exists({ checkFalsy: true })
-    .withMessage('El campo id zone es obligatorio')
+    .withMessage('El campo id product es obligatorio')
     .isString()
-    .withMessage('El campo id zone debe ser una cadena de texto'),
+    .withMessage('El campo id product debe ser una cadena de texto'),
   validateResults
 ]
 

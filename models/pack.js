@@ -2,23 +2,17 @@
 const {
   Model
 } = require('sequelize')
-
 module.exports = (sequelize, DataTypes) => {
-  class Product extends Model {
+  class Pack extends Model {
     static associate (models) {
       // define association here
-      Product.belongsTo(models.Zone, {
-        foreignKey: 'idZone',
-        as: 'Zone'
-      })
-
-      Product.hasMany(models.User, {
+      Pack.belongsTo(models.Product, {
         foreignKey: 'idProduct',
-        as: 'Pack'
+        as: 'Product'
       })
     }
   }
-  Product.init({
+  Pack.init({
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -29,27 +23,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    imagen: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     description: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    count: {
+    idProduct: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    idZone: {
-      type: DataTypes.UUID,
       allowNull: true
     }
   }, {
     sequelize,
-    modelName: 'Product',
-    tableName: 'Products',
+    modelName: 'Pack',
+    tableName: 'Packs',
     timestamps: true
   })
-  return Product
+  return Pack
 }
