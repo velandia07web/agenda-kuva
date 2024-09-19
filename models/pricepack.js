@@ -3,44 +3,35 @@ const {
   Model
 } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Pack extends Model {
+  class PricePack extends Model {
     static associate (models) {
       // define association here
-      Pack.belongsTo(models.Product, {
-        foreignKey: 'idProduct',
-        as: 'Product'
-      })
-
-      Pack.hasMany(models.PricePack, {
+      PricePack.belongsTo(models.Pack, {
         foreignKey: 'idPack',
-        as: 'PricePack'
+        as: 'Pack'
       })
     }
   }
-  Pack.init({
+  PricePack.init({
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
     },
-    name: {
-      type: DataTypes.STRING,
+    price: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    idProduct: {
+    idPack: {
       type: DataTypes.UUID,
       allowNull: false
     }
   }, {
     sequelize,
-    modelName: 'Pack',
-    tableName: 'Packs',
+    modelName: 'PricePack',
+    tableName: 'PricePacks',
     timestamps: true
   })
-  return Pack
+  return PricePack
 }

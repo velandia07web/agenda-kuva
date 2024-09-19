@@ -42,7 +42,7 @@ const updatePack = async function (id, body) {
       idZone: body.idZone
     }, { where: { id } })
   } catch (error) {
-    throw new Error(`Error al actualizar el Product: ${error.message}`)
+    throw new Error(`Error al actualizar el Pack: ${error.message}`)
   }
 }
 
