@@ -62,7 +62,7 @@ const loginUser = async function (res, body) {
       user.failedAttempts += 1
       await user.save()
 
-      if (user.failedAttempts >= 3) {
+      if (user.failedAttempts >= 5) {
         user.active = false
         await user.save()
         return handleHttpError(res, 'Usuario desactivado. Contacte al administrador.', 403)
@@ -109,6 +109,7 @@ const logoutUser = async function (userId) {
 
 const forgotPassword = async function (email) {
   try {
+    const url = process.env.PUBLIC_URL
     const user = await User.findOne({
       where: { email: email.email }
     })
@@ -118,7 +119,7 @@ const forgotPassword = async function (email) {
     }
 
     const token = await tokenResetPassword(user)
-    const resetUrl = `http://localhost:3310/api/resetPassword/${token}`
+    const resetUrl = `${url}/cambio-contrasena/${token}`
 
     const htmlTemplate = await ejs.renderFile(
       path.join(__dirname, '../email/templates/password.ejs'),
