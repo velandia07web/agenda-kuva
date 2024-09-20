@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'Zone'
       })
 
-      Product.hasMany(models.User, {
+      Product.hasMany(models.Pack, {
         foreignKey: 'idProduct',
         as: 'Pack'
       })

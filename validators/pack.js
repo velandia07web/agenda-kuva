@@ -23,6 +23,11 @@ const validatorCreateItem = [
     .withMessage('El campo id product es obligatorio')
     .isString()
     .withMessage('El campo id product debe ser una cadena de texto'),
+  check('idZone')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo id product es obligatorio')
+    .isString()
+    .withMessage('El campo id product debe ser una cadena de texto'),
   validateResults // Esta función es la que se encarga de manejar los resultados de la validación
 ]
 
@@ -56,6 +61,11 @@ const validatorUpdateItem = [
     .matches(/^[a-zA-Z0-9\s]+$/)
     .withMessage('El campo name solo puede contener letras, números y espacios'),
   check('idProduct')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo id product es obligatorio')
+    .isString()
+    .withMessage('El campo id product debe ser una cadena de texto'),
+  check('idZone')
     .exists({ checkFalsy: true })
     .withMessage('El campo id product es obligatorio')
     .isString()
