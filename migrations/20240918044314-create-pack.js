@@ -26,6 +26,15 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
+      idZone: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'Zones',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

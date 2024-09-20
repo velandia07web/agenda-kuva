@@ -17,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idZone',
         as: 'Product'
       })
+
+      Zone.hasMany(models.Pack, {
+        foreignKey: 'idZone',
+        as: 'Pack'
+      })
     }
   }
   Zone.init({

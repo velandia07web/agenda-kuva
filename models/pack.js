@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idPack',
         as: 'PricePack'
       })
+
+      Pack.belongsTo(models.Zone, {
+        foreignKey: 'idZone',
+        as: 'Zone'
+      })
     }
   }
   Pack.init({
@@ -33,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     idProduct: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    idZone: {
       type: DataTypes.UUID,
       allowNull: false
     }
