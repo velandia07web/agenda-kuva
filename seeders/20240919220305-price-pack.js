@@ -690,7 +690,462 @@ module.exports = {
       {
         id: uuidv4(),
         price: 1338000,
-        idPack: packMap.LIGHT_WALLY_CAFETERO,
+        idPack: packMap.LIGHT_WALLY_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1048000,
+        idPack: packMap.SILVER_WALLY_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1492000,
+        idPack: packMap.GOLD_EXTREME_O_KUVA_GO_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2333000,
+        idPack: packMap.ESTELAR_KUVA_RING_O_SOFT_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1303000,
+        idPack: packMap.SILVER_MIRROR_BLACK_O_HASHTAG_PRINTING_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2248000,
+        idPack: packMap.ESTELAR_WALLY_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1373000,
+        idPack: packMap.PLUS_MIRROR_LUX_O_VOGUE_BOOTH_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1593000,
+        idPack: packMap.IDEAL_KUVA_RING_O_SOFT_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1473000,
+        idPack: packMap.SILVER_MIRROR_LUX_O_VOGUE_BOOTH_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1609000,
+        idPack: packMap.GOLD_MIRROR_BLACK_O_HASHTAG_PRINTING_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 948000,
+        idPack: packMap.PLUS_WALLY_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1763000,
+        idPack: packMap.IDEAL_MIRROR_BLACK_O_HASHTAG_PRINTING_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1678000,
+        idPack: packMap.LIGHT_MIRROR_LUX_O_VOGUE_BOOTH_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1550000,
+        idPack: packMap.LIGHT_MIRROR_BLACK_O_HASHTAG_PRINTING_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1678000,
+        idPack: packMap.IDEAL_EXTREME_O_KUVA_GO_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2418000,
+        idPack: packMap.ESTELAR_EXTREME_O_KUVA_GO_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1218000,
+        idPack: packMap.SILVER_EXTREME_O_KUVA_GO_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2261000,
+        idPack: packMap.DIAMANTE_MIRROR_LUX_O_VOGUE_BOOTH_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1203000,
+        idPack: packMap.PLUS_MIRROR_BLACK_O_HASHTAG_PRINTING_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1312000,
+        idPack: packMap.GOLD_WALLY_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1828000,
+        idPack: packMap.DIAMANTE_WALLY_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2503000,
+        idPack: packMap.ESTELAR_MIRROR_BLACK_O_HASHTAG_PRINTING_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1423000,
+        idPack: packMap.LIGHT_KUVA_RING_O_SOFT_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2503000,
+        idPack: packMap.SILVER_KUVA_RING_O_SOFT_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1402000,
+        idPack: packMap.GOLD_KUVA_RING_O_SOFT_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1508000,
+        idPack: packMap.LIGHT_EXTREME_O_KUVA_GO_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2125500,
+        idPack: packMap.DIAMANTE_MIRROR_BLACK_O_HASHTAG_PRINTING_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1508000,
+        idPack: packMap.IDEAL_WALLY_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1789000,
+        idPack: packMap.GOLD_MIRROR_LUX_O_VOGUE_BOOTH_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1033000,
+        idPack: packMap.PLUS_KUVA_RING_O_SOFT_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1933000,
+        idPack: packMap.IDEAL_MIRROR_LUX_O_VOGUE_BOOTH_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1998000,
+        idPack: packMap.DIAMANTE_EXTREME_O_KUVA_GO_EJE_CAFETERO,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1998000,
+        idPack: packMap.DIAMANTE_KUVA_RING_O_SOFT_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1303000,
+        idPack: packMap.SILVER_MIRROR_BLACK_O_HASHTAG_PRINTING_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 3183000,
+        idPack: packMap.ESTELAR_MIRROR_LUX_O_VOGUE_BOOTH_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2443000,
+        idPack: packMap.IDEAL_MIRROR_LUX_O_VOGUE_BOOTH_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2248000,
+        idPack: packMap.ESTELAR_WALLY_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2805500,
+        idPack: packMap.DIAMANTE_MIRROR_LUX_O_VOGUE_BOOTH_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1508000,
+        idPack: packMap.LIGHT_KUVA_RING_O_SOFT_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1763000,
+        idPack: packMap.IDEAL_MIRROR_BLACK_O_HASHTAG_PRINTING_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 948000,
+        idPack: packMap.PLUS_WALLY_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1763000,
+        idPack: packMap.IDEAL_EXTREME_O_KUVA_GO_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1593000,
+        idPack: packMap.LIGHT_EXTREME_O_KUVA_GO_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1678000,
+        idPack: packMap.IDEAL_KUVA_RING_O_SOFT_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1203000,
+        idPack: packMap.PLUS_EXTREME_O_KUVA_GO_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2083000,
+        idPack: packMap.DIAMANTE_EXTREME_O_KUVA_GO_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1883000,
+        idPack: packMap.PLUS_MIRROR_LUX_O_VOGUE_BOOTH_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1312000,
+        idPack: packMap.GOLD_WALLY_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1508000,
+        idPack: packMap.IDEAL_WALLY_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2503000,
+        idPack: packMap.ESTELAR_EXTREME_O_KUVA_GO_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1203000,
+        idPack: packMap.PLUS_MIRROR_BLACK_O_HASHTAG_PRINTING_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1338000,
+        idPack: packMap.LIGHT_WALLY_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2503000,
+        idPack: packMap.ESTELAR_MIRROR_BLACK_O_HASHTAG_PRINTING_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1983000,
+        idPack: packMap.SILVER_MIRROR_LUX_O_VOGUE_BOOTH_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2329000,
+        idPack: packMap.GOLD_MIRROR_LUX_O_VOGUE_BOOTH_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1492000,
+        idPack: packMap.GOLD_KUVA_RING_O_SOFT_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1582000,
+        idPack: packMap.GOLD_EXTREME_O_KUVA_GO_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2418000,
+        idPack: packMap.ESTELAR_KUVA_RING_O_SOFT_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1218000,
+        idPack: packMap.SILVER_KUVA_RING_O_SOFT_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1550500,
+        idPack: packMap.LIGHT_MIRROR_BLACK_O_HASHTAG_PRINTING_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1609000,
+        idPack: packMap.GOLD_MIRROR_BLACK_O_HASHTAG_PRINTING_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1118000,
+        idPack: packMap.PLUS_KUVA_RING_O_SOFT_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1828000,
+        idPack: packMap.DIAMANTE_WALLY_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2125000,
+        idPack: packMap.DIAMANTE_MIRROR_BLACK_O_HASHTAG_PRINTING_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 1048000,
+        idPack: packMap.SILVER_WALLY_MEDELLIN,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        price: 2145000,
+        idPack: packMap.LIGHT_MIRROR_LUX_O_VOGUE_BOOTH_MEDELLIN,
         createdAt: new Date(),
         updatedAt: new Date()
       }
