@@ -22,6 +22,7 @@ const createClient = async function (body) {
   try {
     return await Client.create({
       name: body.name,
+      lastName: body.lastName,
       idZone: body.idZone,
       CC: body.CC,
       idTypeClient: body.idTypeClient,
@@ -43,6 +44,7 @@ const updateClient = async function (id, body) {
   try {
     return await Client.update({
       name: body.name,
+      lastName: body.lastName,
       idZone: body.idZone,
       CC: body.CC,
       idTypeClient: body.idTypeClient,

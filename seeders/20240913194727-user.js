@@ -30,7 +30,8 @@ module.exports = {
     return queryInterface.bulkInsert('Users', [
       {
         id: uuidv4(),
-        fullName: 'Crisa',
+        name: 'Crisa',
+        lastName: 'cruz',
         email: 'cricacrugo97@gmail.com',
         cedula: 1111111111,
         phone: 3333333333,
