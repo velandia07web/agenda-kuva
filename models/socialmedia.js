@@ -6,14 +6,17 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class SocialMedia extends Model {
     static associate (models) {
-      // define association here
+      SocialMedia.hasMany(models.Client, {
+        foreignKey: 'idSocialMedia',
+        as: 'client'
+      })
     }
   }
 
   SocialMedia.init({
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4, // Genera UUID automáticamente
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
     },

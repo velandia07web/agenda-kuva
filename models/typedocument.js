@@ -5,7 +5,10 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class TypeDocument extends Model {
     static associate (models) {
-      // define association here
+      TypeDocument.hasMany(models.Client, {
+        foreignKey: 'idTypeDocument',
+        as: 'client'
+      })
     }
   }
   TypeDocument.init({

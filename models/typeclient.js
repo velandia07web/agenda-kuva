@@ -6,13 +6,16 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class TypeClient extends Model {
     static associate (models) {
-      // define association here
+      TypeClient.hasMany(models.Client, {
+        foreignKey: 'idTypeClient',
+        as: 'client'
+      })
     }
   }
   TypeClient.init({
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4, // Genera UUID automáticamente
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
     },

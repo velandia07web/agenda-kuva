@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idZone',
         as: 'Zone'
       })
+
+      User.hasMany(models.Client, {
+        foreignKey: 'idUser',
+        as: 'client'
+      })
     }
   }
 
