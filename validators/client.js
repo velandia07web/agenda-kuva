@@ -4,14 +4,18 @@ const validateResults = require('../utils/handleValidator')
 const validatorCreateItem = [
   check('name')
     .exists({ checkFalsy: true })
-    .withMessage('El campo name es obligatorio')
-    .notEmpty()
-    .withMessage('El campo name no debe estar vacío')
+    .withMessage('El campo full name es obligatorio')
     .isString()
-    .withMessage('El campo name debe ser una cadena de texto')
-    .matches(/^[a-zA-Z0-9\s]+$/)
-    .withMessage('El campo name solo puede contener letras, números y espacios'),
-
+    .withMessage('El campo full name debe ser una cadena de texto')
+    .matches(/^[a-zA-Z\s]+$/)
+    .withMessage('El campo full name solo puede contener letras y espacios'),
+  check('lastName')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo full name es obligatorio')
+    .isString()
+    .withMessage('El campo full name debe ser una cadena de texto')
+    .matches(/^[a-zA-Z\s]+$/)
+    .withMessage('El campo full name solo puede contener letras y espacios'),
   check('CC')
     .exists({ checkFalsy: true })
     .withMessage('El campo CC es obligatorio')
@@ -118,11 +122,19 @@ const validatorUpdateItem = [
     .withMessage('El campo id debe ser un UUID válido'),
 
   check('name')
-    .optional()
+    .exists({ checkFalsy: true })
+    .withMessage('El campo full name es obligatorio')
     .isString()
-    .withMessage('El campo name debe ser una cadena de texto')
-    .matches(/^[a-zA-Z0-9\s]+$/)
-    .withMessage('El campo name solo puede contener letras, números y espacios'),
+    .withMessage('El campo full name debe ser una cadena de texto')
+    .matches(/^[a-zA-Z\s]+$/)
+    .withMessage('El campo full name solo puede contener letras y espacios'),
+  check('lastName')
+    .exists({ checkFalsy: true })
+    .withMessage('El campo full name es obligatorio')
+    .isString()
+    .withMessage('El campo full name debe ser una cadena de texto')
+    .matches(/^[a-zA-Z\s]+$/)
+    .withMessage('El campo full name solo puede contener letras y espacios'),
 
   check('CC')
     .optional()

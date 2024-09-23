@@ -29,7 +29,8 @@ const createUser = async function (body) {
     const encryptedPassword = await encrypt(body.password)
 
     const newUser = await User.create({
-      fullName: body.fullName,
+      name: body.name,
+      lastName: body.lastName,
       email: body.email,
       cedula: body.cedula,
       phone: body.phone,
@@ -54,7 +55,8 @@ const updateUser = async function (id, body) {
   try {
     // Crear un objeto con los campos que se van a actualizar
     const updateData = {
-      fullName: body.fullName,
+      name: body.name,
+      lastName: body.lastName,
       email: body.email,
       cedula: body.cedula,
       phone: body.phone,
