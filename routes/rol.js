@@ -4,7 +4,7 @@ const { Router } = require('express')
 const { validatorCreateItem, validatorGetItem, validatorUpdateItem, validatorDeleteItem } = require('../validators/rol')
 const router = Router()
 
-router.use(authMiddlewareRol(['Administrador', 'Superadministrador']))
+router.use(authMiddlewareRol(['Administrador', 'Superadministrador', 'Coordinador', 'Logistico', 'Comercial', 'Contable', 'Diseñador']))
 
 router
   .get('/', rolController.getAllRols)
