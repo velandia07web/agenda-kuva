@@ -2,7 +2,7 @@
     "name": "sistema_de_agenadmiento",
     "version": "1.0.0",
     "description": "Proyecto de NodeJS MVC con MySQL y MongoDB",
-    "main": "app.js",
+    "main": "./app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node app",
