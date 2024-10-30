@@ -6,7 +6,6 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate (models) {
-      // define association here
       User.belongsTo(models.Rol, {
         foreignKey: 'idRol',
         as: 'Rol'
@@ -20,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Client, {
         foreignKey: 'idUser',
         as: 'client'
+      })
+
+      User.belongsTo(models.Company, {
+        foreignKey: 'idCompany',
+        as: 'company'
       })
     }
   }
@@ -78,6 +82,14 @@ module.exports = (sequelize, DataTypes) => {
     idZone: {
       type: DataTypes.UUID,
       allowNull: false
+    },
+    idCompany: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      references: {
+        model: 'companies',
+        key: 'id'
+      }
     }
   }, {
     sequelize,

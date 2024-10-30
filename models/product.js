@@ -44,6 +44,16 @@ module.exports = (sequelize, DataTypes) => {
     idZone: {
       type: DataTypes.UUID,
       allowNull: true
+    },
+    idCompany: { 
+      type: DataTypes.UUID,
+      references: {
+        model: 'Companies',
+        key: 'id'
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
+      allowNull: true
     }
   }, {
     sequelize,
