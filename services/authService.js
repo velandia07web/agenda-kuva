@@ -32,6 +32,7 @@ const registerUser = async function (body) {
       email: body.email,
       password: encryptedPassword,
       idRol: rol.id,
+      idCompany: body.idCompany, 
       active: true,
     });
 
@@ -65,6 +66,7 @@ const loginUser = async function (res, body) {
         "jwt",
         "active",
         "failedAttempts",
+        "idCompany",
       ],
     });
 
@@ -100,6 +102,7 @@ const loginUser = async function (res, body) {
     await user.save();
 
     const token = await tokenSign(user);
+    console.log("epaa", token);
     await user.update({ jwt: token });
 
     const userWithoutSensitiveData = user.toJSON();

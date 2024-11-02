@@ -1,14 +1,22 @@
 const { Product } = require('../models')
 
-const getAllProducts = async function () {
+const getAllProducts = async function (idCompany) {
   try {
+    const idCompanyInt = parseInt(idCompany, 10);
+
+    if (isNaN(idCompanyInt)) {
+      throw new Error("idCompany debe ser un número entero válido.");
+    }
     return await Product.findAndCountAll({
+      where: {
+        idCompany: idCompanyInt
+      },
       order: [['name', 'ASC']]
-    })
+    });
   } catch (error) {
-    throw new Error(`Error al obtener los products: ${error.message}`)
+    throw new Error(`Error al obtener los productos para idCompany ${idCompany}: ${error.message}`);
   }
-}
+};
 
 const getOneProduct = async function (id) {
   try {

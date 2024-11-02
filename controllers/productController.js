@@ -1,9 +1,27 @@
 const { matchedData } = require('express-validator')
 const productService = require('../services/productService')
+const jwt = require('jsonwebtoken');
 
 const getAllProducts = async function (req, res) {
   try {
-    const allProducts = await productService.getAllProducts()
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    
+    if (!token) {
+      return res.status(401).json({ status: 401, message: 'Token de autenticación no proporcionado.' });
+    }
+
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET); // Usa tu clave secreta definida en las variables de entorno
+    } catch (error) {
+      return res.status(403).json({ status: 403, message: 'Token no válido.' });
+    }
+
+    const idCompany = decoded.idCompany;
+
+    const allProducts = await productService.getAllProducts(idCompany)
+
     return res.status(200).json({ status: 200, message: 'Products:', data: allProducts })
   } catch (error) {
     return res.status(500).json({ status: 500, message: 'Error al obtener los products.', error: error.message })
