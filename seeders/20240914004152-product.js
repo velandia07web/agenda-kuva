@@ -27,6 +27,7 @@ module.exports = {
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         count: 1,
         idZone: zone.bogota,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -37,6 +38,7 @@ module.exports = {
         description: 'MIRROR LUX  O VOGUE BOOTH',
         count: 1,
         idZone: zone.bogota,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -47,6 +49,7 @@ module.exports = {
         description: 'PLATAFORMA 360',
         count: 2,
         idZone: zone.bogota,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -57,6 +60,7 @@ module.exports = {
         description: 'GLAMBOT O VIDEO CAPSULA',
         count: 1,
         idZone: zone.bogota,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -67,6 +71,7 @@ module.exports = {
         description: 'KUVA RING O SOFT',
         count: 3,
         idZone: zone.bogota,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -77,6 +82,7 @@ module.exports = {
         description: 'WALLY',
         count: 2,
         idZone: zone.bogota,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -87,6 +93,7 @@ module.exports = {
         description: 'EXTREME O KUVA GO',
         count: 1,
         idZone: zone.bogota,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -97,6 +104,7 @@ module.exports = {
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         count: 1,
         idZone: zone.medellin,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -107,6 +115,7 @@ module.exports = {
         description: 'PLATAFORMA 360',
         count: 2,
         idZone: zone.medellin,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -117,6 +126,7 @@ module.exports = {
         description: 'KUVA RING O SOFT',
         count: 1,
         idZone: zone.medellin,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -127,6 +137,7 @@ module.exports = {
         description: 'WALLY',
         count: 1,
         idZone: zone.medellin,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -137,6 +148,7 @@ module.exports = {
         description: 'EXTREME O KUVA GO',
         count: 1,
         idZone: zone.medellin,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -147,6 +159,7 @@ module.exports = {
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         count: 1,
         idZone: zone.cali,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -157,6 +170,7 @@ module.exports = {
         description: 'PLATAFORMA 360',
         count: 2,
         idZone: zone.cali,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -167,6 +181,7 @@ module.exports = {
         description: 'GLAMBOT O VIDEO CAPSULA',
         count: 1,
         idZone: zone.cali,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -177,6 +192,7 @@ module.exports = {
         description: 'KUVA RING O SOFT',
         count: 2,
         idZone: zone.cali,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -187,6 +203,7 @@ module.exports = {
         description: 'EXTREME O KUVA GO',
         count: 1,
         idZone: zone.cali,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -197,6 +214,7 @@ module.exports = {
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         count: 1,
         idZone: zone.barranquilla,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -207,6 +225,7 @@ module.exports = {
         description: 'PLATAFORMA 360',
         count: 2,
         idZone: zone.barranquilla,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -217,6 +236,7 @@ module.exports = {
         description: 'KUVA RING O SOFT',
         count: 2,
         idZone: zone.barranquilla,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -227,6 +247,7 @@ module.exports = {
         description: 'EXTREME O KUVA GO',
         count: 1,
         idZone: zone.barranquilla,
+        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date()
       }
