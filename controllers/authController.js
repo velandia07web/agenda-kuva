@@ -7,7 +7,7 @@ const registerUsers = async function (req, res) {
     const createUser = await authService.registerUser(validData)
     return res.status(201).json({ status: 201, message: 'User registrado satisfactoriamente', data: createUser })
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al registrado el user.', error: error.message })
+    return res.status(500).json({ status: 500, message: 'Error al registrar el user.', error: error.message })
   }
 }
 

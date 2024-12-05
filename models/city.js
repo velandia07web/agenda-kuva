@@ -1,15 +1,16 @@
 'use strict'
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   class City extends Model {
     static associate (models) {
-      // Define asociación con Zone
       City.belongsTo(models.Zone, {
         foreignKey: 'idZone',
         as: 'zone'
       })
     }
   }
+
   City.init({
     id: {
       type: DataTypes.UUID,
@@ -25,6 +26,11 @@ module.exports = (sequelize, DataTypes) => {
     idZone: {
       type: DataTypes.UUID,
       allowNull: false
+    },
+    transportPrice: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      defaultValue: 0
     }
   }, {
     sequelize,
@@ -32,5 +38,6 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'Cities',
     timestamps: true
   })
+
   return City
 }

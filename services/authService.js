@@ -30,9 +30,12 @@ const registerUser = async function (body) {
       name: body.name, // Cambiar fullName por name
       lastName: body.lastName, // Agregar lastName
       email: body.email,
+      phone: body.phone,
+      cedula: body.cedula,
       password: encryptedPassword,
       idRol: rol.id,
-      idCompany: body.idCompany, 
+      idCompany: body.idCompany,
+      idZone: body.idZone,
       active: true,
     });
 
@@ -154,7 +157,7 @@ const forgotPassword = async function (email) {
       { name: user.name, lastName: user.lastName, resetUrl }
     );
 
-    await sendMail(user.email, "Restablecimiento de Contraseña", htmlTemplate);
+    await sendMail(email, "Restablecimiento de Contraseña", htmlTemplate);
 
     return {
       message: "Correo de restablecimiento de contraseña enviado correctamente",

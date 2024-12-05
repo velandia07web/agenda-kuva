@@ -21,10 +21,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      count: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
       idZone: {
         type: Sequelize.UUID,
         references: {
@@ -34,14 +30,14 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
-      idCompany: {
-        type: Sequelize.UUID,
-        references: {
-          model: 'Companies',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+      active: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+      },
+      price: {
+        allowNull: false,
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,

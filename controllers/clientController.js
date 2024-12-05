@@ -10,7 +10,7 @@ const getAllClients = async function (req, res) {
   }
 }
 
-const getOneClients = async function (req, res) {
+const  getOneClients = async function (req, res) {
   try {
     const client = await clientService.getOneClient(req.params.id)
     if (client) {

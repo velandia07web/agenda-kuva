@@ -23,6 +23,11 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
+      transportPrice: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+        defaultValue: 0
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -33,6 +38,7 @@ module.exports = {
       }
     })
   },
+
   async down (queryInterface, Sequelize) {
     await queryInterface.dropTable('Cities')
   }

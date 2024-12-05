@@ -1,0 +1,19 @@
+<html>
+<body>
+<h1>Cotización para <%= clientName %></h1>
+<p>Referencia: <%= reference %></p>
+<p>Subtotal: $<%= subtotal %></p>
+<p>Impuestos: $<%= tax %></p>
+<p>Descuento: $<%= discount %></p>
+<p>Total Neto: $<%= totalNet %></p>
+<img src="cid:logoImage" alt="Logo" />
+
+<p>Estimado <%= clientName %>,</p>
+<p>Por favor, revise la cotización y seleccione una opción:</p>
+
+<a href="<%= approveUrl %>" style="padding: 10px; color: white; background-color: green; text-decoration: none;">Aprobar</a>
+<a href="<%= rejectUrl %>" style="padding: 10px; color: white; background-color: red; text-decoration: none;">Rechazar</a>
+
+<p>Gracias,</p>
+</body>
+</html>

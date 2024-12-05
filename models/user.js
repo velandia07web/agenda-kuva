@@ -81,7 +81,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     idZone: {
       type: DataTypes.UUID,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'Zones',
+        key: 'id'
+      }
     },
     idCompany: {
       type: DataTypes.UUID,

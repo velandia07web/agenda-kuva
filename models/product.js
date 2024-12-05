@@ -6,7 +6,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate (models) {
-      // define association here
+
       Product.belongsTo(models.Zone, {
         foreignKey: 'idZone',
         as: 'Zone'
@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   }
+
   Product.init({
     id: {
       type: DataTypes.UUID,
@@ -37,23 +38,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    count: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     idZone: {
       type: DataTypes.UUID,
       allowNull: true
     },
-    idCompany: { 
-      type: DataTypes.UUID,
-      references: {
-        model: 'Companies',
-        key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL',
-      allowNull: true
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false
     }
   }, {
     sequelize,

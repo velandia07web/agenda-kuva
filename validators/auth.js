@@ -2,18 +2,39 @@ const { check } = require('express-validator')
 const validateResults = require('../utils/handleValidator')
 
 const validatorCreateItem = [
-  check('fullName')
+  check('name')
     .exists({ checkFalsy: true })
-    .withMessage('El campo full name es obligatorio')
+    .withMessage('El campo name es obligatorio')
     .isString()
-    .withMessage('El campo full name debe ser una cadena de texto')
+    .withMessage('El campo name debe ser una cadena de texto')
     .matches(/^[a-zA-Z\s]+$/)
-    .withMessage('El campo full name solo puede contener letras y espacios'),
+    .withMessage('El campo name solo puede contener letras'),
+  check('lastName')
+      .exists({ checkFalsy: true })
+      .withMessage('El campo lastName es obligatorio')
+      .isString()
+      .withMessage('El campo lastName debe ser una cadena de texto')
+      .matches(/^[a-zA-Z\s]+$/)
+      .withMessage('El campo lastName solo puede contener letras'),
   check('email')
     .exists()
     .withMessage('El campo email es obligatorio')
     .isEmail()
     .withMessage('El campo email debe ser un correo electrónico válido'),
+  check('cedula')
+      .exists({ checkFalsy: true })
+      .withMessage('El campo cedula es obligatorio')
+      .isString()
+      .withMessage('El campo cedula debe ser una cadena de texto')
+      .matches(/^[a-zA-Z0-9]+$/)
+      .withMessage('El campo cedula solo puede contener letras y números'),
+  check('phone')
+      .exists({ checkFalsy: true })
+      .withMessage('El campo phone es obligatorio')
+      .isNumeric()
+      .withMessage('El campo phone debe contener solo números')
+      .isLength({ min: 6 })
+      .withMessage('El campo phone debe tener al menos 6 dígitos'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('El campo password es obligatorio')
@@ -44,6 +65,12 @@ const validatorCreateItem = [
     .withMessage('El campo password debe contener al menos un carácter especial')
     .matches(/^[^<>]*$/)
     .withMessage('El campo password no debe contener los caracteres < o > para evitar inyecciones'),
+  check('idZone')
+      .exists({ checkFalsy: true })
+      .withMessage('El campo idZone es obligatorio'),
+  check('idCompany')
+      .exists({ checkFalsy: true })
+      .withMessage('El campo idCompany es obligatorio'),
   validateResults
 ]
 
