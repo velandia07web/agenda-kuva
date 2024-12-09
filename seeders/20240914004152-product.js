@@ -26,7 +26,6 @@ module.exports = {
         imagen: `${url}email/img/mirrorBlack.png`,
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         idZone: zone.bogota,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -47,7 +46,6 @@ module.exports = {
         imagen: `${url}email/img/mirrorLux.png`,
         description: 'MIRROR LUX  O VOGUE BOOTH',
         idZone: zone.bogota,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -68,7 +66,6 @@ module.exports = {
         imagen: `${url}email/img/360.png`,
         description: 'PLATAFORMA 360',
         idZone: zone.bogota,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -89,7 +86,6 @@ module.exports = {
         imagen: `${url}email/img/glambot.png`,
         description: 'GLAMBOT O VIDEO CAPSULA',
         idZone: zone.bogota,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -110,7 +106,6 @@ module.exports = {
         imagen: `${url}email/img/kuva.png`,
         description: 'KUVA RING O SOFT',
         idZone: zone.bogota,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -131,7 +126,6 @@ module.exports = {
         imagen: `${url}email/img/wally.png`,
         description: 'WALLY',
         idZone: zone.bogota,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -152,7 +146,6 @@ module.exports = {
         imagen: `${url}email/img/extreme.png`,
         description: 'EXTREME O KUVA GO',
         idZone: zone.bogota,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -173,7 +166,6 @@ module.exports = {
         imagen: `${url}email/img/mirrorBlack.png`,
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         idZone: zone.medellin,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -194,7 +186,6 @@ module.exports = {
         imagen: `${url}email/img/360.png`,
         description: 'PLATAFORMA 360',
         idZone: zone.medellin,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -215,7 +206,6 @@ module.exports = {
         imagen: `${url}email/img/kuva.png`,
         description: 'KUVA RING O SOFT',
         idZone: zone.medellin,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -236,7 +226,6 @@ module.exports = {
         imagen: `${url}email/img/wally.png`,
         description: 'WALLY',
         idZone: zone.medellin,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -257,7 +246,6 @@ module.exports = {
         imagen: `${url}email/img/extreme.png`,
         description: 'EXTREME O KUVA GO',
         idZone: zone.medellin,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -278,7 +266,6 @@ module.exports = {
         imagen: `${url}email/img/mirrorBlack.png`,
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         idZone: zone.cali,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -299,7 +286,6 @@ module.exports = {
         imagen: `${url}email/img/mirrorLux.png`,
         description: 'PLATAFORMA 360',
         idZone: zone.cali,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -320,7 +306,6 @@ module.exports = {
         imagen: `${url}email/img/glambot.png`,
         description: 'GLAMBOT O VIDEO CAPSULA',
         idZone: zone.cali,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -341,7 +326,6 @@ module.exports = {
         imagen: `${url}email/img/glambot.png`,
         description: 'KUVA RING O SOFT',
         idZone: zone.cali,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -362,7 +346,6 @@ module.exports = {
         imagen: `${url}email/img/extreme.png`,
         description: 'EXTREME O KUVA GO',
         idZone: zone.cali,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -383,7 +366,6 @@ module.exports = {
         imagen: `${url}email/img/mirrorBlack.png`,
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         idZone: zone.barranquilla,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -404,7 +386,6 @@ module.exports = {
         imagen: `${url}email/img/360.png`,
         description: 'PLATAFORMA 360',
         idZone: zone.barranquilla,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -425,7 +406,6 @@ module.exports = {
         imagen: `${url}email/img/kuva.png`,
         description: 'KUVA RING O SOFT',
         idZone: zone.barranquilla,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -446,7 +426,6 @@ module.exports = {
         imagen: `${url}email/img/extreme.png`,
         description: 'EXTREME O KUVA GO',
         idZone: zone.barranquilla,
-        idCompany:1,
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -469,7 +448,6 @@ module.exports = {
       description: product.description,
       count: product.count,
       idZone: product.idZone,
-      idCompany: product.idCompany,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt
     })))

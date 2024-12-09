@@ -51,8 +51,6 @@ const createProduct = async function (body) {
         priceDeadHour: price.priceDeadHour,
       }));
 
-      console.log(prices);
-
       await ProductPrice.bulkCreate(prices, { transaction });
     }
 
@@ -65,18 +63,40 @@ const createProduct = async function (body) {
 };
 
 const updateProduct = async function (id, body) {
+  const transaction = await sequelize.transaction();
   try {
-    return await Product.update({
-      name: body.name,
-      imagen: body.imagen,
-      description: body.description,
-      count: body.count,
-      idZone: body.idZone
-    }, { where: { id } })
+    await Product.update(
+        {
+          name: body.name,
+          imagen: body.imagen,
+          description: body.description,
+          active: body.active !== undefined ? body.active : true,
+          idZone: body.idZone,
+        },
+        { where: { id }, transaction }
+    );
+
+    if (body.prices && Array.isArray(body.prices)) {
+      await ProductPrice.destroy({ where: { product_id: id }, transaction });
+
+      const newPrices = body.prices.map(price => ({
+        product_id: id,
+        hour: price.hour,
+        idZone: body.idZone,
+        price: price.price,
+        priceDeadHour: price.priceDeadHour,
+      }));
+
+      await ProductPrice.bulkCreate(newPrices, { transaction });
+    }
+
+    await transaction.commit();
+    return { message: 'Producto actualizado exitosamente' };
   } catch (error) {
-    throw new Error(`Error al actualizar el Product: ${error.message}`)
+    await transaction.rollback();
+    throw new Error(`Error al actualizar el producto: ${error.message}`);
   }
-}
+};
 
 const deleteProduct = async function (id) {
   try {

@@ -12,7 +12,7 @@ router
   .get('/:id', validatorGetItem, productController.getOneProducts)
 
 router
-  .post('/', authMiddlewareRol(['Superadministrador', 'Comercial']), validatorCreateItem, productController.createProducts)
+  .post('/', authMiddlewareRol(['Superadministrador']), validatorCreateItem, productController.createProducts)
   .put('/:id', authMiddlewareRol(['Superadministrador']), validatorUpdateItem, productController.updateProduct)
   .delete('/:id', authMiddlewareRol(['Superadministrador']), validatorDeleteItem, productController.deleteProduct)
 
