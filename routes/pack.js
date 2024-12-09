@@ -8,7 +8,9 @@ router.use(authMiddlewareRol(['Administrador', 'Superadministrador', 'Coordinado
 
 router
   .get('/', packController.getAllPacks)
+  .get('/prices', packController.getPricePacks)
   .get('/:id', validatorGetItem, packController.getOnePacks)
+
 
 router
   .post('/', authMiddlewareRol(['Superadministrador']), validatorCreateItem, packController.createPacks)

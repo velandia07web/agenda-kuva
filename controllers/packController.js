@@ -63,10 +63,28 @@ const deletePack = async function (req, res) {
   }
 }
 
+const getPricePacks = async function (req, res) {
+  try {
+    const pricePacks = await packService.getPricePacks();
+    return res.status(200).json({
+      status: 200,
+      message: 'Price Packs obtenidos exitosamente',
+      data: pricePacks,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      message: 'Error al obtener los Price Packs',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllPacks,
   getOnePacks,
   createPacks,
   updatePack,
-  deletePack
+  deletePack,
+  getPricePacks
 }

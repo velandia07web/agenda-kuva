@@ -2,58 +2,57 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('QuotationCabin', {
+        await queryInterface.createTable('ProductPrices', {
             id: {
                 allowNull: false,
                 primaryKey: true,
                 type: Sequelize.UUID,
-                defaultValue: Sequelize.UUIDV4
+                defaultValue: Sequelize.UUIDV4,
             },
-            quotationId: {
-                allowNull: false,
+            product_id: {
                 type: Sequelize.UUID,
+                allowNull: false,
                 references: {
-                    model: 'Quotations',
-                    key: 'id'
+                    model: 'Products',
+                    key: 'id',
                 },
                 onUpdate: 'CASCADE',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
             },
-            cabinId: {
+            hour: {
+                type: Sequelize.STRING,
                 allowNull: false,
+            },
+            idZone: {
                 type: Sequelize.UUID,
+                allowNull: false,
                 references: {
-                    model: 'Cabins',
-                    key: 'id'
+                    model: 'Zones',
+                    key: 'id',
                 },
                 onUpdate: 'CASCADE',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
             },
-            hours: {
+            price: {
+                type: Sequelize.FLOAT,
                 allowNull: false,
-                type: Sequelize.INTEGER
             },
-            cityId: {
+            priceDeadHour: {
+                type: Sequelize.FLOAT,
                 allowNull: false,
-                type: Sequelize.UUID,
-                references: {
-                    model: 'Cities',
-                    key: 'id'
-                },
-                onUpdate: 'CASCADE',
-                onDelete: 'CASCADE'
             },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
-            }
+                type: Sequelize.DATE,
+            },
         });
     },
+
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('QuotationCabin');
-    }
+        await queryInterface.dropTable('ProductPrices');
+    },
 };

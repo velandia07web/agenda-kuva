@@ -5,12 +5,6 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Pack extends Model {
     static associate (models) {
-      // define association here
-      Pack.belongsTo(models.Product, {
-        foreignKey: 'idProduct',
-        as: 'Product'
-      })
-
       Pack.hasMany(models.PricePack, {
         foreignKey: 'idPack',
         as: 'PricePack'
@@ -35,10 +29,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    idProduct: {
-      type: DataTypes.UUID,
       allowNull: false
     },
     idZone: {

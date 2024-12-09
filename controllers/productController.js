@@ -81,10 +81,22 @@ const deleteProduct = async function (req, res) {
   }
 }
 
+const getPriceProducts = async function (req, res) {
+  try {
+
+    const productPrices = await productService.getPriceProducts();
+
+    return res.status(200).json({ status: 200, message: 'Precios de productos:', data: productPrices });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'Error al obtener los precios de productos.', error: error.message });
+  }
+};
+
 module.exports = {
   getAllProducts,
   getOneProducts,
   createProducts,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getPriceProducts
 }

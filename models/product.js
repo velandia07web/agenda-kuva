@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idProduct',
         as: 'Pack'
       })
+
+      Product.hasMany(models.ProductPrice, {
+        foreignKey: 'product_id',
+        as: 'ProductPrices'
+      })
     }
   }
 
@@ -38,17 +43,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    idZone: {
-      type: DataTypes.UUID,
-      allowNull: true
-    },
     active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-      allowNull: false
-    },
-    price: {
-      type: DataTypes.FLOAT,
       allowNull: false
     }
   }, {

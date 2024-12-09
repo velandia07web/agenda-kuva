@@ -25,7 +25,6 @@ const registerUser = async function (body) {
     }
 
     const encryptedPassword = await encrypt(body.password);
-
     const newUser = await User.create({
       name: body.name, // Cambiar fullName por name
       lastName: body.lastName, // Agregar lastName

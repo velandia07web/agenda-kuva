@@ -1,55 +1,57 @@
-'use strict'
+'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Products', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       imagen: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       description: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       idZone: {
         type: Sequelize.UUID,
         references: {
           model: 'Zones',
-          key: 'id'
+          key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        onDelete: 'SET NULL',
       },
       active: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
-        defaultValue: true
+        defaultValue: true,
       },
       price: {
-        allowNull: false,
-        type: Sequelize.FLOAT
+        allowNull: true,
+        type: Sequelize.FLOAT,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
-    })
+        type: Sequelize.DATE,
+      },
+    });
   },
-  async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('Products')
-  }
-}
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Products');
+  },
+};
+

@@ -1,14 +1,21 @@
-const { Pack } = require('../models')
+const { Pack, PricePack } = require('../models')
 
 const getAllPacks = async function () {
   try {
     return await Pack.findAndCountAll({
-      order: [['name', 'ASC']]
-    })
+      order: [['name', 'ASC']],
+      include: [
+        {
+          model: PricePack,
+          as: 'PricePack',
+          attributes: ['id', 'price']
+        }
+      ]
+    });
   } catch (error) {
-    throw new Error(`Error al obtener los packs: ${error.message}`)
+    throw new Error(`Error al obtener los packs: ${error.message}`);
   }
-}
+};
 
 const getOnePack = async function (id) {
   try {
@@ -58,10 +65,34 @@ const deletePack = async function (id) {
   }
 }
 
+const getPricePacks = async function () {
+  try {
+    const packs = await Pack.findAll({
+      attributes: ['id', 'name'],
+      include: [
+        {
+          model: PricePack,
+          as: 'PricePack',
+          attributes: ['price'],
+        },
+      ],
+    });
+
+    return packs.map((pack) => ({
+      id: pack.id,
+      name: pack.name,
+      price: pack.PricePack?.[0]?.price || null,
+    }));
+  } catch (error) {
+    throw new Error(`Error al obtener los PricePacks: ${error.message}`);
+  }
+};
+
 module.exports = {
   getAllPacks,
   getOnePack,
   createPack,
   updatePack,
-  deletePack
+  deletePack,
+  getPricePacks
 }

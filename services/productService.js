@@ -1,4 +1,4 @@
-const { Product } = require('../models')
+const { Product,ProductPrice } = require('../models')
 
 const getAllProducts = async function (idCompany) {
   try {
@@ -66,10 +66,34 @@ const deleteProduct = async function (id) {
   }
 }
 
+const getPriceProducts = async function () {
+  try {
+    const productPrices = await Product.findAll({
+      include: [
+        {
+          model: ProductPrice,
+          as: 'ProductPrices',
+          attributes: ['id', 'price']
+        }
+      ],
+      attributes: ['id', 'name']
+    });
+
+    return productPrices.map(product => ({
+      id: product.id,
+      name: product.name,
+      price: product.ProductPrices.map(price => price.price)
+    }));
+  } catch (error) {
+    throw new Error(`Error al obtener los precios de los productos: ${error.message}`);
+  }
+};
+
 module.exports = {
   getAllProducts,
   getOneProduct,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getPriceProducts
 }
