@@ -73,16 +73,16 @@ const getPriceProducts = async function () {
         {
           model: ProductPrice,
           as: 'ProductPrices',
-          attributes: ['id', 'price']
-        }
+          attributes: ['price'],
+        },
       ],
-      attributes: ['id', 'name']
+      attributes: ['id', 'name'],
     });
 
     return productPrices.map(product => ({
       id: product.id,
       name: product.name,
-      price: product.ProductPrices.map(price => price.price)
+      price: product.ProductPrices.length > 0 ? product.ProductPrices[0].price : null,
     }));
   } catch (error) {
     throw new Error(`Error al obtener los precios de los productos: ${error.message}`);
