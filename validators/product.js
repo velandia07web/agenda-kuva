@@ -3,40 +3,56 @@ const validateResults = require('../utils/handleValidator')
 
 const validatorCreateItem = [
   check('name')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo name es obligatorio')
-    .isString()
-    .withMessage('El campo name debe ser una cadena de texto')
-    .matches(/^[a-zA-Z0-9\s]+$/)
-    .withMessage('El campo name solo puede contener letras, números y espacios'),
+      .exists({ checkFalsy: true })
+      .withMessage('El campo name es obligatorio')
+      .isString()
+      .withMessage('El campo name debe ser una cadena de texto')
+      .matches(/^[a-zA-Z0-9\s]+$/)
+      .withMessage('El campo name solo puede contener letras, números y espacios'),
+
   check('imagen')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo imagen es obligatorio')
-    .notEmpty()
-    .withMessage('El campo imagen no debe estar vacío'),
+      .exists({ checkFalsy: true })
+      .withMessage('El campo imagen es obligatorio')
+      .notEmpty()
+      .withMessage('El campo imagen no debe estar vacío'),
+
   check('description')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo description es obligatorio')
-    .notEmpty()
-    .withMessage('El campo description no debe estar vacío')
-    .isString()
-    .withMessage('El campo description debe ser una cadena de texto')
-    .matches(/^[a-zA-Z0-9\s]+$/)
-    .withMessage('El campo description solo puede contener letras, números y espacios'),
-  check('count')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo count es obligatorio')
-    .notEmpty()
-    .withMessage('El campo count no debe estar vacío')
-    .isInt({ min: 0 })
-    .withMessage('El campo count debe ser un número entero positivo'),
+      .exists({ checkFalsy: true })
+      .withMessage('El campo description es obligatorio')
+      .notEmpty()
+      .withMessage('El campo description no debe estar vacío')
+      .isString()
+      .withMessage('El campo description debe ser una cadena de texto')
+      .matches(/^[a-zA-Z0-9\s]+$/)
+      .withMessage('El campo description solo puede contener letras, números y espacios'),
+
   check('idZone')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo id zone es obligatorio')
-    .isString()
-    .withMessage('El campo id zone debe ser una cadena de texto'),
-  validateResults // Esta función es la que se encarga de manejar los resultados de la validación
-]
+      .exists({ checkFalsy: true })
+      .withMessage('El campo idZone es obligatorio')
+      .isUUID()
+      .withMessage('El campo idZone debe ser un UUID válido'),
+
+  check('prices')
+      .optional()
+      .isArray()
+      .withMessage('El campo prices debe ser un arreglo')
+      .custom((prices) => {
+        prices.forEach(price => {
+          if (!price.hour || typeof price.hour !== 'string') {
+            throw new Error('Cada precio debe tener un campo hour válido');
+          }
+          if (price.price === undefined || typeof price.price !== 'number') {
+            throw new Error('Cada precio debe tener un campo price válido y ser un número');
+          }
+          if (price.priceDeadHour === undefined || typeof price.priceDeadHour !== 'number') {
+            throw new Error('Cada precio debe tener un campo priceDeadHour válido y ser un número');
+          }
+        });
+        return true;
+      }),
+
+  validateResults,
+];
 
 const validatorGetItem = [
   check('id')

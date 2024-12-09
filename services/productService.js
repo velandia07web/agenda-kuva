@@ -1,4 +1,5 @@
-const { Product,ProductPrice } = require('../models')
+const { Product,ProductPrice } = require('../models');
+const { sequelize } = require('../models');
 
 const getAllProducts = async function (idCompany) {
   try {
@@ -27,18 +28,41 @@ const getOneProduct = async function (id) {
 }
 
 const createProduct = async function (body) {
+  const transaction = await sequelize.transaction();
   try {
-    return await Product.create({
-      name: body.name,
-      imagen: body.imagen,
-      description: body.description,
-      count: body.count,
-      idZone: body.idZone
-    })
+
+    const newProduct = await Product.create(
+        {
+          name: body.name,
+          imagen: body.imagen,
+          description: body.description,
+          active: body.active !== undefined ? body.active : true,
+          idZone: body.idZone,
+        },
+        { transaction }
+    );
+
+    if (body.prices && Array.isArray(body.prices)) {
+      const prices = body.prices.map(price => ({
+        product_id: newProduct.id,
+        hour: price.hour,
+        idZone: body.idZone,
+        price: price.price,
+        priceDeadHour: price.priceDeadHour,
+      }));
+
+      console.log(prices);
+
+      await ProductPrice.bulkCreate(prices, { transaction });
+    }
+
+    await transaction.commit();
+    return newProduct;
   } catch (error) {
-    throw new Error(`Error al crear el Product: ${error.message}`)
+    await transaction.rollback();
+    throw new Error(`Error al crear el producto: ${error.message}`);
   }
-}
+};
 
 const updateProduct = async function (id, body) {
   try {
