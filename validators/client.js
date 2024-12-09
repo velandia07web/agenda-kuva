@@ -166,6 +166,14 @@ const validatorUpdateItem = [
     .isString()
     .withMessage('El campo charge debe ser una cadena de texto'),
 
+  check('cupoCopado')
+      .isInt({ min: 0 })
+      .withMessage('El campo cupo copado debe ser un número entero positivo'),
+
+  check('cupoDisponible')
+      .isInt({ min: 0 })
+      .withMessage('El campo cupo disponible debe ser un número entero positivo'),
+
   validateResults
 ]
 
