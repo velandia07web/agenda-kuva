@@ -70,10 +70,7 @@ const validatorCreateItem = [
     .withMessage('El campo celphone debe ser una cadena de texto'),
 
   check('charge')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo charge es obligatorio')
-    .notEmpty()
-    .withMessage('El campo charge no debe estar vacío')
+    .optional()
     .isString()
     .withMessage('El campo charge debe ser una cadena de texto'),
 
@@ -97,6 +94,14 @@ const validatorCreateItem = [
     .optional()
     .isUUID(4)
     .withMessage('El campo idQuotation debe ser un UUID válido'),
+
+  check('cupoCopado')
+      .isInt({ min: 0 })
+      .withMessage('El campo cupo copado debe ser un número entero positivo'),
+
+  check('cupoDisponible')
+      .isInt({ min: 0 })
+      .withMessage('El campo cupo disponible debe ser un número entero positivo'),
 
   validateResults
 ]

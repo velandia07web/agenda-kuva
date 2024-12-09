@@ -1,4 +1,5 @@
 'use strict'
+const {sequelize} = require("../config/mysql");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -79,6 +80,14 @@ module.exports = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
+      },
+      cupoDisponible: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
+      cupoCopado: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

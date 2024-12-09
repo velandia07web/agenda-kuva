@@ -83,7 +83,15 @@ module.exports = (sequelize, DataTypes) => {
     idSocialMedia: {
       type: DataTypes.UUID,
       allowNull: false
-    }
+    },
+    cupoDisponible: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    cupoCopado: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'Client',
