@@ -446,7 +446,6 @@ module.exports = {
       name: product.name,
       imagen: product.imagen,
       description: product.description,
-      count: product.count,
       idZone: product.idZone,
       createdAt: product.createdAt,
       updatedAt: product.updatedAt
