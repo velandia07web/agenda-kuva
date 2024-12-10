@@ -28,6 +28,7 @@ const createProduct = async function (body) {
           description: body.description,
           active: body.active !== undefined ? body.active : true,
           idZone: body.idZone,
+          count: body.count || 0,
         },
         { transaction }
     );
@@ -62,6 +63,7 @@ const updateProduct = async function (id, body) {
           description: body.description,
           active: body.active !== undefined ? body.active : true,
           idZone: body.idZone,
+          count: body.count !== undefined ? body.count : undefined,
         },
         { where: { id }, transaction }
     );

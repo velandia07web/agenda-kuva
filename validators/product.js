@@ -31,7 +31,10 @@ const validatorCreateItem = [
       .withMessage('El campo idZone es obligatorio')
       .isUUID()
       .withMessage('El campo idZone debe ser un UUID válido'),
-
+  check('count')
+      .optional()
+      .isInt({ min: 0 })
+      .withMessage('El campo count debe ser un número entero positivo'),
   check('prices')
       .optional()
       .isArray()

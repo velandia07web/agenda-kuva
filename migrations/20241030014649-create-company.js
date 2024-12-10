@@ -9,9 +9,43 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      company_name: {
+      name: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      legalName: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      email: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        unique: true
+      },
+      phone: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      address: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      website: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      industry: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
+      clientId: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'Clients',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       createdAt: {
         allowNull: false,
