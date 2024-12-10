@@ -5,8 +5,7 @@ const JWT_EMAIL = process.env.JWT_EMAIL
 const tokenSign = async (user) => sign(
   {
     role: user.idRol,
-    email: user.email,
-    idCompany: user.idCompany
+    email: user.email
   },
   JWT_SECRET,
   { expiresIn: '4h' }

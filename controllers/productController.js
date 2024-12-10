@@ -11,16 +11,7 @@ const getAllProducts = async function (req, res) {
       return res.status(401).json({ status: 401, message: 'Token de autenticación no proporcionado.' });
     }
 
-    let decoded;
-    try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET); // Usa tu clave secreta definida en las variables de entorno
-    } catch (error) {
-      return res.status(403).json({ status: 403, message: 'Token no válido.' });
-    }
-
-    const idCompany = decoded.idCompany;
-
-    const allProducts = await productService.getAllProducts(idCompany)
+    const allProducts = await productService.getAllProducts()
 
     return res.status(200).json({ status: 200, message: 'Products:', data: allProducts })
   } catch (error) {

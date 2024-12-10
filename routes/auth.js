@@ -12,3 +12,4 @@ router
   .patch('/resetPassword/:token', authcontroller.resetPassword)
 
 module.exports = router
+

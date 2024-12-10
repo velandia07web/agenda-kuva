@@ -102,7 +102,6 @@ const loginUser = async function (res, body) {
     await user.save();
 
     const token = await tokenSign(user);
-    console.log("epaa", token);
     await user.update({ jwt: token });
 
     const userWithoutSensitiveData = user.toJSON();
