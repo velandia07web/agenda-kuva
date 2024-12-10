@@ -83,11 +83,37 @@ const getPriceProducts = async function (req, res) {
   }
 };
 
+const getPriceProductsByZone = async function (req, res) {
+  try {
+    const { idZone, typePriceId } = req.query;
+
+    if (!idZone) {
+      return res.status(400).json({ status: 400, message: 'El parámetro idZone es obligatorio.' });
+    }
+
+    const productPrices = await productService.getProductsWithPricesByZoneAndType(idZone, typePriceId);
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Precios de productos por zona:',
+      data: productPrices,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      message: 'Error al obtener los precios de productos por zona.',
+      error: error.message,
+    });
+  }
+};
+
+
 module.exports = {
   getAllProducts,
   getOneProducts,
   createProducts,
   updateProduct,
   deleteProduct,
-  getPriceProducts
+  getPriceProducts,
+  getPriceProductsByZone,
 }

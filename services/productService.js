@@ -20,7 +20,6 @@ const getOneProduct = async function (id) {
 const createProduct = async function (body) {
   const transaction = await sequelize.transaction();
   try {
-
     const newProduct = await Product.create(
         {
           name: body.name,
@@ -40,6 +39,7 @@ const createProduct = async function (body) {
         idZone: body.idZone,
         price: price.price,
         priceDeadHour: price.priceDeadHour,
+        type_price_id: price.type_price_id,
       }));
 
       await ProductPrice.bulkCreate(prices, { transaction });
@@ -77,6 +77,7 @@ const updateProduct = async function (id, body) {
         idZone: body.idZone,
         price: price.price,
         priceDeadHour: price.priceDeadHour,
+        type_price_id: price.type_price_id,
       }));
 
       await ProductPrice.bulkCreate(newPrices, { transaction });
@@ -125,11 +126,45 @@ const getPriceProducts = async function () {
   }
 };
 
+const getProductsWithPricesByZoneAndType = async function (idZone, typePriceId) {
+  try {
+    const whereClause = { idZone };
+    if (typePriceId) {
+      whereClause['$ProductPrices.type_price_id$'] = typePriceId;
+    }
+
+    const products = await Product.findAll({
+      where: whereClause,
+      include: [
+        {
+          model: ProductPrice,
+          as: 'ProductPrices',
+          attributes: ['hour', 'price', 'priceDeadHour'],
+        },
+      ],
+      attributes: ['name'],
+    });
+
+    return products.map(product => {
+      return product.ProductPrices.map(price => ({
+        name: product.name,
+        hour: price.hour,
+        price: price.price,
+        priceDeadHour: price.priceDeadHour,
+      }));
+    }).flat();
+  } catch (error) {
+    throw new Error(`Error al obtener los productos y precios por zona y tipo de precio: ${error.message}`);
+  }
+};
+
+
 module.exports = {
   getAllProducts,
   getOneProduct,
   createProduct,
   updateProduct,
   deleteProduct,
-  getPriceProducts
+  getPriceProducts,
+  getProductsWithPricesByZoneAndType
 }

@@ -1,4 +1,4 @@
-const { Zone, City } = require('../models')
+const { Zone, City, Product } = require('../models')
 
 const getAllZones = async function () {
   try {
@@ -67,11 +67,31 @@ const getZone = async function (body) {
   }
 }
 
+const getZonesWithProducts = async function () {
+  try {
+    const zones = await Zone.findAll({
+      attributes: ['name'],
+      include: [{
+        model: Product,
+        as: 'Product',
+        attributes: [],
+        required: true
+      }],
+      group: ['Zone.id'],
+      raw: true
+    })
+    return zones
+  } catch (error) {
+    throw new Error(`Error al obtener las zonas con productos: ${error.message}`)
+  }
+}
+
 module.exports = {
   getAllZones,
   getOneZone,
   createZone,
   updateZone,
   deleteZone,
-  getZone
+  getZone,
+  getZonesWithProducts
 }

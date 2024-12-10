@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'idZone',
                 as: 'Zone',
             });
+
+            ProductPrice.belongsTo(models.TypePrice, {
+                foreignKey: 'type_price_id',
+                as: 'TypePrice',
+            });
         }
     }
 
@@ -42,6 +47,10 @@ module.exports = (sequelize, DataTypes) => {
             },
             priceDeadHour: {
                 type: DataTypes.FLOAT,
+                allowNull: false,
+            },
+            type_price_id: {
+                type: DataTypes.UUID,
                 allowNull: false,
             },
         },

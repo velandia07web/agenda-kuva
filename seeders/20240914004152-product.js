@@ -9,6 +9,17 @@ module.exports = {
       { type: queryInterface.sequelize.QueryTypes.SELECT }
     )
 
+    const typePrices = await queryInterface.sequelize.query(
+        'SELECT id, name FROM `TypePrices`;',
+        { type: queryInterface.sequelize.QueryTypes.SELECT }
+    );
+
+    const typePriceMap = {};
+    typePrices.forEach(tp => {
+      if (tp.name === 'Precio Publico') typePriceMap.standard = tp.id;
+      if (tp.name === 'Precio con Descuento') typePriceMap.premium = tp.id;
+    });
+
     const zone = {}
     zones.forEach(z => {
       if (z.name === 'BOGOTA') zone.bogota = z.id
@@ -30,15 +41,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -51,15 +62,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -72,15 +83,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -93,15 +104,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -114,15 +125,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -135,15 +146,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -156,15 +167,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -177,15 +188,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -198,15 +209,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -219,15 +230,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -240,15 +251,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -261,15 +272,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -282,15 +293,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -303,15 +314,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -324,15 +335,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -345,15 +356,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -366,15 +377,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -387,15 +398,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -408,15 +419,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -429,15 +440,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       },
       {
@@ -450,15 +461,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
-          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota },
-          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota },
-          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota }
+          { hour: '1 HORA', price: 100, priceDeadHour: 80, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '1 HORA Y MEDIA', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '2 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '3 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '4 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '5 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.standard },
+          { hour: '6 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '7 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium },
+          { hour: '8 HORAS', price: 80, priceDeadHour: 60, idZone: zone.bogota, type_price_id: typePriceMap.premium }
         ]
       }
     ]

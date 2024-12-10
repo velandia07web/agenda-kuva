@@ -56,3 +56,23 @@ module.exports = {
         await queryInterface.dropTable('ProductPrices');
     },
 };
+
+
+module.exports = {
+    async up(queryInterface, Sequelize) {
+        await queryInterface.addColumn('ProductPrices', 'type_price_id', {
+            type: Sequelize.UUID,
+            allowNull: false,
+            references: {
+                model: 'TypePrices',
+                key: 'id',
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE',
+        });
+    },
+
+    async down(queryInterface, Sequelize) {
+        await queryInterface.removeColumn('ProductPrices', 'type_price_id');
+    },
+};

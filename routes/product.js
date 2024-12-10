@@ -9,6 +9,7 @@ router.use(authMiddlewareRol(['Administrador', 'Superadministrador', 'Coordinado
 router
   .get('/', productController.getAllProducts)
   .get('/prices', productController.getPriceProducts)
+  .get('/prices-by-zone', productController.getPriceProductsByZone)
   .get('/:id', validatorGetItem, productController.getOneProducts)
 
 router

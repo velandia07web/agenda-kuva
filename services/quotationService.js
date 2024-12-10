@@ -90,7 +90,7 @@ const createQuotation = async (data) => {
     }
 
     for(const add of adds) {
-        const{id, quantity, idcity} = product;
+        const{id, name, price} = product;
         await QuotationProduct.create({id: require('uuid').v4(), quotationId: quotation.id, productId: id, quantity, cityId: idcity});
     }
 

@@ -1,7 +1,5 @@
 'use strict'
-const {
-  Model
-} = require('sequelize')
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class TypePrice extends Model {
@@ -10,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idTypePrice',
         as: 'Add'
       })
+      TypePrice.hasMany(models.ProductPrice, {
+            foreignKey: 'type_price_id',
+            as: 'ProductPrices',
+      });
     }
+
   }
   TypePrice.init({
     id: {
