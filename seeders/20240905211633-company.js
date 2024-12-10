@@ -3,6 +3,18 @@ const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+
+    const clients = await queryInterface.sequelize.query(
+        'SELECT id FROM `Clients`;',
+        { type: queryInterface.sequelize.QueryTypes.SELECT }
+    );
+
+    if (!clients.length) {
+      throw new Error('No hay clientes en la tabla Clients.');
+    }
+
+    const clientId = clients[0].id;
+
     const companies = [
       {
         id: uuidv4(),
@@ -13,7 +25,7 @@ module.exports = {
         address: 'Calle 123 #45-67, Bogotá, Colombia',
         website: 'https://www.kuva.com',
         industry: 'Technology',
-        clientId: 1,
+        clientId,
         createdAt: new Date(),
         updatedAt: new Date(),
       }
