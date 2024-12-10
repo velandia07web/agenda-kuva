@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'client'
       })
 
-      User.belongsTo(models.Company, {
-        foreignKey: 'idCompany',
-        as: 'company'
-      })
     }
   }
 
@@ -84,14 +80,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       references: {
         model: 'Zones',
-        key: 'id'
-      }
-    },
-    idCompany: {
-      type: DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: 'companies',
         key: 'id'
       }
     }

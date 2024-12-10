@@ -68,9 +68,6 @@ const validatorCreateItem = [
   check('idZone')
       .exists({ checkFalsy: true })
       .withMessage('El campo idZone es obligatorio'),
-  check('idCompany')
-      .exists({ checkFalsy: true })
-      .withMessage('El campo idCompany es obligatorio'),
   validateResults
 ]
 

@@ -33,7 +33,6 @@ const registerUser = async function (body) {
       cedula: body.cedula,
       password: encryptedPassword,
       idRol: rol.id,
-      idCompany: body.idCompany,
       idZone: body.idZone,
       active: true,
     });
@@ -67,8 +66,7 @@ const loginUser = async function (res, body) {
         "email",
         "jwt",
         "active",
-        "failedAttempts",
-        "idCompany",
+        "failedAttempts"
       ],
     });
 

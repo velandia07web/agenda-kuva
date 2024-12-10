@@ -24,11 +24,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'Pack'
       })
 
-      // Nueva asociación con Company
-      Zone.belongsTo(models.Company, {
-        foreignKey: 'idCompany',
-        as: 'Company'
-      })
     }
   }
   
@@ -43,16 +38,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
-    },
-    idCompany: {
-      type: DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: 'Companies',
-        key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL',
     }
   }, {
     sequelize,

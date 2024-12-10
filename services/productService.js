@@ -1,21 +1,11 @@
 const { Product,ProductPrice } = require('../models');
 const { sequelize } = require('../models');
 
-const getAllProducts = async function (idCompany) {
+const getAllProducts = async function () {
   try {
-    const idCompanyInt = parseInt(idCompany, 10);
-
-    if (isNaN(idCompanyInt)) {
-      throw new Error("idCompany debe ser un número entero válido.");
-    }
-    return await Product.findAndCountAll({
-      where: {
-        idCompany: idCompanyInt
-      },
-      order: [['name', 'ASC']]
-    });
+    return await Product.findAndCountAll();
   } catch (error) {
-    throw new Error(`Error al obtener los productos para idCompany ${idCompany}: ${error.message}`);
+    throw new Error(`Error al obtener los productos: ${error.message}`);
   }
 };
 
