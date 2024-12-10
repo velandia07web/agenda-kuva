@@ -70,7 +70,7 @@ const getZone = async function (body) {
 const getZonesWithProducts = async function () {
   try {
     const zones = await Zone.findAll({
-      attributes: ['name'],
+      attributes: ['id','name'],
       include: [{
         model: Product,
         as: 'Product',
