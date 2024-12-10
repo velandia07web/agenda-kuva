@@ -25,7 +25,7 @@ module.exports = {
         address: 'Calle 123 #45-67, Bogotá, Colombia',
         website: 'https://www.kuva.com',
         industry: 'Technology',
-        clientId,
+        clientId: null,
         createdAt: new Date(),
         updatedAt: new Date(),
       }

@@ -42,7 +42,7 @@ const createQuotation = async (data) => {
         cityId,
         typeEvent,
         packs,
-        cabins,
+        adds,
         products,
         discount
     } = data;
@@ -85,6 +85,11 @@ const createQuotation = async (data) => {
         await QuotationPack.create({id: require('uuid').v4(), quotationId: quotation.id,  packId: id, cityId: idcity});
     }
     for(const product of products) {
+        const{id, quantity, idcity} = product;
+        await QuotationProduct.create({id: require('uuid').v4(), quotationId: quotation.id, productId: id, quantity, cityId: idcity});
+    }
+
+    for(const add of adds) {
         const{id, quantity, idcity} = product;
         await QuotationProduct.create({id: require('uuid').v4(), quotationId: quotation.id, productId: id, quantity, cityId: idcity});
     }
