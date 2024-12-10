@@ -80,10 +80,6 @@ const createQuotation = async (data) => {
         totalNet
     });
 
-    for(const cabin of cabins) {
-        const{id, hours, idcity} = cabin;
-        await QuotationCabin.create({id: require('uuid').v4(), quotationId: quotation.id, cabinId: id, hours, cityId: idcity});
-    }
     for (pack of packs) {
         const{id, idcity} = pack;
         await QuotationPack.create({id: require('uuid').v4(), quotationId: quotation.id,  packId: id, cityId: idcity});
