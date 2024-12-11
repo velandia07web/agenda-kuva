@@ -167,7 +167,7 @@ const updateProductPrice = async function (id, body) {
     if (!productPrice) {
       throw new Error(`ProductPrice con id ${id} no encontrado.`);
     }
-
+    console.log(body);
     const updatedProductPrice = await productPrice.update({
       hour: body.hour,
       price: body.price,

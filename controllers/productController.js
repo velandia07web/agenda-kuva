@@ -110,12 +110,13 @@ const getPriceProductsByZone = async function (req, res) {
 const updateProductPrice = async function (req, res) {
   try {
     const id = req.params.id;
-    const validData = matchedData(req);
-
-    if (!id) {
-      return res.status(400).json({ status: 400, message: 'ID de ProductPrice es obligatorio.' });
-    }
-
+    const validData = {
+      hour: req.body.hour,
+      price: req.body.price,
+      priceDeadHour: req.body.priceDeadHour,
+      idZone: req.body.idZone,
+      type_price_id: req.body.type_price_id,
+    };
     const updatedProductPrice = await productService.updateProductPrice(id, validData);
     return res.status(200).json({ status: 200, message: 'ProductPrice actualizado satisfactoriamente.', data: updatedProductPrice });
   } catch (error) {
