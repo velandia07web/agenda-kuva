@@ -20,6 +20,11 @@ module.exports = {
       if (tp.name === 'Precio con Descuento') typePriceMap.premium = tp.id;
     });
 
+    const defaultTypePriceId = '00000000-0000-0000-0000-000000000000';
+    typePriceMap.standard = typePriceMap.standard || defaultTypePriceId;
+    typePriceMap.premium = typePriceMap.premium || defaultTypePriceId;
+
+
     const zone = {}
     zones.forEach(z => {
       if (z.name === 'BOGOTA') zone.bogota = z.id
