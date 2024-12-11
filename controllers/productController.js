@@ -144,6 +144,33 @@ const deleteProductPrice = async function (req, res) {
   }
 };
 
+const getProductsDataByTypePrice = async function (req, res) {
+  try {
+    const { idTypePrice } = req.query;
+
+    if (!idTypePrice) {
+      return res.status(400).json({
+        status: 400,
+        message: 'El parámetro idTypePrice es obligatorio.',
+      });
+    }
+
+    const data = await productService.getProductsDataByTypePrice(idTypePrice);
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Datos obtenidos correctamente.',
+      data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      message: 'Error al obtener los datos.',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllProducts,
   getOneProducts,
@@ -153,5 +180,6 @@ module.exports = {
   getPriceProducts,
   getPriceProductsByZone,
   updateProductPrice,
-  deleteProductPrice
+  deleteProductPrice,
+  getProductsDataByTypePrice
 }

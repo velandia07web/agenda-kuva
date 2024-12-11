@@ -1,4 +1,4 @@
-const { Product,ProductPrice } = require('../models');
+const { Product,ProductPrice,  Add, Pack, PricePack} = require('../models');
 const { sequelize } = require('../models');
 
 const getAllProducts = async function () {
@@ -196,6 +196,67 @@ const deleteProductPrice = async function (id) {
   }
 };
 
+const getProductsDataByTypePrice = async function (idTypePrice) {
+  try {
+    const products = await Product.findAll({
+      include: [
+        {
+          model: ProductPrice,
+          as: 'ProductPrices',
+          where: { type_price_id: idTypePrice },
+          attributes: ['hour', 'price'],
+        },
+      ],
+      attributes: ['id', 'name'],
+    });
+
+    const formattedProducts = products.map(product => ({
+      id: product.id,
+      name: product.name,
+      prices: product.ProductPrices.map(price => ({
+        name: price.name,
+        price: price.price,
+      })),
+    }));
+
+    const adds = await Add.findAll({
+      where: { idTypePrice: idTypePrice },
+      attributes: ['id', 'name', 'price'],
+    });
+
+    const formattedAdds = adds.map(add => ({
+      id: add.id,
+      name: add.name,
+      price: add.price,
+    }));
+
+    const packs = await Pack.findAll({
+      attributes: ['id', 'name'],
+      include: [
+        {
+          model: PricePack,
+          as: 'PricePack',
+          attributes: ['price'],
+        },
+      ],
+    });
+
+    const formattedPacks = packs.map(pack => ({
+      id: pack.id,
+      name: pack.name,
+      price: pack.PricePack.price,
+    }));
+
+    return {
+      products: formattedProducts,
+      adds: formattedAdds,
+      packs: formattedPacks,
+    };
+  } catch (error) {
+    throw new Error(`Error al obtener los datos: ${error.message}`);
+  }
+};
+
 module.exports = {
   getAllProducts,
   getOneProduct,
@@ -205,5 +266,6 @@ module.exports = {
   getPriceProducts,
   getProductsWithPricesByZoneAndType,
   updateProductPrice,
-  deleteProductPrice
+  deleteProductPrice,
+  getProductsDataByTypePrice
 }
