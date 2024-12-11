@@ -16,20 +16,14 @@ module.exports = {
       idPack: {
         type: Sequelize.UUID,
         allowNull: false,
-        references: {
-          model: 'Packs',
-          key: 'id',
-        },
+        //references: {model: 'Packs', key: 'id',},
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       },
       idProduct: {
         type: Sequelize.UUID,
         allowNull: true,
-        references: {
-          model: 'Products',
-          key: 'id',
-        },
+        references: {model: 'Products', key: 'id',},
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       },

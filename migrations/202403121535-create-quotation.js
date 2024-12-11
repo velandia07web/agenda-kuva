@@ -25,10 +25,7 @@ module.exports = {
             clientId: {
                 allowNull: false,
                 type: Sequelize.UUID,
-                references: {
-                    model: 'Clients',
-                    key: 'id'
-                },
+                //references: {model: 'Clients', key: 'id'},
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
@@ -39,10 +36,7 @@ module.exports = {
             cityId: {
                 allowNull: false,
                 type: Sequelize.UUID,
-                references: {
-                    model: 'Cities',
-                    key: 'id'
-                },
+                //references: {model: 'Cities', key: 'id'},
                 onUpdate: 'CASCADE'
             },
             eventType: {

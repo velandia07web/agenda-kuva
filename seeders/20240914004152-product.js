@@ -29,7 +29,6 @@ module.exports = {
     })
 
     const url = process.env.DEV_URL
-
     const products = [
       {
         id: uuidv4(),
@@ -494,7 +493,8 @@ module.exports = {
           priceDeadHour: price.priceDeadHour,
           idZone: price.idZone,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          type_price_id: price.idTypePrice
         })
       })
     })
