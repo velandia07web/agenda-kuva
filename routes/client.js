@@ -9,6 +9,7 @@ router.use(authMiddlewareRol(['Administrador', 'Superadministrador', 'Coordinado
 router
   .get('/', clientController.getAllClients)
   .get('/:id', validatorGetItem, clientController.getOneClients)
+  .get('/company/:clientId', clientController.getCompanyByClientName);
 
 router
   .post('/', authMiddlewareRol(['Superadministrador', 'Administrador', 'Comercial']), validatorCreateItem, clientController.createClients)

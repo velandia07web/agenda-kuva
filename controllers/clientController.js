@@ -63,10 +63,35 @@ const deleteClients = async function (req, res) {
   }
 }
 
+const getCompanyByClientName = async function (req, res) {
+  try {
+    const { clientId } = req.params;
+
+    if (!clientId) {
+      return res.status(400).json({ status: 400, message: 'Id del cliente no proporcionado.' });
+    }
+
+    const clientWithCompany = await clientService.getCompanyByClientName(clientId);
+
+    return res.status(200).json({
+      status: 200,
+      message: `Compañía asociada al cliente ${clientId}:`,
+      data: clientWithCompany,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      message: 'Error al obtener la compañía del cliente.',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllClients,
   getOneClients,
   createClients,
   updateClients,
-  deleteClients
+  deleteClients,
+  getCompanyByClientName
 }

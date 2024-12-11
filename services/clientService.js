@@ -1,4 +1,4 @@
-const { Client } = require('../models')
+const { Client,Company } = require('../models')
 
 const getAllClient = async function () {
   try {
@@ -78,10 +78,36 @@ const deleteClient = async function (id) {
   }
 }
 
+const getCompanyByClientName = async function (clientId) {
+  try {
+    const clientWithCompany = await Client.findOne({
+      where: { id: clientId },
+      include: [
+        {
+          model: Company,
+          as: 'associatedCompany',
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
+        },
+      ],
+      attributes: [],
+    });
+
+    if (!clientWithCompany) {
+      throw new Error(`Cliente con ID ${clientId} no encontrado.`);
+    }
+
+    return clientWithCompany.associatedCompany;
+  } catch (error) {
+    throw new Error(`Error al obtener la información del cliente: ${error.message}`);
+  }
+};
+
+
 module.exports = {
   getAllClient,
   getOneClient,
   createClient,
   updateClient,
-  deleteClient
+  deleteClient,
+  getCompanyByClientName
 }
