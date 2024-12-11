@@ -7,6 +7,7 @@ const router = Router()
 router.use(authMiddlewareRol(['Administrador', 'Superadministrador', 'Coordinador', 'Logistico', 'Comercial', 'Contable', 'Diseñador']))
 
 router
+  .get('/getAllClientsCompany', clientController.getAllClientsCompany)
   .get('/', clientController.getAllClients)
   .get('/:id', validatorGetItem, clientController.getOneClients)
   .get('/company/:clientId', clientController.getCompanyByClientName);

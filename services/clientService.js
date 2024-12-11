@@ -102,6 +102,39 @@ const getCompanyByClientName = async function (clientId) {
   }
 };
 
+const getAllClientsWithCompany = async function () {
+  try {
+    const clientsWithCompanies = await Client.findAll({
+      include: [
+        {
+          model: Company,
+          as: 'associatedCompany',
+          attributes: ['name'],
+        },
+      ],
+      attributes: ['id', 'name', 'celphone', 'email', 'idTypeClient'],
+    });
+
+    if (!clientsWithCompanies.length) {
+      throw new Error('No se encontraron clientes con compañías asociadas.');
+    }
+
+    const result = clientsWithCompanies.map(client => ({
+      idCliente: client.id,
+      nameCliente: client.name,
+      nameCompany: client.associatedCompany?.name || 'Sin compañía asociada',
+      telCliente: client.celphone,
+      emailcliente: client.email,
+      typeClient: client.idTypeClient,
+    }));
+
+    return result;
+  } catch (error) {
+    throw new Error(`Error al obtener los clientes con sus compañías: ${error.message}`);
+  }
+};
+
+
 
 module.exports = {
   getAllClient,
@@ -109,5 +142,6 @@ module.exports = {
   createClient,
   updateClient,
   deleteClient,
-  getCompanyByClientName
+  getCompanyByClientName,
+  getAllClientsWithCompany
 }

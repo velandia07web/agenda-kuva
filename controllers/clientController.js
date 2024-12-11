@@ -87,11 +87,22 @@ const getCompanyByClientName = async function (req, res) {
   }
 };
 
+const getAllClientsCompany = async function (req, res) {
+  try {
+    const data = await clientService.getAllClientsWithCompany();
+    return res.status(200).json({ status: 200, message: 'Clientes y compañías:', data });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'Error al obtener clientes y compañías.', error: error.message });
+  }
+};
+
+
 module.exports = {
   getAllClients,
   getOneClients,
   createClients,
   updateClients,
   deleteClients,
-  getCompanyByClientName
+  getCompanyByClientName,
+  getAllClientsCompany
 }
