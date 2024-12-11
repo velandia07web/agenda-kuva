@@ -139,7 +139,7 @@ const getProductsWithPricesByZoneAndType = async function (idZone, typePriceId) 
         {
           model: ProductPrice,
           as: 'ProductPrices',
-          attributes: ['hour', 'price', 'priceDeadHour'],
+          attributes: ['id','hour', 'price', 'priceDeadHour', 'type_price_id'],
         },
       ],
       attributes: ['name'],
@@ -147,10 +147,12 @@ const getProductsWithPricesByZoneAndType = async function (idZone, typePriceId) 
 
     return products.map(product => {
       return product.ProductPrices.map(price => ({
+        id: price.id,
         name: product.name,
         hour: price.hour,
         price: price.price,
         priceDeadHour: price.priceDeadHour,
+        typePrice: price.type_price_id
       }));
     }).flat();
   } catch (error) {
