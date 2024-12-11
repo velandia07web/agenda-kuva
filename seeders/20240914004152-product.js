@@ -18,8 +18,8 @@ module.exports = {
       throw new Error('No existen Tipos de precio')
     }
 
-    const idTypePrice = typePrices[0];
-    
+    const idTypePrice = typePrices[0].id;
+
     const zone = {}
     zones.forEach(z => {
       if (z.name === 'BOGOTA') zone.bogota = z.id
