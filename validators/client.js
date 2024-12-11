@@ -56,10 +56,9 @@ const validatorCreateItem = [
     .isEmail()
     .withMessage('El campo email debe ser un correo electrónico válido'),
 
-  check('company')
+  check('idCompany')
     .optional()
-    .isString()
-    .withMessage('El campo company debe ser una cadena de texto'),
+    .isUUID(4),
 
   check('celphone')
     .exists({ checkFalsy: true })

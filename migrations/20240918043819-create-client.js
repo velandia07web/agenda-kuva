@@ -51,9 +51,15 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
-      company: {
+      idCompany: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'Companies',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
         allowNull: true,
-        type: Sequelize.STRING
       },
       celphone: {
         allowNull: false,

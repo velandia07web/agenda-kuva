@@ -69,9 +69,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true
     },
-    company: {
+    idCompany: {
+      type: DataTypes.UUID,
       allowNull: true,
-      type: DataTypes.STRING
     },
     celphone: {
       allowNull: false,
