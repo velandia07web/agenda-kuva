@@ -160,6 +160,41 @@ const getProductsWithPricesByZoneAndType = async function (idZone, typePriceId) 
   }
 };
 
+const updateProductPrice = async function (id, body) {
+  try {
+    const productPrice = await ProductPrice.findByPk(id);
+
+    if (!productPrice) {
+      throw new Error(`ProductPrice con id ${id} no encontrado.`);
+    }
+
+    const updatedProductPrice = await productPrice.update({
+      hour: body.hour,
+      price: body.price,
+      priceDeadHour: body.priceDeadHour,
+      idZone: body.idZone,
+      type_price_id: body.type_price_id,
+    });
+
+    return updatedProductPrice;
+  } catch (error) {
+    throw new Error(`Error al actualizar el ProductPrice: ${error.message}`);
+  }
+};
+
+const deleteProductPrice = async function (id) {
+  try {
+    const deletedCount = await ProductPrice.destroy({ where: { id } });
+
+    if (deletedCount === 0) {
+      throw new Error(`ProductPrice con id ${id} no encontrado.`);
+    }
+
+    return deletedCount;
+  } catch (error) {
+    throw new Error(`Error al eliminar el ProductPrice: ${error.message}`);
+  }
+};
 
 module.exports = {
   getAllProducts,
@@ -168,5 +203,7 @@ module.exports = {
   updateProduct,
   deleteProduct,
   getPriceProducts,
-  getProductsWithPricesByZoneAndType
+  getProductsWithPricesByZoneAndType,
+  updateProductPrice,
+  deleteProductPrice
 }

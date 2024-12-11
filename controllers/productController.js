@@ -107,6 +107,41 @@ const getPriceProductsByZone = async function (req, res) {
   }
 };
 
+const updateProductPrice = async function (req, res) {
+  try {
+    const id = req.params.id;
+    const validData = matchedData(req);
+
+    if (!id) {
+      return res.status(400).json({ status: 400, message: 'ID de ProductPrice es obligatorio.' });
+    }
+
+    const updatedProductPrice = await productService.updateProductPrice(id, validData);
+    return res.status(200).json({ status: 200, message: 'ProductPrice actualizado satisfactoriamente.', data: updatedProductPrice });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'Error al actualizar el ProductPrice.', error: error.message });
+  }
+};
+
+const deleteProductPrice = async function (req, res) {
+  try {
+    const id = req.params.id;
+
+    if (!id) {
+      return res.status(400).json({ status: 400, message: 'ID de ProductPrice es obligatorio.' });
+    }
+
+    const deletedCount = await productService.deleteProductPrice(id);
+
+    if (deletedCount === 0) {
+      return res.status(404).json({ status: 404, message: 'ProductPrice no encontrado.' });
+    }
+
+    return res.status(200).json({ status: 200, message: 'ProductPrice eliminado satisfactoriamente.' });
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'Error al eliminar el ProductPrice.', error: error.message });
+  }
+};
 
 module.exports = {
   getAllProducts,
@@ -116,4 +151,6 @@ module.exports = {
   deleteProduct,
   getPriceProducts,
   getPriceProductsByZone,
+  updateProductPrice,
+  deleteProductPrice
 }

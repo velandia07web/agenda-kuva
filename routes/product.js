@@ -11,6 +11,9 @@ router
   .get('/prices', productController.getPriceProducts)
   .get('/prices-by-zone', productController.getPriceProductsByZone)
   .get('/:id', validatorGetItem, productController.getOneProducts)
+  .put('/product-price/:id', productController.updateProductPrice)
+  .delete('/product-price/:id', productController.deleteProductPrice);
+
 
 router
   .post('/', authMiddlewareRol(['Superadministrador']), validatorCreateItem, productController.createProducts)
