@@ -10,7 +10,7 @@ module.exports = {
     );
 
     if (!clients.length) {
-      throw new Error('No hay clientes en la tabla Clients.');
+      console.error('No hay clientes en la tabla Clients.');
     }
 
     const clientId = clients[0].id;
