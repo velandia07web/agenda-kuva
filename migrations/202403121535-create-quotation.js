@@ -36,7 +36,7 @@ module.exports = {
             },
             userId: {
                 allowNull: false,
-                type: Sequelize.INTEGER
+                type: Sequelize.UUID
             },
             subtotal: {
                 allowNull: false,
