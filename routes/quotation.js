@@ -4,18 +4,16 @@ const { createQuotation,sendQuotationEmail, getQuotation, getAllQuotation,update
 const authMiddlewareRol = require("../middlewares/sessionRol");
 const router = express.Router();
 
-router.use(authMiddlewareRol(['Administrador', 'Superadministrador', 'Coordinador', 'Logistico', 'Comercial', 'Contable', 'Diseñador']))
 
 
+router.post('/quotations',createQuotation)
+      .get('/',getAllQuotation)
+      .get('/email/:id', sendQuotationEmail)
+      .get('/:id',  getQuotation)
+      .get('/state/:state',  getQuotationsByState);
 
-router.post('/quotations', authMiddlewareRol(['Comercial', 'Superadministrador']), createQuotation)
-      .get('/email/:id', authMiddlewareRol(['Comercial']), sendQuotationEmail)
-      .get('/:id', authMiddlewareRol(['Comercial']), getQuotation)
-      .get('/', authMiddlewareRol(['Comercial']), getAllQuotation)
-      .get('/state/:state', authMiddlewareRol(['Comercial']), getQuotationsByState);
 
-
-router.get('/:id/respond', authMiddlewareRol(['Comercial']), async (req, res) => {
+router.get('/:id/respond', async (req, res) => {
     try {
         const { id } = req.params;
         const { response } = req.query;
@@ -39,7 +37,7 @@ router.get('/:id/respond', authMiddlewareRol(['Comercial']), async (req, res) =>
     }
 });
 
-router.put('/:id', authMiddlewareRol(['Comercial']), updateQuotation)
-      .patch('/:id/inactivate', authMiddlewareRol(['Comercial']), inactivateQuotation);
+router.put('/:id',  updateQuotation)
+      .patch('/:id/inactivate',  inactivateQuotation);
 
 module.exports = router;
