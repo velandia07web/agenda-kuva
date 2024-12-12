@@ -12,10 +12,7 @@ module.exports = {
             eventId: {
                 allowNull: false,
                 type: Sequelize.UUID,
-                references: {
-                    model: 'Events', // Relación con la tabla de eventos
-                    key: 'id'
-                },
+                //references: {model: 'Events', key: 'id'},
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
@@ -23,7 +20,7 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.UUID,
                 references: {
-                    model: 'Adds', // Relación con la tabla de añadidos
+                    model: 'Adds',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
