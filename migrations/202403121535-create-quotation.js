@@ -20,7 +20,7 @@ module.exports = {
             },
             typePricesId: {
                 allowNull: false,
-                type: Sequelize.INTEGER
+                type: Sequelize.UUID
             },
             telephone: {
                 allowNull: false,
