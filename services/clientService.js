@@ -85,7 +85,7 @@ const getCompanyByClientName = async function (clientId) {
       include: [
         {
           model: Company,
-          as: 'Company',
+          as: 'associatedCompany',
           attributes: { exclude: ['createdAt', 'updatedAt'] },
         },
       ],
@@ -96,7 +96,7 @@ const getCompanyByClientName = async function (clientId) {
       throw new Error(`Cliente con ID ${clientId} no encontrado.`);
     }
 
-    return clientWithCompany.Company;
+    return clientWithCompany.associatedCompany;
   } catch (error) {
     throw new Error(`Error al obtener la información del cliente: ${error.message}`);
   }
