@@ -51,10 +51,17 @@ const createQuotation = async (data) => {
                         include: [{ model: PricePack, as: 'PricePack' }],
                         transaction,
                     });
-                    if (!packData || !packData.PricePack) throw new Error(`Pack con ID ${pack.id} no encontrado`);
-                    return packData.PricePack[0].dataValues.price || 0;
+                    if (!packData || !packData.PricePack || packData.PricePack.length === 0) {
+                        throw new Error(`Pack con ID ${pack.id} no encontrado o sin PricePack válido`);
+                    }
+                    const price = parseFloat(packData.PricePack[0]?.dataValues?.price || 0);
+                    if (isNaN(price)) {
+                        throw new Error(`Precio inválido para Pack con ID ${pack.id}`);
+                    }
+                    return price;
                 })
             );
+            const packsTotalSum = packsTotal.reduce((sum, value) => sum + value, 0);
 
             const productsTotal = await Promise.all(
                 products.map(async (product) => {
@@ -72,23 +79,37 @@ const createQuotation = async (data) => {
                     if (!productData || !productData.ProductPrices || productData.ProductPrices.length === 0) {
                         throw new Error(`Product con ID ${product.id} y hora ${product.hour} no encontrado`);
                     }
-                    return productData.ProductPrices[0].price * product.quantity;
+
+                    const price = parseFloat(productData.ProductPrices[0]?.price || 0);
+                    const quantity = parseInt(product.quantity || 0, 10);
+                    if (isNaN(price) || isNaN(quantity)) {
+                        throw new Error(`Datos inválidos para Product con ID ${product.id}`);
+                    }
+                    return price * quantity;
                 })
             );
+
+            const productsTotalSum = productsTotal.reduce((sum, value) => sum + value, 0);
 
             const addsTotal = await Promise.all(
                 adds.map(async (add) => {
                     const addData = await Add.findByPk(add.id, { transaction });
                     if (!addData) throw new Error(`Add con ID ${add.id} no encontrado`);
-                    return addData.price * add.quantity;
+                    const price = parseFloat(addData.price || 0);
+                    const quantity = parseInt(add.quantity || 0, 10);
+                    if (isNaN(price) || isNaN(quantity)) {
+                        throw new Error(`Datos inválidos para Add con ID ${add.id}`);
+                    }
+                    return price * quantity;
                 })
             );
 
-            const eventTotal =
-                transportPrice +
-                packsTotal +
-                productsTotal +
-                addsTotal;
+            const addsTotalSum = addsTotal.reduce((sum, value) => sum + value, 0);
+
+            const eventTotal = parseFloat(transportPrice || 0) +
+                parseFloat(packsTotalSum || 0) +
+                parseFloat(productsTotalSum || 0) +
+                parseFloat(addsTotalSum || 0);
 
             quotationSubtotal += eventTotal;
 
