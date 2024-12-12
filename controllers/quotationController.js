@@ -34,6 +34,20 @@ const getQuotation = async function (req, res) {
     }
 }
 
+const sendQuotationEmail = async function (req, res) {
+    try {
+        const quotation = await quotationService.sendQuotationEmail(req.params.id)
+
+        if (!quotation) {
+            return res.status(404).json({ status: 404, message: 'Cotizacion no enviada.' })
+        } else {
+            return res.status(200).json({ status: 200, message: 'Cotizacion Enviada'})
+        }
+    } catch (error) {
+        return res.status(500).json({ status: 500, message: 'Error al enviar la cotizacion.', error: error.message })
+    }
+}
+
 const getAllQuotation = async function (req, res) {
     try {
         const quotations = await quotationService.getAllQuotations();
@@ -102,5 +116,6 @@ module.exports = {
     getAllQuotation,
     updateQuotation,
     inactivateQuotation,
-    getQuotationsByState
+    getQuotationsByState,
+    sendQuotationEmail
 };

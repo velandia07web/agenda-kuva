@@ -1,10 +1,10 @@
-const { Quotation, Pack, Cabin, Product, City, Client, PricePack,CabinPrice,EventAdd, EventPack, EventProduct, TypePrice, SocialMedia, Event} = require('../models');
+const { Quotation, Pack, Add, Product, City, Client, PricePack,ProductPrice,EventAdd, EventPack, EventProduct, TypePrice, SocialMedia, Event} = require('../models');
 const { Op } = require('sequelize');
 const ejs = require("ejs");
 const path = require("path");
 const sendMail = require("../email/email");
 
-const { sequelize } = require('../models'); // Importa el objeto Sequelize
+const { sequelize } = require('../models');
 const { v4: uuidv4 } = require('uuid');
 
 const createQuotation = async (data) => {
@@ -36,100 +36,73 @@ const createQuotation = async (data) => {
         let quotationSubtotal = 0;
         let transportTotal = 0;
 
-        const processedEvents = await Promise.all(
-            events.map(async (event) => {
-                const { name, cityId, dateEvent, packs = [], products = [], adds = [] } = event;
+        const processedEvents = [];
+        for (const event of events) {
+            const { name, cityId, dateEvent, packs = [], products = [], adds = [] } = event;
 
-                const city = await City.findByPk(cityId, { transaction });
-                if (!city) throw new Error(`City con ID ${cityId} no encontrada`);
-                const transportPrice = city.transportPrice || 0;
-                transportTotal += transportPrice;
+            const city = await City.findByPk(cityId, { transaction });
+            if (!city) throw new Error(`City con ID ${cityId} no encontrada`);
+            const transportPrice = city.transportPrice || 0;
+            transportTotal += transportPrice;
 
-                const packsTotal = await Promise.all(
-                    packs.map(async (pack) => {
-                        const packData = await Pack.findByPk(pack.id, {
-                            include: [{ model: PricePack, as: 'pricePack' }],
-                            transaction,
-                        });
-                        if (!packData || !packData.pricePack) throw new Error(`Pack con ID ${pack.id} no encontrado`);
-                        return packData.pricePack.price || 0;
-                    })
-                );
+            const packsTotal = await Promise.all(
+                packs.map(async (pack) => {
+                    const packData = await Pack.findByPk(pack.id, {
+                        include: [{ model: PricePack, as: 'PricePack' }],
+                        transaction,
+                    });
+                    if (!packData || !packData.PricePack) throw new Error(`Pack con ID ${pack.id} no encontrado`);
+                    return packData.PricePack.price || 0;
+                })
+            );
 
-                const productsTotal = await Promise.all(
-                    products.map(async (product) => {
-                        const productData = await Product.findByPk(product.id, {
-                            include: [{ model: ProductPrice, as: 'productPrice' }],
-                            transaction,
-                        });
-                        if (!productData || !productData.productPrice) throw new Error(`Product con ID ${product.id} no encontrado`);
-                        return productData.productPrice.price * product.quantity;
-                    })
-                );
-
-                const addsTotal = await Promise.all(
-                    adds.map(async (add) => {
-                        const addData = await Add.findByPk(add.id, { transaction });
-                        if (!addData) throw new Error(`Add con ID ${add.id} no encontrado`);
-                        return addData.price * add.quantity;
-                    })
-                );
-
-                const eventTotal =
-                    transportPrice +
-                    packsTotal.reduce((acc, price) => acc + price, 0) +
-                    productsTotal.reduce((acc, price) => acc + price, 0) +
-                    addsTotal.reduce((acc, price) => acc + price, 0);
-
-                quotationSubtotal += eventTotal;
-
-                const eventCreate = await Event.create(
-                    {
-                        name,
-                        cityId,
-                        dateEvent,
-                        eventTotal,
-                        idQuotation,
-                    },
-                    { transaction }
-                );
-
-                await Promise.all([
-                    ...packs.map((pack) =>
-                        EventPack.create(
-                            { id: uuidv4(), quotationId: idQuotation, packId: pack.id },
-                            { transaction }
-                        )
-                    ),
-                    ...products.map((product) =>
-                        EventProduct.create(
+            const productsTotal = await Promise.all(
+                products.map(async (product) => {
+                    const productData = await Product.findByPk(product.id, {
+                        include: [
                             {
-                                id: uuidv4(),
-                                quotationId: idQuotation,
-                                productId: product.id,
-                                hours: product.hours,
-                                days: product.days,
-                                quantity: product.quantity,
+                                model: ProductPrice,
+                                as: 'ProductPrices',
+                                where: { hour: product.hours },
                             },
-                            { transaction }
-                        )
-                    ),
-                    ...adds.map((add) =>
-                        EventAdd.create(
-                            {
-                                id: uuidv4(),
-                                quotationId: idQuotation,
-                                addId: add.id,
-                                quantity: add.quantity,
-                            },
-                            { transaction }
-                        )
-                    ),
-                ]);
+                        ],
+                        transaction,
+                    });
 
-                return eventCreate;
-            })
-        );
+                    if (!productData || !productData.ProductPrices || productData.ProductPrices.length === 0) {
+                        throw new Error(`Product con ID ${product.id} y hora ${product.hours} no encontrado`);
+                    }
+
+                    return productData.ProductPrices[0].price * product.quantity;
+                })
+            );
+
+            const addsTotal = await Promise.all(
+                adds.map(async (add) => {
+                    const addData = await Add.findByPk(add.id, { transaction });
+                    if (!addData) throw new Error(`Add con ID ${add.id} no encontrado`);
+                    return addData.price * add.quantity;
+                })
+            );
+
+            const eventTotal =
+                transportPrice +
+                packsTotal.reduce((acc, price) => acc + price, 0) +
+                productsTotal.reduce((acc, price) => acc + price, 0) +
+                addsTotal.reduce((acc, price) => acc + price, 0);
+
+            quotationSubtotal += eventTotal;
+
+            processedEvents.push({
+                name,
+                cityId,
+                dateEvent,
+                eventTotal,
+                packs,
+                products,
+                adds,
+            });
+        }
 
         const totalNet = quotationSubtotal + transportTotal - discount;
 
@@ -138,7 +111,7 @@ const createQuotation = async (data) => {
                 id: idQuotation,
                 reference,
                 clientId,
-                typePricesId,
+                typePricesId: typePricesId,
                 telephone,
                 SocialMediasId,
                 email,
@@ -152,12 +125,100 @@ const createQuotation = async (data) => {
             { transaction }
         );
 
-        await transaction.commit();
+        for (const event of processedEvents) {
+            const eventCreate = await Event.create(
+                {
+                    name: event.name,
+                    cityId: event.cityId,
+                    dateEvent: event.dateEvent,
+                    total: event.eventTotal,
+                    quotationId: quotation.id,
+                },
+                { transaction }
+            );
 
+            await Promise.all([
+                ...event.packs.map((pack) =>
+                    EventPack.create(
+                        { id: uuidv4(), eventId: eventCreate.id, quotationId: quotation.id, packId: pack.id },
+                        { transaction }
+                    )
+                ),
+                ...event.products.map((product) =>
+                    EventProduct.create(
+                        {
+                            id: uuidv4(),
+                            quotationId: quotation.id,
+                            productId: product.id,
+                            hours: product.hours,
+                            days: product.days,
+                            quantity: product.quantity,
+                            eventId: eventCreate.id
+                        },
+                        { transaction }
+                    )
+                ),
+                ...event.adds.map((add) =>
+                    EventAdd.create(
+                        {
+                            id: uuidv4(),
+                            quotationId: quotation.id,
+                            addId: add.id,
+                            quantity: add.quantity,
+                            eventId: eventCreate.id
+                        },
+                        { transaction }
+                    )
+                ),
+            ]);
+        }
+
+        await transaction.commit();
         return quotation;
     } catch (error) {
         await transaction.rollback();
         throw new Error(`Error al crear la cotización: ${error.message}`);
+    }
+};
+
+const sendQuotationEmail = async (quotationId) => {
+    try {
+        const quotation = await Quotation.findByPk(quotationId, {
+            include: [{ model: Client, as: 'Client' }],
+        });
+        if (!quotation) {
+            throw new Error(`No se encontró la cotización con ID ${quotationId}`);
+        }
+
+        const client = quotation.Client;
+        if (!client) {
+            throw new Error(`No se encontró el cliente asociado con la cotización ${quotationId}`);
+        }
+
+        const approveUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=approved`;
+        const rejectUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=rejected`;
+        const tax = quotation.subtotal * 0.19;
+
+        const htmlTemplate = await ejs.renderFile(
+            path.join(__dirname, "../email/templates/quotation.ejs"),
+            {
+                clientName: client.name,
+                reference: quotation.reference,
+                subtotal: quotation.subtotal,
+                tax,
+                discount: quotation.discount,
+                totalNet: quotation.totalNet,
+                approveUrl,
+                rejectUrl,
+            }
+        );
+
+        await sendMail("luisandresperez8@gmail.com", 'Tu Cotización', htmlTemplate);
+
+        console.log(`Correo enviado a ${client.email} para la cotización ${quotationId}`);
+    } catch (error) {
+        console.error(`Error al enviar el correo: ${error.message}`);
+        throw new Error(`Error al enviar el correo para la cotización ${quotationId}`);
     }
 };
 
@@ -195,5 +256,6 @@ module.exports = {
     getAllQuotations,
     updateQuotation,
     inactivateQuotation,
-    getQuotationsByState
+    getQuotationsByState,
+    sendQuotationEmail
 };

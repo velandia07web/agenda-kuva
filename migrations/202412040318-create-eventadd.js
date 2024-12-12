@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('EventPack', {
+        await queryInterface.createTable('EventAdd', {
             id: {
                 allowNull: false,
                 primaryKey: true,
@@ -12,19 +12,27 @@ module.exports = {
             eventId: {
                 allowNull: false,
                 type: Sequelize.UUID,
-                //references: {model: 'Events', key: 'id'},
-                onUpdate: 'CASCADE',
-                onDelete: 'CASCADE'
-            },
-            packId: {
-                allowNull: false,
-                type: Sequelize.UUID,
                 references: {
-                    model: 'Packs',
+                    model: 'Events', // Relación con la tabla de eventos
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
+            },
+            addId: {
+                allowNull: false,
+                type: Sequelize.UUID,
+                references: {
+                    model: 'Adds', // Relación con la tabla de añadidos
+                    key: 'id'
+                },
+                onUpdate: 'CASCADE',
+                onDelete: 'CASCADE'
+            },
+            quantity: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+                defaultValue: 1 // Valor predeterminado en caso de no ser especificado
             },
             createdAt: {
                 allowNull: false,
@@ -37,6 +45,7 @@ module.exports = {
         });
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('EventPack');
+        await queryInterface.dropTable('EventAdd');
     }
 };
+

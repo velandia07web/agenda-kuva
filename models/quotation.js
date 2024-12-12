@@ -8,6 +8,11 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'quotationId',
                 as: 'Events'
             });
+
+            Quotation.belongsTo(models.Client, {
+                foreignKey: 'clientId',
+                as: 'Client'
+            });
         }
     }
 

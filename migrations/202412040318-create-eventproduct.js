@@ -12,26 +12,20 @@ module.exports = {
             eventId: {
                 allowNull: false,
                 type: Sequelize.UUID,
-                references: {
-                    model: 'Events',
-                    key: 'id'
-                },
+                //references: {model: 'Events', key: 'id'},
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
             productId: {
                 allowNull: false,
                 type: Sequelize.UUID,
-                references: {
-                    model: 'Products',
-                    key: 'id'
-                },
+                //references: {model: 'Products', key: 'id'},
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
             hours: {
                 allowNull: false,
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 defaultValue: 0
             },
             days: {

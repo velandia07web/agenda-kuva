@@ -1,9 +1,10 @@
 const express = require('express');
 const { Quotation } = require('../models');
-const { createQuotation, getQuotation, getAllQuotation,updateQuotation,inactivateQuotation,getQuotationsByState} = require('../controllers/quotationController');
+const { createQuotation,sendQuotationEmail, getQuotation, getAllQuotation,updateQuotation,inactivateQuotation,getQuotationsByState} = require('../controllers/quotationController');
 const router = express.Router();
 
 router.post('/quotations', createQuotation);
+router.get('/email/:id', sendQuotationEmail);
 router.get('/:id', getQuotation);
 router.get('/', getAllQuotation);
 router.get('/state/:state', getQuotationsByState);
