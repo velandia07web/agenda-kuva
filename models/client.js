@@ -25,10 +25,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'SocialMedia'
       })
 
-      Client.hasOne(models.Company, {
-        foreignKey: 'clientId',
-        as: 'associatedCompany',
-      });
+      Client.belongsTo(models.Company, {
+        foreignKey: 'idCompany',
+        as: 'Company'
+      })
+
     }
   }
   Client.init({
