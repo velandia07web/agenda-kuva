@@ -7,14 +7,14 @@ const createQuotation = async (req, res) => {
 
         return res.status(201).json({
             status: 201,
-            message: 'Quotation created successfully',
+            message: 'Cotización creada satisfactoriamente.',
             data: quotation
         });
     } catch (error) {
         console.error(error);
         return res.status(500).json({
             status: 500,
-            message: 'Error creating quotation',
+            message: 'Error creando la cotización',
             error: error.message
         });
     }

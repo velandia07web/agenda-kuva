@@ -1,4 +1,4 @@
-const { Quotation, Pack, Add, Product, City, Client, PricePack,ProductPrice,EventAdd, EventPack, EventProduct, TypePrice, SocialMedia, Event} = require('../models');
+const { Quotation,TypeClient, Pack, Add, Product, City, Client, PricePack,ProductPrice,EventAdd, EventPack, EventProduct, TypePrice, SocialMedia, Event} = require('../models');
 const { Op } = require('sequelize');
 const ejs = require("ejs");
 const path = require("path");
@@ -36,6 +36,7 @@ const createQuotation = async (data) => {
         let quotationSubtotal = 0;
         let transportTotal = 0;
 
+        //Creación de los eventos en la cotización
         const processedEvents = [];
         for (const event of events) {
             const { name, cityId, dateEvent, packs = [], products = [], adds = [] } = event;
@@ -124,7 +125,22 @@ const createQuotation = async (data) => {
             });
         }
 
-        const totalNet = parseFloat(quotationSubtotal) || 0  - parseFloat(discount)|| 0;
+        const clientType = await Client.findByPk(clientId, {
+            include: [{
+                model: TypeClient,
+                as: 'TypeClient',
+            }],
+            transaction,
+        });
+        let totalNet = 0
+        if (clientType?.TypeClient?.dataValues?.name === 'Empresa') {
+            totalNet = (parseFloat(quotationSubtotal) || 0)
+                - (parseFloat(discount) || 0)
+                - (parseFloat(quotationSubtotal * 0.19) || 0);
+        } else {
+            totalNet = (parseFloat(quotationSubtotal) || 0)
+                - (parseFloat(discount) || 0);
+        }
 
         const quotation = await Quotation.create(
             {
@@ -243,8 +259,48 @@ const sendQuotationEmail = async (quotationId) => {
 };
 
 const getOneQuotation = async (id) => {
-    return Quotation.findByPk(id);
-}
+    return Quotation.findByPk(id, {
+        include: [
+            {
+                model: Event,
+                as: 'Events',
+                include: [
+                    {
+                        model: EventAdd,
+                        as: 'EventAdds',
+                        include: [
+                            {
+                                model: Add,
+                                as: 'add',
+                            },
+                        ],
+                    },
+                    {
+                        model: EventProduct,
+                        as: 'EventProducts',
+                        include: [
+                            {
+                                model: Product,
+                                as: 'Product',
+                            },
+                        ],
+                    },
+                    {
+                        model: EventPack,
+                        as: 'EventPacks',
+                        include: [
+                            {
+                                model: Pack,
+                                as: 'Pack',
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    });
+};
+
 
 const getAllQuotations = async () => {
     return Quotation.findAll();

@@ -10,17 +10,17 @@ module.exports = (sequelize, DataTypes) => {
         as: 'User'
       })
 
-      Client.belongsTo(models.User, {
+      Client.belongsTo(models.TypeClient, {
         foreignKey: 'idTypeClient',
         as: 'TypeClient'
       })
 
-      Client.belongsTo(models.User, {
+      Client.belongsTo(models.TypeDocument, {
         foreignKey: 'idTypeDocument',
         as: 'TypeDocument'
       })
 
-      Client.belongsTo(models.User, {
+      Client.belongsTo(models.SocialMedia, {
         foreignKey: 'idSocialMedia',
         as: 'SocialMedia'
       })
