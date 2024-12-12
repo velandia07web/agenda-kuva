@@ -2,43 +2,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('QuotationProduct', {
+        await queryInterface.createTable('EventPack', {
             id: {
                 allowNull: false,
                 primaryKey: true,
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4
             },
-            quotationId: {
+            eventId: {
                 allowNull: false,
                 type: Sequelize.UUID,
                 references: {
-                    model: 'Quotations',
+                    model: 'Events',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
-            productId: {
+            packId: {
                 allowNull: false,
                 type: Sequelize.UUID,
                 references: {
-                    model: 'Products',
-                    key: 'id'
-                },
-                onUpdate: 'CASCADE',
-                onDelete: 'CASCADE'
-            },
-            quantity: {
-                allowNull: false,
-                type: Sequelize.INTEGER,
-                defaultValue: 1
-            },
-            cityId: {
-                allowNull: false,
-                type: Sequelize.UUID,
-                references: {
-                    model: 'Cities',
+                    model: 'Packs',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
@@ -55,6 +40,6 @@ module.exports = {
         });
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('QuotationProduct');
+        await queryInterface.dropTable('EventPack');
     }
 };

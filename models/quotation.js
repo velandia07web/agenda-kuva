@@ -4,14 +4,9 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class Quotation extends Model {
         static associate(models) {
-            Quotation.belongsTo(models.Client, {
-                foreignKey: 'clientId',
-                as: 'Client'
-            });
-
-            Quotation.belongsTo(models.City, {
-                foreignKey: 'cityId',
-                as: 'City'
+            Quotation.hasMany(models.Event, {
+                foreignKey: 'quotationId',
+                as: 'Events'
             });
         }
     }
@@ -22,33 +17,33 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        state: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        correlativo: {
+        reference: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
-        },
-        reference: {
-            type: DataTypes.STRING,
-            allowNull: false
         },
         clientId: {
             type: DataTypes.UUID,
             allowNull: false
         },
-        eventDate: {
-            type: DataTypes.DATE,
+        typePricesId: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
-        cityId: {
-            type: DataTypes.UUID,
+        telephone: {
+            type: DataTypes.STRING,
             allowNull: false
         },
-        eventType: {
-            type: DataTypes.ENUM('social', 'business'),
+        SocialMediasId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        userId: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         subtotal: {
@@ -61,10 +56,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         IVA: {
             type: DataTypes.FLOAT,
-            allowNull: true
+            allowNull: false
         },
         totalNet: {
             type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        state: {
+            type: DataTypes.STRING,
             allowNull: false
         }
     }, {

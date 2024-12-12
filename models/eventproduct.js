@@ -2,27 +2,27 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-    class QuotationProduct extends Model {
+    class EventProduct extends Model {
         static associate(models) {
-            QuotationProduct.belongsTo(models.Quotation, {
-                foreignKey: 'quotationId',
-                as: 'Quotation'
+            EventProduct.belongsTo(models.Event, {
+                foreignKey: 'eventId',
+                as: 'Event'
             });
 
-            QuotationProduct.belongsTo(models.Product, {
+            EventProduct.belongsTo(models.Product, {
                 foreignKey: 'productId',
                 as: 'Product'
             });
         }
     }
 
-    QuotationProduct.init({
+    EventProduct.init({
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        quotationId: {
+        eventId: {
             type: DataTypes.UUID,
             allowNull: false
         },
@@ -30,16 +30,24 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.UUID,
             allowNull: false
         },
-        cityId: {
-            type: DataTypes.UUID,
+        hours: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        days: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        quantity: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     }, {
         sequelize,
-        modelName: 'QuotationProduct',
-        tableName: 'QuotationProduct',
+        modelName: 'EventProduct',
+        tableName: 'EventProduct',
         timestamps: true
     });
 
-    return QuotationProduct;
+    return EventProduct;
 };

@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('EventAdd', {
+        await queryInterface.createTable('EventProduct', {
             id: {
                 allowNull: false,
                 primaryKey: true,
@@ -19,19 +19,30 @@ module.exports = {
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
-            addId: {
+            productId: {
                 allowNull: false,
                 type: Sequelize.UUID,
                 references: {
-                    model: 'Adds',
+                    model: 'Products',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
+            hours: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+                defaultValue: 0
+            },
+            days: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+                defaultValue: 0
+            },
             quantity: {
                 allowNull: false,
-                type: Sequelize.INTEGER
+                type: Sequelize.INTEGER,
+                defaultValue: 1
             },
             createdAt: {
                 allowNull: false,
@@ -44,6 +55,6 @@ module.exports = {
         });
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('EventAdd');
+        await queryInterface.dropTable('EventProduct');
     }
 };

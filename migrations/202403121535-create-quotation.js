@@ -9,39 +9,34 @@ module.exports = {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4
             },
-            state: {
-                allowNull: false,
-                type: Sequelize.STRING
-            },
-            correlativo: {
+            reference: {
                 allowNull: false,
                 type: Sequelize.STRING,
                 unique: true
             },
-            reference: {
+            clientId: {
+                allowNull: false,
+                type: Sequelize.UUID
+            },
+            typePricesId: {
+                allowNull: false,
+                type: Sequelize.INTEGER
+            },
+            telephone: {
                 allowNull: false,
                 type: Sequelize.STRING
             },
-            clientId: {
+            SocialMediasId: {
                 allowNull: false,
-                type: Sequelize.UUID,
-                //references: {model: 'Clients', key: 'id'},
-                onUpdate: 'CASCADE',
-                onDelete: 'CASCADE'
+                type: Sequelize.INTEGER
             },
-            eventDate: {
+            email: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.STRING
             },
-            cityId: {
+            userId: {
                 allowNull: false,
-                type: Sequelize.UUID,
-                //references: {model: 'Cities', key: 'id'},
-                onUpdate: 'CASCADE'
-            },
-            eventType: {
-                allowNull: false,
-                type: Sequelize.ENUM('social', 'business')
+                type: Sequelize.INTEGER
             },
             subtotal: {
                 allowNull: false,
@@ -68,9 +63,51 @@ module.exports = {
                 type: Sequelize.DATE
             }
         });
+
+        await queryInterface.createTable('Events', {
+            id: {
+                allowNull: false,
+                primaryKey: true,
+                type: Sequelize.UUID,
+                defaultValue: Sequelize.UUIDV4
+            },
+            name: {
+                allowNull: false,
+                type: Sequelize.STRING
+            },
+            cityId: {
+                allowNull: false,
+                type: Sequelize.UUID
+            },
+            dateEvent: {
+                allowNull: false,
+                type: Sequelize.DATE
+            },
+            total: {
+                allowNull: false,
+                type: Sequelize.FLOAT
+            },
+            quotationId: {
+                allowNull: false,
+                type: Sequelize.UUID
+            },
+            state:{
+                allowNull: false,
+                type: Sequelize.STRING
+            },
+            createdAt: {
+                allowNull: false,
+                type: Sequelize.DATE
+            },
+            updatedAt: {
+                allowNull: false,
+                type: Sequelize.DATE
+            }
+        });
     },
 
     async down(queryInterface, Sequelize) {
+        await queryInterface.dropTable('Events');
         await queryInterface.dropTable('Quotations');
     }
 };

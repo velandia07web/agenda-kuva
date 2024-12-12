@@ -1,22 +1,23 @@
 'use strict';
+
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-    class QuotationAdd extends Model {
+    class EventAdd extends Model {
         static associate(models) {
-            QuotationAdd.belongsTo(models.Quotation, {
-                foreignKey: 'quotationId',
-                as: 'quotation',
+            EventAdd.belongsTo(models.Event, {
+                foreignKey: 'eventId',
+                as: 'event',
             });
 
-            QuotationAdd.belongsTo(models.Add, {
+            EventAdd.belongsTo(models.Add, {
                 foreignKey: 'addId',
                 as: 'add',
             });
         }
     }
 
-    QuotationAdd.init(
+    EventAdd.init(
         {
             id: {
                 type: DataTypes.UUID,
@@ -24,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 primaryKey: true,
             },
-            quotationId: {
+            eventId: {
                 type: DataTypes.UUID,
                 allowNull: false,
             },
@@ -32,14 +33,18 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.UUID,
                 allowNull: false,
             },
+            quantity: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+            },
         },
         {
             sequelize,
-            modelName: 'QuotationAdd',
-            tableName: 'QuotationAdd',
+            modelName: 'EventAdd',
+            tableName: 'EventAdd',
             timestamps: true,
         }
     );
 
-    return QuotationAdd;
+    return EventAdd;
 };

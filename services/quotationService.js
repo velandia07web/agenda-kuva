@@ -1,119 +1,164 @@
-const { Quotation, Pack, Cabin, Product, City, Client, PricePack,CabinPrice,QuotationCabin, QuotationPack, QuotationProduct} = require('../models');
+const { Quotation, Pack, Cabin, Product, City, Client, PricePack,CabinPrice,EventAdd, EventPack, EventProduct, TypePrice, SocialMedia, Event} = require('../models');
 const { Op } = require('sequelize');
 const ejs = require("ejs");
 const path = require("path");
 const sendMail = require("../email/email");
 
-const calculateSubtotal = async (packs, cabins, products) => {
-    let subtotal = 0;
-
-    if (packs && packs.length > 0) {
-        for (pack of packs) {
-            const {id} = pack;
-            precio = await PricePack.findOne({ where: { idpack: id }});
-            subtotal += precio.dataValues.price;
-        }
-    }
-
-    if (cabins && cabins.length > 0) {
-        for(const cabin of cabins) {
-            const{id, hours} = cabin;
-            precio = await CabinPrice.findOne({where: {idCabin: id}});
-            subtotal += precio.dataValues.priceInit + ((hours - 1) * precio.dataValues.pricePerHour);
-        }
-    }
-
-    if (products && products.length > 0) {
-        for(const product of products) {
-            const{id, quantity} = product;
-            precio = await Product.findOne({where:{id: id}});
-            subtotal += precio.dataValues.price * quantity;
-        }
-    }
-
-    return subtotal;
-};
+const { sequelize } = require('../models'); // Importa el objeto Sequelize
+const { v4: uuidv4 } = require('uuid');
 
 const createQuotation = async (data) => {
     const {
         reference,
         clientId,
-        eventDate,
-        cityId,
-        typeEvent,
-        packs,
-        adds,
-        products,
-        discount
+        discount = 0,
+        typePricesId,
+        telephone,
+        SocialMediasId,
+        email,
+        userId,
+        events
     } = data;
 
-    console.log(data);
-    const client = await Client.findByPk(clientId);
-    if (!client) {
-        throw new Error('Client not found');
+    const idQuotation = uuidv4();
+
+    const transaction = await sequelize.transaction();
+    try {
+        const client = await Client.findByPk(clientId, { transaction });
+        if (!client) throw new Error('No se encontró el Cliente');
+
+        const typePrice = await TypePrice.findByPk(typePricesId, { transaction });
+        if (!typePrice) throw new Error('El Type Price no fue encontrado');
+
+        const socialMedia = await SocialMedia.findByPk(SocialMediasId, { transaction });
+        if (!socialMedia) throw new Error('El Social Media no fue encontrado');
+
+        let quotationSubtotal = 0;
+        let transportTotal = 0;
+
+        const processedEvents = await Promise.all(
+            events.map(async (event) => {
+                const { name, cityId, dateEvent, packs = [], products = [], adds = [] } = event;
+
+                const city = await City.findByPk(cityId, { transaction });
+                if (!city) throw new Error(`City con ID ${cityId} no encontrada`);
+                const transportPrice = city.transportPrice || 0;
+                transportTotal += transportPrice;
+
+                const packsTotal = await Promise.all(
+                    packs.map(async (pack) => {
+                        const packData = await Pack.findByPk(pack.id, {
+                            include: [{ model: PricePack, as: 'pricePack' }],
+                            transaction,
+                        });
+                        if (!packData || !packData.pricePack) throw new Error(`Pack con ID ${pack.id} no encontrado`);
+                        return packData.pricePack.price || 0;
+                    })
+                );
+
+                const productsTotal = await Promise.all(
+                    products.map(async (product) => {
+                        const productData = await Product.findByPk(product.id, {
+                            include: [{ model: ProductPrice, as: 'productPrice' }],
+                            transaction,
+                        });
+                        if (!productData || !productData.productPrice) throw new Error(`Product con ID ${product.id} no encontrado`);
+                        return productData.productPrice.price * product.quantity;
+                    })
+                );
+
+                const addsTotal = await Promise.all(
+                    adds.map(async (add) => {
+                        const addData = await Add.findByPk(add.id, { transaction });
+                        if (!addData) throw new Error(`Add con ID ${add.id} no encontrado`);
+                        return addData.price * add.quantity;
+                    })
+                );
+
+                const eventTotal =
+                    transportPrice +
+                    packsTotal.reduce((acc, price) => acc + price, 0) +
+                    productsTotal.reduce((acc, price) => acc + price, 0) +
+                    addsTotal.reduce((acc, price) => acc + price, 0);
+
+                quotationSubtotal += eventTotal;
+
+                const eventCreate = await Event.create(
+                    {
+                        name,
+                        cityId,
+                        dateEvent,
+                        eventTotal,
+                        idQuotation,
+                    },
+                    { transaction }
+                );
+
+                await Promise.all([
+                    ...packs.map((pack) =>
+                        EventPack.create(
+                            { id: uuidv4(), quotationId: idQuotation, packId: pack.id },
+                            { transaction }
+                        )
+                    ),
+                    ...products.map((product) =>
+                        EventProduct.create(
+                            {
+                                id: uuidv4(),
+                                quotationId: idQuotation,
+                                productId: product.id,
+                                hours: product.hours,
+                                days: product.days,
+                                quantity: product.quantity,
+                            },
+                            { transaction }
+                        )
+                    ),
+                    ...adds.map((add) =>
+                        EventAdd.create(
+                            {
+                                id: uuidv4(),
+                                quotationId: idQuotation,
+                                addId: add.id,
+                                quantity: add.quantity,
+                            },
+                            { transaction }
+                        )
+                    ),
+                ]);
+
+                return eventCreate;
+            })
+        );
+
+        const totalNet = quotationSubtotal + transportTotal - discount;
+
+        const quotation = await Quotation.create(
+            {
+                id: idQuotation,
+                reference,
+                clientId,
+                typePricesId,
+                telephone,
+                SocialMediasId,
+                email,
+                userId,
+                subtotal: quotationSubtotal,
+                discount,
+                IVA: quotationSubtotal * 0.19,
+                totalNet,
+                state: 'Pendiente',
+            },
+            { transaction }
+        );
+
+        await transaction.commit();
+
+        return quotation;
+    } catch (error) {
+        await transaction.rollback();
+        throw new Error(`Error al crear la cotización: ${error.message}`);
     }
-
-    const city = await City.findByPk(cityId);
-    if (!city) {
-        throw new Error('City not found');
-    }
-
-    const subtotalWithoutTransport = await calculateSubtotal(packs, cabins, products);
-    const subtotal = subtotalWithoutTransport + city.transportPrice;
-    const taxRate = typeEvent === 'business' ? 0.19 : 0;
-    const tax = subtotal * taxRate;
-    const finalDiscount = discount || 0;
-    const totalNet = subtotal - finalDiscount + tax;
-    const state = "Pendiente";
-
-    const quotation = await Quotation.create({
-        state,
-        correlativo: reference,
-        reference,
-        clientId,
-        eventDate,
-        cityId,
-        eventType: typeEvent,
-        subtotal,
-        discount: finalDiscount,
-        IVA: tax,
-        totalNet
-    });
-
-    for (pack of packs) {
-        const{id, idcity} = pack;
-        await QuotationPack.create({id: require('uuid').v4(), quotationId: quotation.id,  packId: id, cityId: idcity});
-    }
-    for(const product of products) {
-        const{id, quantity, idcity} = product;
-        await QuotationProduct.create({id: require('uuid').v4(), quotationId: quotation.id, productId: id, quantity, cityId: idcity});
-    }
-
-    for(const add of adds) {
-        const{id, name, price} = product;
-        await QuotationProduct.create({id: require('uuid').v4(), quotationId: quotation.id, productId: id, quantity, cityId: idcity});
-    }
-
-    const approveUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=approved`;
-    const rejectUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=rejected`;
-
-    const htmlTemplate = await ejs.renderFile(
-        path.join(__dirname, "../email/templates/quotation.ejs"),
-        {
-            clientName: client.name,
-            reference: quotation.reference,
-            subtotal: quotation.subtotal,
-            tax: tax,
-            discount: quotation.discount,
-            totalNet: quotation.totalNet,
-            approveUrl,
-            rejectUrl
-        }
-    );
-
-    await sendMail(client.email, 'Tu Cotización', htmlTemplate);
-
-    return quotation;
 };
 
 const getOneQuotation = async (id) => {

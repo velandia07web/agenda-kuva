@@ -214,7 +214,7 @@ const getProductsDataByTypePrice = async function (idTypePrice) {
       id: product.id,
       name: product.name,
       prices: product.ProductPrices.map(price => ({
-        name: price.name,
+        hour: price.hour,
         price: price.price,
       })),
     }));
@@ -244,7 +244,9 @@ const getProductsDataByTypePrice = async function (idTypePrice) {
     const formattedPacks = packs.map(pack => ({
       id: pack.id,
       name: pack.name,
-      price: pack.PricePack.price,
+      prices: pack.PricePack.map(packprice => ({
+        price: packprice.price,
+      })),
     }));
 
     return {

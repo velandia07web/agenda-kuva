@@ -2,44 +2,40 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-    class QuotationPack extends Model {
+    class EventPack extends Model {
         static associate(models) {
-            QuotationPack.belongsTo(models.Quotation, {
-                foreignKey: 'quotationId',
-                as: 'Quotation'
+            EventPack.belongsTo(models.Event, {
+                foreignKey: 'eventId',
+                as: 'Event'
             });
 
-            QuotationPack.belongsTo(models.Pack, {
+            EventPack.belongsTo(models.Pack, {
                 foreignKey: 'packId',
                 as: 'Pack'
             });
         }
     }
 
-    QuotationPack.init({
+    EventPack.init({
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        quotationId: {
+        eventId: {
             type: DataTypes.UUID,
             allowNull: false
         },
         packId: {
             type: DataTypes.UUID,
             allowNull: false
-        },
-        cityId: {
-            type: DataTypes.UUID,
-            allowNull: false
         }
     }, {
         sequelize,
-        modelName: 'QuotationPack',
-        tableName: 'QuotationPack',
+        modelName: 'EventPack',
+        tableName: 'EventPack',
         timestamps: true
     });
 
-    return QuotationPack;
+    return EventPack;
 };
