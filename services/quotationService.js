@@ -103,7 +103,7 @@ const createQuotation = async (data) => {
             });
         }
 
-        const totalNet = parseFloat(quotationSubtotal)  - discount;
+        const totalNet = parseFloat(quotationSubtotal)  - parseFloat(discount);
 
         const quotation = await Quotation.create(
             {
