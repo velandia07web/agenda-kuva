@@ -103,7 +103,7 @@ const createQuotation = async (data) => {
             });
         }
 
-        const totalNet = parseFloat(quotationSubtotal)  - parseFloat(discount);
+        const totalNet = parseFloat(quotationSubtotal) || 0  - parseFloat(discount)|| 0;
 
         const quotation = await Quotation.create(
             {
@@ -117,7 +117,7 @@ const createQuotation = async (data) => {
                 userId,
                 subtotal: parseFloat(quotationSubtotal),
                 discount,
-                IVA: parseFloat(quotationSubtotal * 0.19),
+                IVA: parseFloat(quotationSubtotal * 0.19) || 0,
                 totalNet,
                 state: 'Pendiente',
             },
