@@ -74,13 +74,13 @@ app.use(helmet.referrerPolicy({ policy: 'no-referrer' }))
 app.use(helmet.xssFilter())
 
 // Limitación de tasa
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: isProduction ? 100 : 1000, // límite de 100 solicitudes por ventana
-  message: 'Too many requests, please try again later.'
-})
+//const limiter = rateLimit({
+//  windowMs: 15 * 60 * 1000, // 15 minutos
+//  max: isProduction ? 100 : 1000, // límite de 100 solicitudes por ventana
+//  message: 'Too many requests, please try again later.'
+//})
 
-app.use(limiter)
+//app.use(limiter)
 
 app.use(express.json({
   verify: (req, res, buf) => {
