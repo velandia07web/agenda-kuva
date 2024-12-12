@@ -63,17 +63,15 @@ const createQuotation = async (data) => {
                             {
                                 model: ProductPrice,
                                 as: 'ProductPrices',
-                                where: { hour: product.hours },
+                                where: { hour: product.hour },
                             },
                         ],
                         transaction,
                     });
 
                     if (!productData || !productData.ProductPrices || productData.ProductPrices.length === 0) {
-                        throw new Error(`Product con ID ${product.id} y hora ${product.hours} no encontrado`);
+                        throw new Error(`Product con ID ${product.id} y hora ${product.hour} no encontrado`);
                     }
-                    console.log("----------------ooooooooooooooooo")
-                    console.log(productData.ProductPrices[0].price);
                     return productData.ProductPrices[0].price * product.quantity;
                 })
             );
@@ -91,13 +89,6 @@ const createQuotation = async (data) => {
                 packsTotal +
                 productsTotal +
                 addsTotal;
-
-            console.log("----------------------------------------------");
-            console.log(transportPrice);
-            console.log(packsTotal);
-            console.log(productsTotal);
-            console.log(addsTotal);
-            console.log("----------------------------------------------");
 
             quotationSubtotal += eventTotal;
 
@@ -158,7 +149,7 @@ const createQuotation = async (data) => {
                             id: uuidv4(),
                             quotationId: quotation.id,
                             productId: product.id,
-                            hours: product.hours,
+                            hours: product.hour,
                             days: product.days,
                             quantity: product.quantity,
                             eventId: eventCreate.id
