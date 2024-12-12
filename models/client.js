@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
 
       Client.belongsTo(models.Company, {
         foreignKey: 'idCompany',
-        as: 'Company'
-      })
+        as: 'associatedCompany'
+      });
 
     }
   }

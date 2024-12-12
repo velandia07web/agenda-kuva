@@ -108,7 +108,7 @@ const getAllClientsWithCompany = async function () {
       include: [
         {
           model: Company,
-          as: 'Company',
+          as: 'associatedCompany',
           attributes: ['name'],
         },
       ],

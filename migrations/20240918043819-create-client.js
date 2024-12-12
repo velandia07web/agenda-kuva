@@ -53,10 +53,7 @@ module.exports = {
       },
       idCompany: {
         type: Sequelize.UUID,
-        references: {
-          model: 'Companies',
-          key: 'id',
-        },
+        //references: {model: 'Companies', key: 'id',},
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: true,
