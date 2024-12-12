@@ -28,7 +28,7 @@ module.exports = {
             },
             SocialMediasId: {
                 allowNull: false,
-                type: Sequelize.INTEGER
+                type: Sequelize.UUID
             },
             email: {
                 allowNull: false,
