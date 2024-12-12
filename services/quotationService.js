@@ -87,9 +87,16 @@ const createQuotation = async (data) => {
 
             const eventTotal =
                 transportPrice +
-                packsTotal.reduce((acc, price) => acc + price, 0) +
-                productsTotal.reduce((acc, price) => acc + price, 0) +
-                addsTotal.reduce((acc, price) => acc + price, 0);
+                packsTotal +
+                productsTotal +
+                addsTotal;
+
+            console.log("----------------------------------------------");
+            console.log(transportPrice);
+            console.log(packsTotal);
+            console.log(productsTotal);
+            console.log(addsTotal);
+            console.log("----------------------------------------------");
 
             quotationSubtotal += eventTotal;
 
