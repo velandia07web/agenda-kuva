@@ -52,7 +52,7 @@ const createQuotation = async (data) => {
                         transaction,
                     });
                     if (!packData || !packData.PricePack) throw new Error(`Pack con ID ${pack.id} no encontrado`);
-                    return packData.PricePack.price || 0;
+                    return packData.PricePack[0].dataValues.price || 0;
                 })
             );
 
@@ -72,7 +72,8 @@ const createQuotation = async (data) => {
                     if (!productData || !productData.ProductPrices || productData.ProductPrices.length === 0) {
                         throw new Error(`Product con ID ${product.id} y hora ${product.hours} no encontrado`);
                     }
-
+                    console.log("----------------ooooooooooooooooo")
+                    console.log(productData.ProductPrices[0].price);
                     return productData.ProductPrices[0].price * product.quantity;
                 })
             );
