@@ -4,12 +4,6 @@ const {
 } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class TypeDocument extends Model {
-    static associate (models) {
-      TypeDocument.hasMany(models.Client, {
-        foreignKey: 'idTypeDocument',
-        as: 'client'
-      })
-    }
   }
   TypeDocument.init({
     id: {
