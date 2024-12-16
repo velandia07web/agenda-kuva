@@ -118,3 +118,6 @@ const ENGINE_DB = process.env.ENGINE_DB
 if (ENGINE_DB === 'mysql') {
   dbConnectMySQL()
 }
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());

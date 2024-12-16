@@ -44,15 +44,15 @@ const forgotPassword = async function (req, res) {
 
 const resetPassword = async function (req, res) {
   try {
-    const validData = req.body
-    console.log(validData)
-    const token = req.params.token
-    const password = await authService.resetPassword(token, validData)
-    return res.status(200).json({ status: 200, message: 'Cambio de contraseña exitoso', data: password })
+    const token = req.params.token;
+    const validData = req.body;
+
+    const password = await authService.resetPassword(token, validData);
+    return res.status(200).json({ status: 200, message: 'Cambio de contraseña exitoso', data: password });
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al restablecer la contraseña.', error: error.message })
+    return res.status(500).json({ status: 500, message: 'Error al restablecer la contraseña.', error: error.message });
   }
-}
+};
 
 module.exports = {
   registerUsers,

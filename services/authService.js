@@ -146,14 +146,14 @@ const forgotPassword = async function (email) {
     }
 
     const token = await tokenResetPassword(user);
-    const resetUrl = `${url}/cambio-contrasena/${token}`;
+    const resetUrl = `${url}auth/reset-password?token=${token}`;
 
     const htmlTemplate = await ejs.renderFile(
       path.join(__dirname, "../email/templates/password.ejs"),
       { name: user.name, lastName: user.lastName, resetUrl }
     );
 
-    await sendMail(email, "Restablecimiento de Contraseña", htmlTemplate);
+    await sendMail(email.email, "Restablecimiento de Contraseña", htmlTemplate);
 
     return {
       message: "Correo de restablecimiento de contraseña enviado correctamente",

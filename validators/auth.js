@@ -80,16 +80,6 @@ const validatorLogin = [
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('El campo password es obligatorio')
-    .isLength({ min: 8 })
-    .withMessage('El campo password debe tener al menos 8 caracteres')
-    .matches(/[A-Z]/)
-    .withMessage('El campo password debe contener al menos una letra mayúscula')
-    .matches(/[a-z]/)
-    .withMessage('El campo password debe contener al menos una letra minúscula')
-    .matches(/\d/)
-    .withMessage('El campo password debe contener al menos un número')
-    .matches(/[!@#$%^&*(),.?":{}|<>]/)
-    .withMessage('El campo password debe contener al menos un carácter especial')
     .matches(/^[^<>]*$/)
     .withMessage('El campo password no debe contener los caracteres < o > para evitar inyecciones'),
   validateResults
