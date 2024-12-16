@@ -51,7 +51,9 @@ const validatorCreateItem = [
     check('idTypeDocument')
         .optional(),
     check('cupo')
-        .optional(),    
+        .optional(),
+    check('numberDocument')
+        .optional(),  
 
     validateResults,
 ];
