@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       allowNull: true,
       defaultValue: 0
+    },
+    state:{
+      type: DataTypes.STRING,
+      allowNull: false,
     }
   }, {
     sequelize,

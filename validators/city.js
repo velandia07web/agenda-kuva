@@ -18,6 +18,8 @@ const validatorCreateItem = [
     .withMessage('El campo id no debe estar vacío')
     .isUUID('4')
     .withMessage('El campo id debe ser un UUID válido'),
+  check('state')
+    .optional(),
   validateResults
 ]
 
@@ -52,6 +54,8 @@ const validatorUpdateItem = [
     .withMessage('El campo idZone debe ser una cadena de texto')
     .matches(/^[a-zA-Z0-9-\s]+$/)
     .withMessage('El campo idZone solo puede contener letras, números y espacios'),
+  check('state')
+    .optional(),
   validateResults
 ]
 

@@ -22,7 +22,8 @@ const createCity = async function (body) {
   try {
     return await City.create({
       name: body.name,
-      idZone: body.idZone
+      idZone: body.idZone,
+      state: "ACTIVO"
     })
   } catch (error) {
     throw new Error(`Error al crear el ciudad: ${error.message}`)
@@ -42,15 +43,28 @@ const updateCity = async function (id, body) {
 
 const deleteCity = async function (id) {
   try {
-    const deletedCount = await City.destroy({ where: { id } })
-    if (deletedCount === 0) {
-      throw new Error(`Ciudad con id ${id} no encontrado`)
+    const city = await City.findOne({ where: { id } });
+
+    if (!city) {
+      throw new Error(`Ciudad con id ${id} no encontrado`);
     }
-    return deletedCount
+
+    const newState = city.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+
+    const updatedCount = await City.update(
+      { state: newState },
+      { where: { id } }
+    );
+
+    if (updatedCount[0] === 0) {
+      throw new Error(`No se pudo actualizar el estado de la ciudad con id ${id}`);
+    }
+
+    return { id, newState };
   } catch (error) {
-    throw new Error(`Error al eliminar el ciudad: ${error.message}`)
+    throw new Error(`Error al alternar el estado de la ciudad: ${error.message}`);
   }
-}
+};
 
 module.exports = {
   getAllCities,
