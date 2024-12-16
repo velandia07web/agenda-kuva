@@ -21,7 +21,8 @@ const getOneSocialMedia = async function (id) {
 const createSocialMedia = async function (body) {
   try {
     return await SocialMedia.create({
-      name: body.name
+      name: body.name,
+      state: "ACTIVO"
     })
   } catch (error) {
     throw new Error(`Error al crear el social media: ${error.message}`)
@@ -40,13 +41,26 @@ const updateSocialMedia = async function (id, body) {
 
 const deleteSocialMedia = async function (id) {
   try {
-    const deletedCount = await SocialMedia.destroy({ where: { id } })
-    if (deletedCount === 0) {
-      throw new Error(`Social media con id ${id} no encontrado`)
+    const socialMedia = await SocialMedia.findOne({ where: { id } });
+
+    if (!socialMedia) {
+      throw new Error(`Social media con id ${id} no encontrado`);
     }
-    return deletedCount
+
+    const newState = socialMedia.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+
+    const updatedCount = await SocialMedia.update(
+      { state: newState },
+      { where: { id } }
+    );
+
+    if (updatedCount[0] === 0) {
+      throw new Error(`No se pudo actualizar el estado del social media con id ${id}`);
+    }
+
+    return { id, newState };
   } catch (error) {
-    throw new Error(`Error al eliminar el social media: ${error.message}`)
+    throw new Error(`Error al alternar el estado del social media: ${error.message}`);
   }
 }
 

@@ -57,12 +57,12 @@ const deleteSocialMedia = async function (req, res) {
   try {
     const deletedSocialMedia = await socialMediaService.deleteSocialMedia(req.params.id)
     if (deletedSocialMedia) {
-      return res.status(200).json({ status: 200, message: 'Social Media eliminado satisfactoriamente', data: deletedSocialMedia })
+      return res.status(200).json({ status: 200, message: 'Social Media activado/desactivado satisfactoriamente', data: deletedSocialMedia })
     } else {
       return res.status(404).json({ status: 404, message: 'Social Media no encontrado.' })
     }
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al eliminar el social media.', error: error.message })
+    return res.status(500).json({ status: 500, message: 'Error al activar/desacticar el social media.', error: error.message })
   }
 }
 
