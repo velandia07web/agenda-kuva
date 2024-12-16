@@ -11,6 +11,8 @@ const validatorCreateItem = [
     .withMessage('El campo name debe ser una cadena de texto')
     .matches(/^[a-zA-Z0-9\s]+$/)
     .withMessage('El campo name solo puede contener letras, números y espacios'),
+  check('state')
+    .optional(),
   validateResults
 ]
 
@@ -39,6 +41,8 @@ const validatorUpdateItem = [
     .withMessage('El campo name debe ser una cadena de texto')
     .matches(/^[a-zA-Z0-9\s]+$/)
     .withMessage('El campo name solo puede contener letras, números y espacios'),
+  check('state')
+    .optional(),  
   validateResults
 ]
 
@@ -62,7 +66,9 @@ const validatorGet = [
     .isString()
     .withMessage('El campo name debe ser una cadena de texto')
     .matches(/^[a-zA-Z\s]+$/)
-    .withMessage('El campo name solo puede contener letras y espacios'), // Mensaje corregido
+    .withMessage('El campo name solo puede contener letras y espacios'),
+  check('state')
+    .optional(),  
   validateResults
 ]
 

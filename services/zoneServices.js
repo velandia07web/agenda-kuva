@@ -23,7 +23,8 @@ const getOneZone = async function (id) {
 const createZone = async function (body) {
   try {
     return await Zone.create({
-      name: body.name
+      name: body.name,
+      state: "ACTIVO"
     })
   } catch (error) {
     throw new Error(`Error al crear el Zona: ${error.message}`)
@@ -42,13 +43,26 @@ const updateZone = async function (id, body) {
 
 const deleteZone = async function (id) {
   try {
-    const deletedCount = await Zone.destroy({ where: { id } })
-    if (deletedCount === 0) {
-      throw new Error(`Zona con id ${id} no encontrado`)
+    const zone = await Zone.findOne({ where: { id } });
+
+    if (!zone) {
+      throw new Error(`Zona con id ${id} no encontrada`);
     }
-    return deletedCount
+
+    const newState = zone.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+
+    const updatedCount = await Zone.update(
+      { state: newState },
+      { where: { id } }
+    );
+
+    if (updatedCount[0] === 0) {
+      throw new Error(`No se pudo actualizar el estado de la zona con id ${id}`);
+    }
+
+    return { id, newState };
   } catch (error) {
-    throw new Error(`Error al eliminar el Zona: ${error.message}`)
+    throw new Error(`Error al alternar el estado de la zona: ${error.message}`);
   }
 }
 
@@ -70,21 +84,25 @@ const getZone = async function (body) {
 const getZonesWithProducts = async function () {
   try {
     const zones = await Zone.findAll({
-      attributes: ['id','name'],
+      attributes: ['id', 'name'],
       include: [{
         model: Product,
         as: 'Product',
         attributes: [],
-        required: true
+        required: true,
       }],
+      where: {
+        state: 'ACTIVO',
+      },
       group: ['Zone.id'],
-      raw: true
-    })
-    return zones
+      raw: true,
+    });
+
+    return zones;
   } catch (error) {
-    throw new Error(`Error al obtener las zonas con productos: ${error.message}`)
+    throw new Error(`Error al obtener las zonas con productos: ${error.message}`);
   }
-}
+};
 
 module.exports = {
   getAllZones,

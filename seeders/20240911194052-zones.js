@@ -8,36 +8,42 @@ module.exports = {
       {
         id: uuidv4(),
         name: 'BARRANQUILLA',
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
         name: 'BOGOTA',
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
         name: 'BUCARAMANGA',
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
         name: 'CALI',
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
         name: 'EJE CAFETERO',
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
         name: 'MEDELLIN',
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       }

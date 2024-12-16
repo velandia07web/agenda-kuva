@@ -23,15 +23,6 @@ const validatorCreateItem = [
     .withMessage('El campo CC no debe estar vacío')
     .isString()
     .withMessage('El campo CC debe ser una cadena de texto'),
-
-  check('idTypeClient')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo idTypeClient es obligatorio')
-    .notEmpty()
-    .withMessage('El campo idTypeClient no debe estar vacío')
-    .isUUID(4)
-    .withMessage('El campo idTypeClient debe ser un UUID válido'),
-
   check('email')
     .exists({ checkFalsy: true })
     .withMessage('El campo email es obligatorio')
@@ -39,11 +30,9 @@ const validatorCreateItem = [
     .withMessage('El campo email no debe estar vacío')
     .isEmail()
     .withMessage('El campo email debe ser un correo electrónico válido'),
-
   check('idCompany')
     .optional()
     .isUUID(4),
-
   check('celphone')
     .exists({ checkFalsy: true })
     .withMessage('El campo celphone es obligatorio')
@@ -51,12 +40,10 @@ const validatorCreateItem = [
     .withMessage('El campo celphone no debe estar vacío')
     .isString()
     .withMessage('El campo celphone debe ser una cadena de texto'),
-
   check('charge')
     .optional()
     .isString()
     .withMessage('El campo charge debe ser una cadena de texto'),
-
   check('idUser')
     .exists({ checkFalsy: true })
     .withMessage('El campo idUser es obligatorio')
@@ -64,7 +51,6 @@ const validatorCreateItem = [
     .withMessage('El campo idUser no debe estar vacío')
     .isUUID(4)
     .withMessage('El campo idUser debe ser un UUID válido'),
-
   check('idSocialMedia')
     .exists({ checkFalsy: true })
     .withMessage('El campo idSocialMedia es obligatorio')
@@ -72,20 +58,16 @@ const validatorCreateItem = [
     .withMessage('El campo idSocialMedia no debe estar vacío')
     .isUUID(4)
     .withMessage('El campo idSocialMedia debe ser un UUID válido'),
-
   check('idQuotation')
     .optional()
     .isUUID(4)
     .withMessage('El campo idQuotation debe ser un UUID válido'),
-
   check('cupoCopado')
       .isInt({ min: 0 })
       .withMessage('El campo cupo copado debe ser un número entero positivo'),
-
   check('cupoDisponible')
       .isInt({ min: 0 })
       .withMessage('El campo cupo disponible debe ser un número entero positivo'),
-
   validateResults
 ]
 
