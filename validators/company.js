@@ -48,6 +48,11 @@ const validatorCreateItem = [
         .isUUID(4)
         .withMessage('El campo clientId debe ser un UUID válido'),
 
+    check('idTypeDocument')
+        .optional(),
+    check('cupo')
+        .optional(),    
+
     validateResults,
 ];
 
