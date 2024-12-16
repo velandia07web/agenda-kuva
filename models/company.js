@@ -46,6 +46,19 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.UUID,
           allowNull: true,
         },
+        idTypeDocument: {
+          type: DataTypes.UUID,
+          allowNull: false
+        },
+        numberDocument: {
+          allowNull: false,
+          type: DataTypes.STRING,
+          unique: true
+        },
+        cupo: {
+          type: DataTypes.FLOAT,
+          allowNull: false
+        }
       },
       {
         sequelize,

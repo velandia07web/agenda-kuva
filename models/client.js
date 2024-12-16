@@ -15,11 +15,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'TypeClient'
       })
 
-      Client.belongsTo(models.TypeDocument, {
-        foreignKey: 'idTypeDocument',
-        as: 'TypeDocument'
-      })
-
       Client.belongsTo(models.SocialMedia, {
         foreignKey: 'idSocialMedia',
         as: 'SocialMedia'
@@ -55,15 +50,6 @@ module.exports = (sequelize, DataTypes) => {
     idTypeClient: {
       type: DataTypes.UUID,
       allowNull: false
-    },
-    idTypeDocument: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
-    numberDocument: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      unique: true
     },
     email: {
       allowNull: false,

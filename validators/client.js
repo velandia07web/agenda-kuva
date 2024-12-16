@@ -32,22 +32,6 @@ const validatorCreateItem = [
     .isUUID(4)
     .withMessage('El campo idTypeClient debe ser un UUID válido'),
 
-  check('idTypeDocument')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo idTypeDocument es obligatorio')
-    .notEmpty()
-    .withMessage('El campo idTypeDocument no debe estar vacío')
-    .isUUID(4)
-    .withMessage('El campo idTypeDocument debe ser un UUID válido'),
-
-  check('numberDocument')
-    .exists({ checkFalsy: true })
-    .withMessage('El campo numberDocument es obligatorio')
-    .notEmpty()
-    .withMessage('El campo numberDocument no debe estar vacío')
-    .isString()
-    .withMessage('El campo numberDocument debe ser una cadena de texto'),
-
   check('email')
     .exists({ checkFalsy: true })
     .withMessage('El campo email es obligatorio')
@@ -144,11 +128,6 @@ const validatorUpdateItem = [
     .optional()
     .isString()
     .withMessage('El campo CC debe ser una cadena de texto'),
-
-  check('numberDocument')
-    .optional()
-    .isString()
-    .withMessage('El campo numberDocument debe ser una cadena de texto'),
 
   check('email')
     .optional()

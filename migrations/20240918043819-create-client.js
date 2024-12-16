@@ -32,20 +32,6 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
-      idTypeDocument: {
-        type: Sequelize.UUID,
-        references: {
-          model: 'TypeDocuments',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      },
-      numberDocument: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        unique: true
-      },
       email: {
         allowNull: false,
         type: Sequelize.STRING,

@@ -48,6 +48,24 @@ module.exports = {
         onDelete: 'SET NULL',
         allowNull: true
       },
+      idTypeDocument: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'TypeDocuments',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+      },
+      numberDocument: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        unique: true
+      },
+      cupo: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
