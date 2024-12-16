@@ -32,6 +32,8 @@ const validatorCreateItem = [
     .withMessage('El campo email debe ser un correo electrónico válido'),
   check('idCompany')
     .optional(),
+  check('idTypeClient')
+    .optional(),  
   check('celphone')
     .exists({ checkFalsy: true })
     .withMessage('El campo celphone es obligatorio')

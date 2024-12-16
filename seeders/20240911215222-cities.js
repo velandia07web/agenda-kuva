@@ -23,216 +23,216 @@ module.exports = {
     return await queryInterface.bulkInsert('Cities', [
       {
         id: uuidv4(),
-        name: 'CARTAGENA',
+        name: 'CARTAGENA',        state: 'ACTIVO',
         idZone: zoneMap.barranquilla,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'BARRANQUILLA',
+        name: 'BARRANQUILLA',        state: 'ACTIVO',
         idZone: zoneMap.barranquilla,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'MONTERIA',
+        name: 'MONTERIA',        state: 'ACTIVO',
         idZone: zoneMap.barranquilla,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SANTA MARTA',
+        name: 'SANTA MARTA',        state: 'ACTIVO',
         idZone: zoneMap.barranquilla,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SAN ANDRES ISLAS',
+        name: 'SAN ANDRES ISLAS',        state: 'ACTIVO',
         idZone: zoneMap.barranquilla,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SINCELEJO',
+        name: 'SINCELEJO',        state: 'ACTIVO',
         idZone: zoneMap.barranquilla,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SOLEDAD',
+        name: 'SOLEDAD',        state: 'ACTIVO',
         idZone: zoneMap.barranquilla,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'PUERTO COLOMBIA',
+        name: 'PUERTO COLOMBIA',        state: 'ACTIVO',
         idZone: zoneMap.barranquilla,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'VALLEDUPAR',
+        name: 'VALLEDUPAR',        state: 'ACTIVO',
         idZone: zoneMap.barranquilla,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'BOGOTA',
+        name: 'BOGOTA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'TOCANCIPA',
+        name: 'TOCANCIPA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'NEIVA',
+        name: 'NEIVA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SOPO',
+        name: 'SOPO',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'TENJO',
+        name: 'TENJO',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'EL ROSAL',
+        name: 'EL ROSAL',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'LA CALERA',
+        name: 'LA CALERA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'LA VEGA',
+        name: 'LA VEGA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SUBACHOQUE',
+        name: 'SUBACHOQUE',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'IBAGUE',
+        name: 'IBAGUE',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'MOSQUERA',
+        name: 'MOSQUERA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'PAIPA',
+        name: 'PAIPA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SACHICA',
+        name: 'SACHICA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'VILLAVICENCIO',
+        name: 'VILLAVICENCIO',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'TABIO',
+        name: 'TABIO',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'GUATAVITA',
+        name: 'GUATAVITA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'VILLA DE LEYVA',
+        name: 'VILLA DE LEYVA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'COTA',
+        name: 'COTA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'GIRARDOT',
+        name: 'GIRARDOT',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CAJICA',
+        name: 'CAJICA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'MADRID',
+        name: 'MADRID',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        id: uuidv4(),
+        id: uuidv4(),        state: 'ACTIVO',
         name: 'DUITAMA',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
@@ -240,126 +240,126 @@ module.exports = {
       },
       {
         id: uuidv4(),
-        name: 'CHIA',
+        name: 'CHIA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'UBATE',
+        name: 'UBATE',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'MELGAR',
+        name: 'MELGAR',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'FUSAGASUGA',
+        name: 'FUSAGASUGA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'GUASCA',
+        name: 'GUASCA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CHIQUINQUIRA',
+        name: 'CHIQUINQUIRA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'FUNZA',
+        name: 'FUNZA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'VILLETA',
+        name: 'VILLETA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'TUNJA',
+        name: 'TUNJA',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'RICAURTE',
+        name: 'RICAURTE',        state: 'ACTIVO',
         idZone: zoneMap.bogota,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'BUCARAMANGA',
+        name: 'BUCARAMANGA',        state: 'ACTIVO',
         idZone: zoneMap.bucaramanga,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CUCUTA',
+        name: 'CUCUTA',        state: 'ACTIVO',
         idZone: zoneMap.bucaramanga,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'FLORIDABLANCA',
+        name: 'FLORIDABLANCA',        state: 'ACTIVO',
         idZone: zoneMap.bucaramanga,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'OCAÑA',
+        name: 'OCAÑA',        state: 'ACTIVO',
         idZone: zoneMap.bucaramanga,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'GIRON',
+        name: 'GIRON',        state: 'ACTIVO',
         idZone: zoneMap.bucaramanga,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CALI',
+        name: 'CALI',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'YUMBO',
+        name: 'YUMBO',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ROZO',
+        name: 'ROZO',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -367,48 +367,48 @@ module.exports = {
       {
         id: uuidv4(),
         name: 'POPAYAN',
+        idZone: zoneMap.cali,        state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'ANDALUCIA',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ANDALUCIA',
+        name: 'JAMUNDI',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'JAMUNDI',
+        name: 'CANDELARIA',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CANDELARIA',
+        name: 'PALMIRA',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'PALMIRA',
+        name: 'PASTO',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'PASTO',
-        idZone: zoneMap.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'PRADERA',
+        name: 'PRADERA',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -416,195 +416,195 @@ module.exports = {
       {
         id: uuidv4(),
         name: 'GUACARI',
+        idZone: zoneMap.cali,        state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'BUENAVENTURA',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'BUENAVENTURA',
+        name: 'CALOTO',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CALOTO',
+        name: 'PUERTO TEJADA',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'PUERTO TEJADA',
+        name: 'EL CERRITO',        state: 'ACTIVO',
         idZone: zoneMap.cali,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'EL CERRITO',
-        idZone: zoneMap.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'TULUA',
+        name: 'TULUA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ARMENIA',
+        name: 'ARMENIA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'MANIZALES',
+        name: 'MANIZALES',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'PEREIRA',
+        name: 'PEREIRA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CARTAGO',
+        name: 'CARTAGO',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SANTA ROSA DE CABAL',
+        name: 'SANTA ROSA DE CABAL',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ALCALA',
+        name: 'ALCALA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'PUEBLO TAPAO',
+        name: 'PUEBLO TAPAO',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'QUIMBAYA',
+        name: 'QUIMBAYA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CHINCHINA',
+        name: 'CHINCHINA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'BUGA',
+        name: 'BUGA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'LA UNION',
+        name: 'LA UNION',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ZARZAL',
+        name: 'ZARZAL',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CALARCA',
+        name: 'CALARCA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'MONTENEGRO',
+        name: 'MONTENEGRO',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'DOSQUEBRADAS',
+        name: 'DOSQUEBRADAS',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'QUINCHIA',
+        name: 'QUINCHIA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'QUIBDO',
+        name: 'QUIBDO',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'LA TEBAIDA',
+        name: 'LA TEBAIDA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'LA VIRGINIA',
+        name: 'LA VIRGINIA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'BUGALAGRANDE',
+        name: 'BUGALAGRANDE',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'LA PAILA',
+        name: 'LA PAILA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ZARAGOZA',
+        name: 'ZARAGOZA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -612,13 +612,13 @@ module.exports = {
       {
         id: uuidv4(),
         name: 'TORO',
-        idZone: zoneMap.eje,
+        idZone: zoneMap.eje,        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'PUEBLO TAPADO',
+        name: 'PUEBLO TAPADO',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -626,41 +626,41 @@ module.exports = {
       {
         id: uuidv4(),
         name: 'LA VICTORIA',
+        idZone: zoneMap.eje,        state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'MARSELLA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'MARSELLA',
+        name: 'SUPIA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SUPIA',
+        name: 'ANSERMA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ANSERMA',
+        name: 'SALENTO',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SALENTO',
-        idZone: zoneMap.eje,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'SANTUARIO',
+        name: 'SANTUARIO',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -668,160 +668,160 @@ module.exports = {
       {
         id: uuidv4(),
         name: 'IRRA',
+        idZone: zoneMap.eje,        state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'CIRCASIA',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CIRCASIA',
+        name: 'ROLDANILLO',        state: 'ACTIVO',
         idZone: zoneMap.eje,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ROLDANILLO',
-        idZone: zoneMap.eje,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'MEDELLIN',
+        name: 'MEDELLIN',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'JERICO',
+        name: 'JERICO',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'GIRARDOTA',
+        name: 'GIRARDOTA',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ENVIGADO',
+        name: 'ENVIGADO',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'RIONEGRO',
+        name: 'RIONEGRO',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'CALDAS',
+        name: 'CALDAS',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'EL SANTUARIO',
+        name: 'EL SANTUARIO',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'COPACABANA',
+        name: 'COPACABANA',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'ITAGUI',
+        name: 'ITAGUI',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'DABEIBA',
+        name: 'DABEIBA',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SAN JERONIMO',
+        name: 'SAN JERONIMO',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SANTAFE DE ANTIOQUIA',
+        name: 'SANTAFE DE ANTIOQUIA',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'BELLO',
+        name: 'BELLO',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'SOPETRAN',
+        name: 'SOPETRAN',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'MARINILLA',
+        name: 'MARINILLA',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'LLANOGRANDE',
+        name: 'LLANOGRANDE',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'GUARNE',
+        name: 'GUARNE',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'URRAO',
+        name: 'URRAO',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'MACEO',
+        name: 'MACEO',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
-        name: 'EL PEÑOL',
+        name: 'EL PEÑOL',        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -829,6 +829,7 @@ module.exports = {
       {
         id: uuidv4(),
         name: 'BARBOSA',
+        state: 'ACTIVO',
         idZone: zoneMap.medellin,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -837,6 +838,7 @@ module.exports = {
         id: uuidv4(),
         name: 'RETIRO',
         idZone: zoneMap.medellin,
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       }
