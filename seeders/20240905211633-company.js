@@ -4,6 +4,11 @@ const { v4: uuidv4 } = require('uuid');
 module.exports = {
   up: async (queryInterface, Sequelize) => {
 
+    const roles = await queryInterface.sequelize.query(
+      "SELECT id, name FROM `Rols`;",
+      { type: queryInterface.sequelize.QueryTypes.SELECT }
+    );
+
     const companies = [
       {
         id: uuidv4(),
@@ -15,6 +20,8 @@ module.exports = {
         website: 'https://www.kuva.com',
         industry: 'Technology',
         clientId: null,
+        idTypeDocument: 1,
+        numberDocument: 838238,
         createdAt: new Date(),
         updatedAt: new Date(),
       }
