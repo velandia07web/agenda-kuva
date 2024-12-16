@@ -55,12 +55,12 @@ const deleteCities = async function (req, res) {
   try {
     const deletedCity = await cityService.deleteCity(req.params.id)
     if (deletedCity) {
-      return res.status(200).json({ status: 200, message: 'Ciudad eliminada satisfactoriamente', data: deletedCity })
+      return res.status(200).json({ status: 200, message: 'Ciudad activada/desactivada satisfactoriamente', data: deletedCity })
     } else {
       return res.status(404).json({ status: 404, message: 'Ciudad no encontrada.' })
     }
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al eliminar la ciudad.', error: error.message })
+    return res.status(500).json({ status: 500, message: 'Error al activar/desactivar la ciudad.', error: error.message })
   }
 }
 
