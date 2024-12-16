@@ -8,18 +8,21 @@ module.exports = {
       {
         id: uuidv4(), // Genera un UUID para cada registro
         name: 'Whatsapp',
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
         name: 'Facebook',
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(),
         name: 'Instagram',
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       }

@@ -1,41 +1,62 @@
-'use strict';
-const { v4: uuidv4 } = require('uuid');
+"use strict";
+const { v4: uuidv4 } = require("uuid");
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  async up(queryInterface, Sequelize) {
+    const typeDocuments = [
+      {
+        id: uuidv4(),
+        name: "Cedula",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: uuidv4(),
+        name: "Rut",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 1,
+        name: "Nit",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ];
 
-    const roles = await queryInterface.sequelize.query(
-      "SELECT id, name FROM `Rols`;",
-      { type: queryInterface.sequelize.QueryTypes.SELECT }
-    );
+    await queryInterface.bulkInsert("TypeDocuments", typeDocuments, {});
 
     const companies = [
       {
         id: uuidv4(),
-        name: 'Kuva',
-        legalName: 'Kuva',
-        email: 'contact@kuva.com',
-        phone: '+571234567890',
-        address: 'Calle 123 #45-67, Bogotá, Colombia',
-        website: 'https://www.kuva.com',
-        industry: 'Technology',
+        name: "Kuva",
+        legalName: "Kuva",
+        email: "contact@kuva.com",
+        phone: "+571234567890",
+        address: "Calle 123 #45-67, Bogotá, Colombia",
+        website: "https://www.kuva.com",
+        industry: "Technology",
         clientId: null,
         idTypeDocument: 1,
         numberDocument: 838238,
-        cupo: 5000000,
+        cupo: 6000000,
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
+      },
     ];
 
-    await queryInterface.bulkInsert('Companies', companies, {});
+    await queryInterface.bulkInsert("Companies", companies, {});
   },
 
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Companies', null, {
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete("Companies", null, {
       where: {
-        email: 'contact@kuva.com',
+        email: "contact@kuva.com",
       },
     });
+
+    await queryInterface.bulkDelete("TypeDocuments", null, {});
   },
 };
+
