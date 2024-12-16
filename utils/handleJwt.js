@@ -7,8 +7,7 @@ const tokenSign = async (user) => sign(
     role: user.idRol,
     email: user.email
   },
-  JWT_SECRET,
-  { expiresIn: '4h' }
+  JWT_SECRET
 )
 
 const verifyToken = async (token) => {
