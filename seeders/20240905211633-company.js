@@ -22,6 +22,7 @@ module.exports = {
         clientId: null,
         idTypeDocument: 1,
         numberDocument: 838238,
+        cupo: 5000000,
         createdAt: new Date(),
         updatedAt: new Date(),
       }
