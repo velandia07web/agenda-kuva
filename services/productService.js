@@ -241,20 +241,28 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
         {
           model: PricePack,
           as: 'PricePack',
-          attributes: ['price'],
+          attributes: ['price', 'priceDeadHour'],
         },
+        {
+          model: Product, 
+          as: 'Product',
+          attributes: ['name'],
+        }
       ],
     });
 
-    const formattedPacks = packs.map(pack => ({
-      id: pack.id,
-      name: pack.name,
-      description: pack.description,
-      idProduct: pack.idProduct,
-      prices: pack.PricePack.map(packprice => ({
-        price: packprice.price,
-      })),
-    }));
+    const formattedPacks = packs.map(pack => {
+      const priceInfo = pack.PricePack[0] || { price: null, priceDeadHour: null };
+      return {
+        id: pack.id,
+        name: pack.name,
+        description: pack.description,
+        idProduct: pack.idProduct,
+        price: priceInfo.price,
+        priceDeadHour: priceInfo.priceDeadHour,
+        productName: pack.Product ? pack.Product.name : null,
+      };
+    });
 
     return {
       products: formattedProducts,

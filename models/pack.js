@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'idZone',
         as: 'Zone'
       })
+
+      Pack.belongsTo(models.Product, {
+        foreignKey: 'idProduct',
+        as: 'Product'
+      });
     }
   }
   Pack.init({
