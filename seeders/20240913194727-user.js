@@ -40,6 +40,7 @@ module.exports = {
         idZone: zone.eje,
         active: true,
         failedAttempts: 0,
+        state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

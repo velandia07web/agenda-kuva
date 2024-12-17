@@ -9,13 +9,13 @@ const { v4: uuidv4 } = require('uuid');
 
 const createQuotation = async (data) => {
     const {
-        reference,
         clientId,
         discount = 0,
         typePricesId,
         telephone,
         SocialMediasId,
         email,
+        IVA,
         userId,
         events
     } = data;
@@ -119,6 +119,9 @@ const createQuotation = async (data) => {
                 cityId,
                 dateEvent,
                 eventTotal,
+                date_Init,
+                date_finish,
+                days,
                 packs,
                 products,
                 adds,
@@ -145,7 +148,7 @@ const createQuotation = async (data) => {
         const quotation = await Quotation.create(
             {
                 id: idQuotation,
-                reference,
+                reference: uuidv4(),
                 clientId,
                 typePricesId: typePricesId,
                 telephone,
@@ -154,7 +157,7 @@ const createQuotation = async (data) => {
                 userId,
                 subtotal: parseFloat(quotationSubtotal),
                 discount,
-                IVA: parseFloat(quotationSubtotal * 0.19) || 0,
+                IVA: parseFloat(quotationSubtotal * (IVA/100)) || 0,
                 totalNet,
                 state: 'Pendiente',
             },
@@ -169,6 +172,9 @@ const createQuotation = async (data) => {
                     dateEvent: event.dateEvent,
                     total: event.eventTotal,
                     quotationId: quotation.id,
+                    date_Init: event.date_Init,
+                    date_finish: event.date_finish,
+                    days: event.days
                 },
                 { transaction }
             );
@@ -176,7 +182,7 @@ const createQuotation = async (data) => {
             await Promise.all([
                 ...event.packs.map((pack) =>
                     EventPack.create(
-                        { id: uuidv4(), eventId: eventCreate.id, quotationId: quotation.id, packId: pack.id },
+                        { id: uuidv4(), eventId: eventCreate.id, quotationId: quotation.id, packId: pack.id, quantityDeadHours: pack.quantityDeadHours },
                         { transaction }
                     )
                 ),
@@ -189,7 +195,8 @@ const createQuotation = async (data) => {
                             hours: product.hour,
                             days: product.days,
                             quantity: product.quantity,
-                            eventId: eventCreate.id
+                            eventId: eventCreate.id,
+                            quantityDeadHours: product.quantityDeadHours
                         },
                         { transaction }
                     )
@@ -201,7 +208,8 @@ const createQuotation = async (data) => {
                             quotationId: quotation.id,
                             addId: add.id,
                             quantity: add.quantity,
-                            eventId: eventCreate.id
+                            eventId: eventCreate.id,
+                            quantityDeadHours: add.quantityDeadHours
                         },
                         { transaction }
                     )

@@ -48,6 +48,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0
       },
+      state: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       idRol: {
         type: Sequelize.UUID,
         references: {

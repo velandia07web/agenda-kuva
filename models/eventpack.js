@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         packId: {
             type: DataTypes.UUID,
             allowNull: false
+        },
+        quantityDeadHours: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
         }
     }, {
         sequelize,

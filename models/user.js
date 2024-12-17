@@ -82,6 +82,10 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Zones',
         key: 'id'
       }
+    },
+    state:{
+      type: DataTypes.STRING,
+      allowNull: false,
     }
   }, {
     sequelize,

@@ -36,6 +36,18 @@ module.exports = (sequelize, DataTypes) => {
         quotationId: {
             type: DataTypes.UUID,
             allowNull: false
+        },
+        date_Init: {
+            allowNull: false,
+            type: DataTypes.DATE
+        },
+        date_finish: {
+            allowNull: false,
+            type: DataTypes.DATE
+        },
+        days: {
+            allowNull: false,
+            type: DataTypes.INTEGER
         }
     }, {
         sequelize,

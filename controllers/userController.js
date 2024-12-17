@@ -54,12 +54,12 @@ const deleteUser = async function (req, res) {
   try {
     const deletedUser = await userService.deleteUser(req.params.id)
     if (deletedUser) {
-      return res.status(200).json({ status: 200, message: 'User eliminado satisfactoriamente', data: deletedUser })
+      return res.status(200).json({ status: 200, message: 'Usuario activado/desactivado satisfactoriamente', data: deletedUser })
     } else {
       return res.status(404).json({ status: 404, message: 'User no encontrado.' })
     }
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al eliminar el user.', error: error.message })
+    return res.status(500).json({ status: 500, message: 'Error al activar/desactivar el user.', error: error.message })
   }
 }
 

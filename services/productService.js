@@ -208,7 +208,7 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
             type_price_id: idTypePrice,
             idZone: idZone,
           },
-          attributes: ['hour', 'price'],
+          attributes: ['hour', 'price', 'priceDeadHour'],
         },
       ],
       attributes: ['id', 'name'],
@@ -220,6 +220,7 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
       prices: product.ProductPrices.map(price => ({
         hour: price.hour,
         price: price.price,
+        priceDeadHour: price.priceDeadHour
       })),
     }));
 

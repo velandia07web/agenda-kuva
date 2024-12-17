@@ -60,6 +60,8 @@ const validatorCreateItem = [
     .withMessage('El campo id rol es obligatorio')
     .isString()
     .withMessage('El campo id rol debe ser una cadena de texto'),
+  check('state')
+    .optional(),  
   validateResults // Esta función es la que se encarga de manejar los resultados de la validación
 ]
 
@@ -122,6 +124,8 @@ const validatorUpdateItem = [
     .withMessage('El campo id zone es obligatorio')
     .isString()
     .withMessage('El campo id zone debe ser una cadena de texto'),
+  check('state')
+    .optional(),
   validateResults
 ]
 

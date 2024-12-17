@@ -37,7 +37,8 @@ const createUser = async function (body) {
       password: encryptedPassword,
       idRol: body.idRol,
       idZone: body.idZone,
-      active: body.active
+      active: body.active,
+      state: "ACTIVO"
     })
 
     const userWithoutPassword = await User.findOne({
@@ -82,15 +83,25 @@ const updateUser = async function (id, body) {
 
 const deleteUser = async function (id) {
   try {
-    const deletedCount = await User.destroy({ where: { id } })
-    if (deletedCount === 0) {
-      throw new Error(`User con id ${id} no encontrado`)
+    const user = await User.findOne({ where: { id } });
+
+    if (!user) {
+      throw new Error(`User con id ${id} no encontrado`);
     }
-    return deletedCount
+
+    const newState = user.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+    const updatedCount = await User.update(
+      { state: newState },
+      { where: { id } }
+    );
+    if (updatedCount[0] === 0) {
+      throw new Error(`No se pudo actualizar el estado del user con id ${id}`);
+    }
+    return { id, newState };
   } catch (error) {
-    throw new Error(`Error al eliminar el User: ${error.message}`)
+    throw new Error(`Error al alternar el estado del User: ${error.message}`);
   }
-}
+};
 
 module.exports = {
   getAllUsers,

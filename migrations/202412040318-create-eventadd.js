@@ -29,7 +29,11 @@ module.exports = {
             quantity: {
                 allowNull: false,
                 type: Sequelize.INTEGER,
-                defaultValue: 1 // Valor predeterminado en caso de no ser especificado
+                defaultValue: 1
+            },
+            quantityDeadHours: {
+                allowNull: true,
+                type: Sequelize.INTEGER,
             },
             createdAt: {
                 allowNull: false,
