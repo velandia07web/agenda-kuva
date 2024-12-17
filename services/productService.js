@@ -205,7 +205,7 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
           as: 'ProductPrices',
           where: {
             type_price_id: idTypePrice,
-            zone_id: idZone,
+            idZone: idZone,
           },
           attributes: ['hour', 'price'],
         },
