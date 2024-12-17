@@ -196,14 +196,17 @@ const deleteProductPrice = async function (id) {
   }
 };
 
-const getProductsDataByTypePrice = async function (idTypePrice) {
+const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
   try {
     const products = await Product.findAll({
       include: [
         {
           model: ProductPrice,
           as: 'ProductPrices',
-          where: { type_price_id: idTypePrice },
+          where: {
+            type_price_id: idTypePrice,
+            zone_id: idZone,
+          },
           attributes: ['hour', 'price'],
         },
       ],

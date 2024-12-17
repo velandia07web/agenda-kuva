@@ -146,7 +146,7 @@ const deleteProductPrice = async function (req, res) {
 
 const getProductsDataByTypePrice = async function (req, res) {
   try {
-    const { idTypePrice } = req.query;
+    const { idTypePrice, idZone } = req.query;
 
     if (!idTypePrice) {
       return res.status(400).json({
@@ -155,7 +155,7 @@ const getProductsDataByTypePrice = async function (req, res) {
       });
     }
 
-    const data = await productService.getProductsDataByTypePrice(idTypePrice);
+    const data = await productService.getProductsDataByTypePrice(idTypePrice, idZone);
 
     return res.status(200).json({
       status: 200,
