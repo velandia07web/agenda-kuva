@@ -236,7 +236,7 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
 
     const packs = await Pack.findAll({
       where: { idZone: idZone },
-      attributes: ['id', 'name'],
+      attributes: ['id', 'name', 'description','idProduct'],
       include: [
         {
           model: PricePack,
@@ -249,6 +249,8 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
     const formattedPacks = packs.map(pack => ({
       id: pack.id,
       name: pack.name,
+      description: pack.description,
+      idProduct: pack.idProduct,
       prices: pack.PricePack.map(packprice => ({
         price: packprice.price,
       })),
