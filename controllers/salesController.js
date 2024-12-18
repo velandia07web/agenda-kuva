@@ -2,7 +2,7 @@ const salesService = require('../services/salesService');
 
 const getVenta = async (req, res) => {
     try {
-        const venta = await salesService.getVentaById(req.params.id);
+        const venta = await salesService.getVentas();
         if (!venta) {
             return res.status(404).json({
                 status: 404,
@@ -41,9 +41,9 @@ const createSale = async (req, res) => {
     }
 };
 
-const getAllSales = async (req, res) => {
+const getSale = async (req, res) => {
     try {
-        const sales = await salesService.getAllSales();
+        const sales = await salesService.getSale(req.params.id);
         return res.status(200).json({
             status: 200,
             message: 'Ventas obtenidas con éxito',
@@ -132,7 +132,7 @@ const sendPdfByEmail = async (req, res) => {
 module.exports = {
     getVenta,
     createSale,
-    getAllSales,
+    getSale,
     updateSale,
     deleteSale,
     sendPdfByEmail

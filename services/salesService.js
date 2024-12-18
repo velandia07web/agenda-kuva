@@ -10,9 +10,9 @@ const REFRESH_TOKEN = process.env.EMAIL_REFRESH_TOKEN
 const EMAIL_USER = process.env.EMAIL_USER
 
 
-const getVentaById = async (id) => {
+const getVentas = async () => {
     try {
-        const sale = await Sale.findByPk(id, {
+        const sales = await Sale.findAll({
             include: [
                 {
                     model: Quotation,
@@ -24,6 +24,85 @@ const getVentaById = async (id) => {
                 },
                 { model: PaymentsDate, as: 'PaymentsDate' }
             ]
+        });
+
+        if (!sales || sales.length === 0) {
+            throw new Error('No se encontraron ventas registradas.');
+        }
+
+        const salesData = await Promise.all(
+            sales.map(async (sale) => {
+                const quotation = sale.Quotation;
+                if (!quotation) {
+                    throw new Error(`No se encontró una cotización asociada a la venta con ID ${sale.id}.`);
+                }
+
+                const totalNet = quotation.totalNet;
+                const IVA = quotation.IVA;
+                const subtotal = quotation.subtotal;
+
+                const totalTransport = quotation.Events.reduce((sum, event) => sum + event.transportPrice, 0);
+
+                const client = quotation.Client;
+                if (!client) {
+                    throw new Error(`No se encontró un cliente asociado a la cotización con ID ${quotation.id}.`);
+                }
+                const methodOfPayment = client.typePayment;
+
+                const paymentDateDetails = await PaymentsDate.findByPk(client.idPaymentsDate);
+                if (!paymentDateDetails) {
+                    throw new Error(`No se encontró la configuración de fecha de pago para el cliente con ID ${client.id}.`);
+                }
+                const fechaDePago = new Date(quotation.createdAt);
+                fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
+
+                const pass = await Pass.findOne({ where: { clientId: client.id } });
+                if (!pass) {
+                    throw new Error(`No se encontró un pase asociado al cliente con ID ${client.id}.`);
+                }
+                const totalAbono = await PassPayment.sum('payment', { where: { idPass: pass.id } });
+
+                return {
+                    saleId: sale.id,
+                    totalNet,
+                    IVA,
+                    subtotal,
+                    totalTransport,
+                    methodOfPayment,
+                    fechaDePago,
+                    totalAbono
+                };
+            })
+        );
+
+        return salesData;
+    } catch (error) {
+        throw new Error(`Error al obtener las ventas: ${error.message}`);
+    }
+};
+
+const createSale = async (data) => {
+    try {
+        return await Sale.create(data);
+    } catch (error) {
+        throw new Error(`Error al crear la venta: ${error.message}`);
+    }
+};
+
+const getSale = async (id) => {
+    try {
+        const sale = await Sale.findByPk(id, {
+            include: [
+                {
+                    model: Quotation,
+                    as: 'Quotation',
+                    include: [
+                        { model: Client, as: 'Client' },
+                        { model: Event, as: 'Events' },
+                    ],
+                },
+                { model: PaymentsDate, as: 'PaymentsDate' },
+            ],
         });
 
         if (!sale) {
@@ -51,56 +130,32 @@ const getVentaById = async (id) => {
         if (!paymentDateDetails) {
             throw new Error(`No se encontró la configuración de fecha de pago para el cliente con ID ${client.id}.`);
         }
+
         const fechaDePago = new Date(quotation.createdAt);
         fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
 
         const pass = await Pass.findOne({ where: { clientId: client.id } });
         if (!pass) {
-            throw new Error(`No se encontró un pase asociado a la venta con ID ${client.id}.`);
+            throw new Error(`No se encontró un pase asociado al cliente con ID ${client.id}.`);
         }
+
         const totalAbono = await PassPayment.sum('payment', { where: { idPass: pass.id } });
 
         return {
+            saleId: sale.id,
             totalNet,
             IVA,
             subtotal,
             totalTransport,
             methodOfPayment,
             fechaDePago,
-            totalAbono
+            totalAbono,
         };
     } catch (error) {
-        throw new Error(`Error al obtener los datos de la venta con ID ${id}: ${error.message}`);
+        throw new Error(`Error al obtener la venta con ID ${id}: ${error.message}`);
     }
 };
 
-const createSale = async (data) => {
-    try {
-        return await Sale.create(data);
-    } catch (error) {
-        throw new Error(`Error al crear la venta: ${error.message}`);
-    }
-};
-
-const getAllSales = async () => {
-    try {
-        return await Sale.findAll({
-            include: [
-                {
-                    model: Quotation,
-                    as: 'Quotation',
-                    include: [
-                        { model: Client, as: 'Client' },
-                        { model: Event, as: 'Events' },
-                    ],
-                },
-                { model: PaymentsDate, as: 'PaymentsDate' },
-            ],
-        });
-    } catch (error) {
-        throw new Error(`Error al obtener las ventas: ${error.message}`);
-    }
-};
 
 const updateSale = async (id, data) => {
     try {
@@ -169,9 +224,9 @@ const sendPdfByEmail = async (to, subject, htmlContent, pdfPath) => {
 
 
 module.exports = {
-    getVentaById,
+    getVentas,
     createSale,
-    getAllSales,
+    getSale,
     updateSale,
     deleteSale,
     sendPdfByEmail
