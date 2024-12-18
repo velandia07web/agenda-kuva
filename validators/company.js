@@ -21,6 +21,10 @@ const validatorCreateItem = [
         .withMessage('El campo email es obligatorio')
         .isEmail()
         .withMessage('El campo email debe ser un correo electrónico válido'),
+    check('typePayment')
+        .optional(),
+    check('idPaymentsDate')
+        .optional(),
 
     check('phone')
         .exists({ checkFalsy: true })
@@ -86,6 +90,9 @@ const validatorUpdateItem = [
         .isString()
         .withMessage('El campo legalName debe ser una cadena de texto'),
 
+    check('idPaymentsDate')
+        .optional(),    
+
     check('email')
         .optional()
         .isEmail()
@@ -115,6 +122,8 @@ const validatorUpdateItem = [
         .optional()
         .isUUID(4)
         .withMessage('El campo clientId debe ser un UUID válido'),
+    check('typePayment')
+        .optional(),
 
     validateResults,
 ];

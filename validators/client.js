@@ -23,6 +23,8 @@ const validatorCreateItem = [
     .withMessage('El campo CC no debe estar vacío')
     .isString()
     .withMessage('El campo CC debe ser una cadena de texto'),
+  check('typePayment')
+        .optional(),
   check('email')
     .exists({ checkFalsy: true })
     .withMessage('El campo email es obligatorio')
@@ -71,6 +73,8 @@ const validatorCreateItem = [
       .withMessage('El campo cupo disponible debe ser un número entero positivo'),
   check('state')
       .optional(),
+  check('idPaymentsDate')
+    .optional(),
   validateResults
 ]
 
@@ -132,12 +136,16 @@ const validatorUpdateItem = [
   check('cupoCopado')
       .isInt({ min: 0 })
       .withMessage('El campo cupo copado debe ser un número entero positivo'),
+  check('typePayment')
+        .optional(),
 
   check('cupoDisponible')
       .isInt({ min: 0 })
       .withMessage('El campo cupo disponible debe ser un número entero positivo'),
   check('state')
       .optional(),
+  check('idPaymentsDate')
+    .optional(),
   validateResults
 ]
 
