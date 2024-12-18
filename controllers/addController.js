@@ -54,12 +54,12 @@ const deleteAdd = async function (req, res) {
   try {
     const deletedAdd = await addService.deleteAdd(req.params.id)
     if (deletedAdd) {
-      return res.status(200).json({ status: 200, message: 'Add eliminado satisfactoriamente', data: deletedAdd })
+      return res.status(200).json({ status: 200, message: 'Add activado/desactivado satisfactoriamente', data: deletedAdd })
     } else {
       return res.status(404).json({ status: 404, message: 'Add no encontrado.' })
     }
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al eliminar el add.', error: error.message })
+    return res.status(500).json({ status: 500, message: 'Error al activar/desactivar el add.', error: error.message })
   }
 }
 

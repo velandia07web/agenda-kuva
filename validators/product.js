@@ -35,6 +35,8 @@ const validatorCreateItem = [
       .optional()
       .isInt({ min: 0 })
       .withMessage('El campo count debe ser un número entero positivo'),
+  check('state')
+      .optional(),  
   check('prices')
       .optional()
       .isArray()
@@ -99,6 +101,8 @@ const validatorUpdateItem = [
     .withMessage('El campo id zone es obligatorio')
     .isString()
     .withMessage('El campo id zone debe ser una cadena de texto'),
+  check('state')
+    .optional(),  
   validateResults
 ]
 

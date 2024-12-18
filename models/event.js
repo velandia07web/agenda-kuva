@@ -25,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.UUID,
             allowNull: false
         },
-        dateEvent: {
+        dateStart: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        dateEnd: {
             type: DataTypes.DATE,
             allowNull: false
         },
@@ -37,15 +41,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.UUID,
             allowNull: false
         },
-        date_Init: {
-            allowNull: false,
-            type: DataTypes.DATE
-        },
-        date_finish: {
-            allowNull: false,
-            type: DataTypes.DATE
-        },
         days: {
+            allowNull: false,
+            type: DataTypes.INTEGER
+        },
+        transportPrice: {
             allowNull: false,
             type: DataTypes.INTEGER
         }

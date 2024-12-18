@@ -7,13 +7,13 @@ module.exports = {
     return queryInterface.bulkInsert('TypePrices', [
       {
         id: uuidv4(), // Genera un UUID para cada registro
-        name: 'Precio Publico',
+        name: 'Evento empresarial',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuidv4(), // Genera un UUID para cada registro
-        name: 'Precio con Descuento',
+        name: 'Evento Social',
         createdAt: new Date(),
         updatedAt: new Date()
       }

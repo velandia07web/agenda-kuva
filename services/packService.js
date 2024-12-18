@@ -32,7 +32,8 @@ const createPack = async function (body) {
       description: body.description,
       price: body.price,
       idProduct: body.idProduct,
-      idZone: body.idZone
+      idZone: body.idZone,
+      state: "ACTIVO"
     })
   } catch (error) {
     throw new Error(`Error al crear el pack: ${error.message}`)
@@ -55,15 +56,28 @@ const updatePack = async function (id, body) {
 
 const deletePack = async function (id) {
   try {
-    const deletedCount = await Pack.destroy({ where: { id } })
-    if (deletedCount === 0) {
-      throw new Error(`Pack con id ${id} no encontrado`)
+    const pack = await Pack.findOne({ where: { id } });
+
+    if (!pack) {
+      throw new Error(`Pack con id ${id} no encontrado`);
     }
-    return deletedCount
+
+    const newState = pack.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+
+    const updatedCount = await Pack.update(
+      { state: newState },
+      { where: { id } }
+    );
+
+    if (updatedCount[0] === 0) {
+      throw new Error(`No se pudo actualizar el estado del Pack con id ${id}`);
+    }
+
+    return { id, newState };
   } catch (error) {
-    throw new Error(`Error al eliminar el Pack: ${error.message}`)
+    throw new Error(`Error al alternar el estado del Pack: ${error.message}`);
   }
-}
+};
 
 const getPricePacks = async function () {
   try {

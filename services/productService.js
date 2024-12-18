@@ -1,5 +1,6 @@
-const { Product,ProductPrice,  Add, Pack, PricePack} = require('../models');
+const { Product,ProductPrice,  Add, Pack, PricePack, City} = require('../models');
 const { sequelize } = require('../models');
+const { Op } = require("sequelize");
 
 const getAllProducts = async function () {
   try {
@@ -28,6 +29,7 @@ const createProduct = async function (body) {
           active: body.active !== undefined ? body.active : true,
           idZone: body.idZone,
           count: body.count || 0,
+          state: "ACTIVO"
         },
         { transaction }
     );
@@ -93,15 +95,28 @@ const updateProduct = async function (id, body) {
 
 const deleteProduct = async function (id) {
   try {
-    const deletedCount = await Product.destroy({ where: { id } })
-    if (deletedCount === 0) {
-      throw new Error(`Product con id ${id} no encontrado`)
+    const product = await Product.findOne({ where: { id } });
+
+    if (!product) {
+      throw new Error(`Product con id ${id} no encontrado`);
     }
-    return deletedCount
+
+    const newState = product.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+
+    const updatedCount = await Product.update(
+      { state: newState },
+      { where: { id } }
+    );
+
+    if (updatedCount[0] === 0) {
+      throw new Error(`No se pudo actualizar el estado del Product con id ${id}`);
+    }
+
+    return { id, newState };
   } catch (error) {
-    throw new Error(`Error al eliminar el Product: ${error.message}`)
+    throw new Error(`Error al alternar el estado del Product: ${error.message}`);
   }
-}
+};
 
 const getPriceProducts = async function () {
   try {
@@ -196,10 +211,20 @@ const deleteProductPrice = async function (id) {
   }
 };
 
-const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
+const getProductsDataByTypePrice = async function (idTypePrice, idZone, idCity) {
   try {
+    const city = await City.findByPk(idCity, {
+      attributes: ['transportPrice'],
+    });
+
+    if (!city) {
+      throw new Error(`City con ID ${idCity} no encontrada.`);
+    }
+
+    const transportPrice = city.transportPrice;
+
     const products = await Product.findAll({
-      where: { idZone: idZone },
+      where: { idZone: idZone, count: { [Op.gt]: 0 } },
       include: [
         {
           model: ProductPrice,
@@ -211,16 +236,33 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
           attributes: ['hour', 'price', 'priceDeadHour'],
         },
       ],
-      attributes: ['id', 'name'],
+      attributes: ['id', 'name', 'count'],
     });
+
+    const parseHourToNumber = (hourString) => {
+      if (!hourString) return 0;
+      let totalHours = 0;
+      if (hourString.includes("MEDIA")) {
+        totalHours += 0.5;
+        hourString = hourString.replace("Y MEDIA", "").trim(); // Elimina "Y MEDIA"
+      }
+      const hourMatch = hourString.match(/(\d+)/);
+      if (hourMatch) {
+        totalHours += parseInt(hourMatch[1], 10);
+      }
+    
+      return totalHours;
+    };
 
     const formattedProducts = products.map(product => ({
       id: product.id,
       name: product.name,
+      count: product.count,
       prices: product.ProductPrices.map(price => ({
         hour: price.hour,
+        numberHour: parseHourToNumber(price.hour),
         price: price.price,
-        priceDeadHour: price.priceDeadHour
+        priceDeadHour: price.priceDeadHour,
       })),
     }));
 
@@ -237,7 +279,7 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
 
     const packs = await Pack.findAll({
       where: { idZone: idZone },
-      attributes: ['id', 'name', 'description','idProduct'],
+      attributes: ['id', 'name', 'description', 'idProduct'],
       include: [
         {
           model: PricePack,
@@ -245,10 +287,11 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
           attributes: ['price', 'priceDeadHour'],
         },
         {
-          model: Product, 
+          model: Product,
           as: 'Product',
-          attributes: ['name'],
-        }
+          attributes: ['name', 'count'],
+          where: { count: { [Op.gt]: 0 } },
+        },
       ],
     });
 
@@ -262,10 +305,12 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone) {
         price: priceInfo.price,
         priceDeadHour: priceInfo.priceDeadHour,
         productName: pack.Product ? pack.Product.name : null,
+        productCount: pack.Product ? pack.Product.count : null,
       };
     });
 
     return {
+      transportPrice: transportPrice,
       products: formattedProducts,
       adds: formattedAdds,
       packs: formattedPacks,

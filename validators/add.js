@@ -25,6 +25,8 @@ const validatorCreateItem = [
     .withMessage('El campo idTypePrice no debe estar vacío')
     .isUUID('4')
     .withMessage('El campo idTypePrice debe ser un UUID válido'),
+  check('state')
+      .optional(),
   validateResults
 ]
 
@@ -61,6 +63,8 @@ const validatorUpdateItem = [
     .optional()
     .isUUID('4')
     .withMessage('El campo idTypePrice debe ser un UUID válido'),
+  check('state')
+      .optional(),
   validateResults
 ]
 

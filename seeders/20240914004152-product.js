@@ -36,7 +36,7 @@ module.exports = {
         imagen: `${url}email/img/mirrorBlack.png`,
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         idZone: zone.bogota,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -57,7 +57,7 @@ module.exports = {
         imagen: `${url}email/img/mirrorLux.png`,
         description: 'MIRROR LUX  O VOGUE BOOTH',
         idZone: zone.bogota,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -78,7 +78,7 @@ module.exports = {
         imagen: `${url}email/img/360.png`,
         description: 'PLATAFORMA 360',
         idZone: zone.bogota,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -99,7 +99,7 @@ module.exports = {
         imagen: `${url}email/img/glambot.png`,
         description: 'GLAMBOT O VIDEO CAPSULA',
         idZone: zone.bogota,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -120,7 +120,7 @@ module.exports = {
         imagen: `${url}email/img/kuva.png`,
         description: 'KUVA RING O SOFT',
         idZone: zone.bogota,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -141,7 +141,7 @@ module.exports = {
         imagen: `${url}email/img/wally.png`,
         description: 'WALLY',
         idZone: zone.bogota,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -162,7 +162,7 @@ module.exports = {
         imagen: `${url}email/img/extreme.png`,
         description: 'EXTREME O KUVA GO',
         idZone: zone.bogota,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -183,7 +183,7 @@ module.exports = {
         imagen: `${url}email/img/mirrorBlack.png`,
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         idZone: zone.medellin,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -204,7 +204,7 @@ module.exports = {
         imagen: `${url}email/img/360.png`,
         description: 'PLATAFORMA 360',
         idZone: zone.medellin,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -225,7 +225,7 @@ module.exports = {
         imagen: `${url}email/img/kuva.png`,
         description: 'KUVA RING O SOFT',
         idZone: zone.medellin,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -246,7 +246,7 @@ module.exports = {
         imagen: `${url}email/img/wally.png`,
         description: 'WALLY',
         idZone: zone.medellin,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -267,7 +267,7 @@ module.exports = {
         imagen: `${url}email/img/extreme.png`,
         description: 'EXTREME O KUVA GO',
         idZone: zone.medellin,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -288,7 +288,7 @@ module.exports = {
         imagen: `${url}email/img/mirrorBlack.png`,
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         idZone: zone.cali,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -309,7 +309,7 @@ module.exports = {
         imagen: `${url}email/img/mirrorLux.png`,
         description: 'PLATAFORMA 360',
         idZone: zone.cali,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -330,7 +330,7 @@ module.exports = {
         imagen: `${url}email/img/glambot.png`,
         description: 'GLAMBOT O VIDEO CAPSULA',
         idZone: zone.cali,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -351,7 +351,7 @@ module.exports = {
         imagen: `${url}email/img/glambot.png`,
         description: 'KUVA RING O SOFT',
         idZone: zone.cali,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -372,7 +372,7 @@ module.exports = {
         imagen: `${url}email/img/extreme.png`,
         description: 'EXTREME O KUVA GO',
         idZone: zone.cali,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -393,7 +393,7 @@ module.exports = {
         imagen: `${url}email/img/mirrorBlack.png`,
         description: 'MIRROR BLACK O HASHTAG PRINTING',
         idZone: zone.barranquilla,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -414,7 +414,7 @@ module.exports = {
         imagen: `${url}email/img/360.png`,
         description: 'PLATAFORMA 360',
         idZone: zone.barranquilla,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -435,7 +435,7 @@ module.exports = {
         imagen: `${url}email/img/kuva.png`,
         description: 'KUVA RING O SOFT',
         idZone: zone.barranquilla,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -456,7 +456,7 @@ module.exports = {
         imagen: `${url}email/img/extreme.png`,
         description: 'EXTREME O KUVA GO',
         idZone: zone.barranquilla,
-        count: 10,
+        count: 10,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date(),
         prices: [
@@ -478,6 +478,7 @@ module.exports = {
       imagen: product.imagen,
       description: product.description,
       idZone: product.idZone,
+      state: "ACTIVO",
       createdAt: product.createdAt,
       updatedAt: product.updatedAt
     })))

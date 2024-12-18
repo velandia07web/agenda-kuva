@@ -54,12 +54,12 @@ const deletePack = async function (req, res) {
   try {
     const deletedPack = await packService.deletePack(req.params.id)
     if (deletedPack) {
-      return res.status(200).json({ status: 200, message: 'Pack eliminado satisfactoriamente', data: deletedPack })
+      return res.status(200).json({ status: 200, message: 'Pack activado/desactivado satisfactoriamente', data: deletedPack })
     } else {
       return res.status(404).json({ status: 404, message: 'Pack no encontrado.' })
     }
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al eliminar el pack.', error: error.message })
+    return res.status(500).json({ status: 500, message: 'Error al activar/desactivar el pack.', error: error.message })
   }
 }
 

@@ -70,6 +70,10 @@ module.exports = (sequelize, DataTypes) => {
         state: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        etapa: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     }, {
         sequelize,

@@ -58,6 +58,10 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.FLOAT
             },
+            etapa:{
+                allowNull: true,
+                type: Sequelize.STRING
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

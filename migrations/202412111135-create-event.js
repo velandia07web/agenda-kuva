@@ -17,10 +17,6 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.UUID
             },
-            dateEvent: {
-                allowNull: false,
-                type: Sequelize.DATE
-            },
             total: {
                 allowNull: false,
                 type: Sequelize.FLOAT
@@ -35,15 +31,19 @@ module.exports = {
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
-            date_Init: {
+            dateStart: {
                 allowNull: false,
                 type: Sequelize.DATE
             },
-            date_finish: {
+            dateEnd: {
                 allowNull: false,
                 type: Sequelize.DATE
             },
             days: {
+                allowNull: false,
+                type: Sequelize.INTEGER
+            },
+            transportPrice: {
                 allowNull: false,
                 type: Sequelize.INTEGER
             },

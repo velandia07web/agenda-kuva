@@ -138,15 +138,15 @@ const deleteProductPrice = async function (req, res) {
       return res.status(404).json({ status: 404, message: 'ProductPrice no encontrado.' });
     }
 
-    return res.status(200).json({ status: 200, message: 'ProductPrice eliminado satisfactoriamente.' });
+    return res.status(200).json({ status: 200, message: 'ProductPrice activado/desactivado satisfactoriamente.' });
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al eliminar el ProductPrice.', error: error.message });
+    return res.status(500).json({ status: 500, message: 'Error al activar/desactivar el ProductPrice.', error: error.message });
   }
 };
 
 const getProductsDataByTypePrice = async function (req, res) {
   try {
-    const { idTypePrice, idZone } = req.query;
+    const { idTypePrice, idZone, idCity } = req.query;
 
     if (!idTypePrice) {
       return res.status(400).json({
@@ -155,7 +155,7 @@ const getProductsDataByTypePrice = async function (req, res) {
       });
     }
 
-    const data = await productService.getProductsDataByTypePrice(idTypePrice, idZone);
+    const data = await productService.getProductsDataByTypePrice(idTypePrice, idZone, idCity);
 
     return res.status(200).json({
       status: 200,

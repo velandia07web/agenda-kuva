@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
     idTypePrice: {
       type: DataTypes.UUID,
       allowNull: false
+    },
+    state:{
+      type: DataTypes.STRING,
+      allowNull: false,
     }
   }, {
     sequelize,

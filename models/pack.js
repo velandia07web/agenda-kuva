@@ -39,6 +39,10 @@ module.exports = (sequelize, DataTypes) => {
     idZone: {
       type: DataTypes.UUID,
       allowNull: false
+    },
+    state:{
+      type: DataTypes.STRING,
+      allowNull: false,
     }
   }, {
     sequelize,

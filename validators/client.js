@@ -69,6 +69,8 @@ const validatorCreateItem = [
   check('cupoDisponible')
       .isInt({ min: 0 })
       .withMessage('El campo cupo disponible debe ser un número entero positivo'),
+  check('state')
+      .optional(),
   validateResults
 ]
 
@@ -134,7 +136,8 @@ const validatorUpdateItem = [
   check('cupoDisponible')
       .isInt({ min: 0 })
       .withMessage('El campo cupo disponible debe ser un número entero positivo'),
-
+  check('state')
+      .optional(),
   validateResults
 ]
 

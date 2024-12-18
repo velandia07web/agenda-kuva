@@ -1,4 +1,4 @@
-const { Quotation,TypeClient, Pack, Add, Product, City, Client, PricePack,ProductPrice,EventAdd, EventPack, EventProduct, TypePrice, SocialMedia, Event} = require('../models');
+const { Quotation,TypeClient, Pack, Add, Product, City, Client, PricePack,ProductPrice,EventAdd, EventPack, EventProduct, TypePrice, SocialMedia, Event, Company} = require('../models');
 const { Op } = require('sequelize');
 const ejs = require("ejs");
 const path = require("path");
@@ -11,11 +11,13 @@ const createQuotation = async (data) => {
     const {
         clientId,
         discount = 0,
+        IVA,
+        totalNeto,
+        subTotal,
         typePricesId,
         telephone,
         SocialMediasId,
         email,
-        IVA,
         userId,
         events
     } = data;
@@ -36,14 +38,10 @@ const createQuotation = async (data) => {
         let quotationSubtotal = 0;
         let transportTotal = 0;
 
-        //Creación de los eventos en la cotización
         const processedEvents = [];
         for (const event of events) {
-            const { name, cityId, dateEvent, packs = [], products = [], adds = [] } = event;
+            const {name,cityId,dateStart,dateEnd,total,transportPrice,days,packs = [], products = [], adds = [] } = event;
 
-            const city = await City.findByPk(cityId, { transaction });
-            if (!city) throw new Error(`City con ID ${cityId} no encontrada`);
-            const transportPrice = city.transportPrice || 0;
             transportTotal += transportPrice;
 
             const packsTotal = await Promise.all(
@@ -117,14 +115,14 @@ const createQuotation = async (data) => {
             processedEvents.push({
                 name,
                 cityId,
-                dateEvent,
-                eventTotal,
-                date_Init,
-                date_finish,
+                dateStart,
+                dateEnd,
+                total,
                 days,
                 packs,
                 products,
                 adds,
+                transportPrice
             });
         }
 
@@ -140,9 +138,20 @@ const createQuotation = async (data) => {
             totalNet = (parseFloat(quotationSubtotal) || 0)
                 - (parseFloat(discount) || 0)
                 - (parseFloat(quotationSubtotal * 0.19) || 0);
+
+            const company = await Company.findByPk(client.idCompany, { transaction });
+            if (!company) throw new Error('No se encontró la empresa asociada al cliente');
+
+            if (company.cupo < totalNet) {
+                throw new Error('Cupo insuficiente en la empresa para realizar esta cotización');
+            }
         } else {
             totalNet = (parseFloat(quotationSubtotal) || 0)
                 - (parseFloat(discount) || 0);
+
+            if (client.cupoDisponible < totalNet) {
+                throw new Error('Cupo disponible insuficiente para realizar esta cotización');
+            }    
         }
 
         const quotation = await Quotation.create(
@@ -150,16 +159,17 @@ const createQuotation = async (data) => {
                 id: idQuotation,
                 reference: uuidv4(),
                 clientId,
+                discount,
+                IVA,
+                totalNet: totalNeto,
+                subtotal: subTotal,
                 typePricesId: typePricesId,
                 telephone,
                 SocialMediasId,
                 email,
                 userId,
-                subtotal: parseFloat(quotationSubtotal),
-                discount,
-                IVA: parseFloat(quotationSubtotal * (IVA/100)) || 0,
-                totalNet,
                 state: 'Pendiente',
+                etapa: 'ACTIVO'
             },
             { transaction }
         );
@@ -169,12 +179,12 @@ const createQuotation = async (data) => {
                 {
                     name: event.name,
                     cityId: event.cityId,
-                    dateEvent: event.dateEvent,
-                    total: event.eventTotal,
+                    dateStart: event.dateStart,
+                    dateEnd: event.dateEnd,
+                    total: event.total,
                     quotationId: quotation.id,
-                    date_Init: event.date_Init,
-                    date_finish: event.date_finish,
-                    days: event.days
+                    days: event.days,
+                    transportPrice: event.transportPrice
                 },
                 { transaction }
             );

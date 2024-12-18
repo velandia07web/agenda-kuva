@@ -33,7 +33,8 @@ const createClient = async function (body) {
       idUser: body.idUser,
       idSocialMedia: body.idSocialMedia,
       cupoDisponible: body.cupoDisponible,
-      cupoCopado: body.cupoCopado
+      cupoCopado: body.cupoCopado,
+      state: "ACTIVO"
     })
   } catch (error) {
     throw new Error(`Error al crear el cliente: ${error.message}`)
@@ -64,15 +65,29 @@ const updateClient = async function (id, body) {
 
 const deleteClient = async function (id) {
   try {
-    const deletedCount = await Client.destroy({ where: { id } })
-    if (deletedCount === 0) {
-      throw new Error(`Cliente con id ${id} no encontrado`)
+    const client = await Client.findOne({ where: { id } });
+
+    if (!client) {
+      throw new Error(`Cliente con id ${id} no encontrado`);
     }
-    return deletedCount
+
+    const newState = client.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+
+    const updatedCount = await Client.update(
+      { state: newState },
+      { where: { id } }
+    );
+
+    if (updatedCount[0] === 0) {
+      throw new Error(`No se pudo actualizar el estado del cliente con id ${id}`);
+    }
+
+    return { id, newState };
   } catch (error) {
-    throw new Error(`Error al eliminar el cliente: ${error.message}`)
+    throw new Error(`Error al alternar el estado del cliente: ${error.message}`);
   }
-}
+};
+
 
 const getCompanyByClientName = async function (clientId) {
   try {

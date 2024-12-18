@@ -38,7 +38,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.wally,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -47,7 +47,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.kuvaRing,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -56,7 +56,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.extreme,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -65,7 +65,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.mirrorBlack,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -74,7 +74,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.mirrorLinux,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -83,7 +83,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.wally,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -92,7 +92,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.kuvaRing,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -101,7 +101,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.extreme,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -110,7 +110,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.mirrorBlack,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -119,7 +119,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.mirrorLinux,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -128,7 +128,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.wally,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -137,7 +137,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.kuvaRing,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -146,7 +146,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.extreme,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -155,7 +155,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.mirrorBlack,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -164,7 +164,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.mirrorLinux,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -173,7 +173,7 @@ module.exports = {
         name: 'LIGHT',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.wally,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -182,7 +182,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.kuvaRing,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -191,7 +191,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.extreme,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -200,7 +200,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorBlack,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -209,7 +209,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorLinux,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -218,7 +218,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.wally,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -227,7 +227,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.kuvaRing,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -236,7 +236,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.extreme,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -245,7 +245,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorBlack,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -254,7 +254,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorLinux,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -263,7 +263,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.wally,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -272,7 +272,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.kuvaRing,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -281,7 +281,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.extreme,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -290,7 +290,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.mirrorBlack,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -299,7 +299,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.mirrorLinux,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -308,7 +308,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.wally,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -317,7 +317,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.kuvaRing,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -326,7 +326,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.extreme,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -335,7 +335,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.mirrorBlack,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -344,7 +344,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.mirrorLinux,
-        idZone: zone.bogota,
+        idZone: zone.bogota,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -353,7 +353,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.wally,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -362,7 +362,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.kuvaRing,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -371,7 +371,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.extreme,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -380,7 +380,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.mirrorBlack,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -389,7 +389,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.mirrorLinux,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -398,7 +398,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.wally,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -407,7 +407,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.kuvaRing,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -416,7 +416,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.extreme,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -425,7 +425,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.mirrorBlack,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -434,7 +434,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.mirrorLinux,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -443,7 +443,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.wally,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -452,7 +452,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.kuvaRing,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -461,7 +461,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.extreme,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -470,7 +470,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.mirrorBlack,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -479,7 +479,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.mirrorLinux,
-        idZone: zone.medellin,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -488,322 +488,7 @@ module.exports = {
         name: 'LIGHT',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.wally,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'LIGHT',
-        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.kuvaRing,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'LIGHT',
-        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.extreme,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'LIGHT',
-        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.mirrorBlack,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'LIGHT',
-        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.mirrorLinux,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'IDEAL',
-        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.wally,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'IDEAL',
-        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.kuvaRing,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'IDEAL',
-        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.extreme,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'IDEAL',
-        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.mirrorBlack,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'IDEAL',
-        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.mirrorLinux,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'PLUS',
-        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
-        idProduct: product.wally,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'PLUS',
-        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
-        idProduct: product.kuvaRing,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'PLUS',
-        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
-        idProduct: product.extreme,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'PLUS',
-        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
-        idProduct: product.mirrorBlack,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'PLUS',
-        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
-        idProduct: product.mirrorLinux,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'ESTELAR',
-        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
-        idProduct: product.wally,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'ESTELAR',
-        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
-        idProduct: product.kuvaRing,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'ESTELAR',
-        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
-        idProduct: product.extreme,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'ESTELAR',
-        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
-        idProduct: product.mirrorBlack,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'ESTELAR',
-        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
-        idProduct: product.mirrorLinux,
-        idZone: zone.medellin,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'SILVER',
-        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
-        idProduct: product.wally,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'SILVER',
-        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
-        idProduct: product.kuvaRing,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'SILVER',
-        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
-        idProduct: product.extreme,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'SILVER',
-        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
-        idProduct: product.mirrorBlack,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'SILVER',
-        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
-        idProduct: product.mirrorLinux,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'GOLD',
-        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
-        idProduct: product.wally,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'GOLD',
-        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
-        idProduct: product.kuvaRing,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'GOLD',
-        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
-        idProduct: product.extreme,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'GOLD',
-        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
-        idProduct: product.mirrorBlack,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'GOLD',
-        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
-        idProduct: product.mirrorLinux,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'DIAMANTE',
-        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
-        idProduct: product.wally,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'DIAMANTE',
-        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
-        idProduct: product.kuvaRing,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'DIAMANTE',
-        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
-        idProduct: product.extreme,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'DIAMANTE',
-        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
-        idProduct: product.mirrorBlack,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'DIAMANTE',
-        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
-        idProduct: product.mirrorLinux,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'LIGHT',
-        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
-        idProduct: product.wally,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -812,7 +497,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.kuvaRing,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -821,7 +506,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.extreme,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -830,7 +515,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorBlack,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -839,7 +524,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorLinux,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -848,7 +533,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.wally,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -857,7 +542,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.kuvaRing,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -866,7 +551,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.extreme,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -875,7 +560,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorBlack,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -884,7 +569,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorLinux,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -893,7 +578,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.wally,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -902,7 +587,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.kuvaRing,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -911,7 +596,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.extreme,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -920,7 +605,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.mirrorBlack,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -929,7 +614,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.mirrorLinux,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -938,7 +623,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.wally,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -947,7 +632,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.kuvaRing,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -956,7 +641,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.extreme,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -965,7 +650,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.mirrorBlack,
-        idZone: zone.cali,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -974,196 +659,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.mirrorLinux,
-        idZone: zone.cali,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'SILVER',
-        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
-        idProduct: product.kuvaRing,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'SILVER',
-        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
-        idProduct: product.extreme,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'SILVER',
-        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
-        idProduct: product.mirrorBlack,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'GOLD',
-        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
-        idProduct: product.kuvaRing,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'GOLD',
-        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
-        idProduct: product.extreme,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'GOLD',
-        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
-        idProduct: product.mirrorBlack,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'DIAMANTE',
-        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
-        idProduct: product.kuvaRing,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'DIAMANTE',
-        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
-        idProduct: product.extreme,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'DIAMANTE',
-        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
-        idProduct: product.mirrorBlack,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'LIGHT',
-        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.kuvaRing,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'LIGHT',
-        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.extreme,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'LIGHT',
-        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.mirrorBlack,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'IDEAL',
-        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.kuvaRing,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'IDEAL',
-        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.extreme,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'IDEAL',
-        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
-        idProduct: product.mirrorBlack,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'PLUS',
-        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
-        idProduct: product.kuvaRing,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'PLUS',
-        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
-        idProduct: product.extreme,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'PLUS',
-        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
-        idProduct: product.mirrorBlack,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'ESTELAR',
-        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
-        idProduct: product.kuvaRing,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'ESTELAR',
-        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
-        idProduct: product.extreme,
-        idZone: zone.barranquilla,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: uuidv4(),
-        name: 'ESTELAR',
-        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
-        idProduct: product.mirrorBlack,
-        idZone: zone.barranquilla,
+        idZone: zone.medellin,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1172,7 +668,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.wally,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1181,7 +677,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.kuvaRing,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1190,7 +686,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.extreme,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1199,7 +695,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.mirrorBlack,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1208,7 +704,7 @@ module.exports = {
         name: 'SILVER',
         description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
         idProduct: product.mirrorLinux,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1217,7 +713,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.wally,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1226,7 +722,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.kuvaRing,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1235,7 +731,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.extreme,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1244,7 +740,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.mirrorBlack,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1253,7 +749,7 @@ module.exports = {
         name: 'GOLD',
         description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
         idProduct: product.mirrorLinux,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1262,7 +758,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.wally,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1271,7 +767,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.kuvaRing,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1280,7 +776,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.extreme,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1289,7 +785,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.mirrorBlack,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1298,7 +794,7 @@ module.exports = {
         name: 'DIAMANTE',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.mirrorLinux,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1307,7 +803,259 @@ module.exports = {
         name: 'LIGHT',
         description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
         idProduct: product.wally,
-        idZone: zone.ejeCafetero,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'LIGHT',
+        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.kuvaRing,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'LIGHT',
+        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.extreme,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'LIGHT',
+        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.mirrorBlack,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'LIGHT',
+        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.mirrorLinux,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'IDEAL',
+        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.wally,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'IDEAL',
+        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.kuvaRing,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'IDEAL',
+        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.extreme,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'IDEAL',
+        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.mirrorBlack,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'IDEAL',
+        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.mirrorLinux,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'PLUS',
+        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
+        idProduct: product.wally,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'PLUS',
+        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
+        idProduct: product.kuvaRing,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'PLUS',
+        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
+        idProduct: product.extreme,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'PLUS',
+        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
+        idProduct: product.mirrorBlack,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'PLUS',
+        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
+        idProduct: product.mirrorLinux,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'ESTELAR',
+        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
+        idProduct: product.wally,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'ESTELAR',
+        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
+        idProduct: product.kuvaRing,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'ESTELAR',
+        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
+        idProduct: product.extreme,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'ESTELAR',
+        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
+        idProduct: product.mirrorBlack,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'ESTELAR',
+        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
+        idProduct: product.mirrorLinux,
+        idZone: zone.cali,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'SILVER',
+        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
+        idProduct: product.kuvaRing,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'SILVER',
+        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
+        idProduct: product.extreme,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'SILVER',
+        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
+        idProduct: product.mirrorBlack,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'GOLD',
+        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
+        idProduct: product.kuvaRing,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'GOLD',
+        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
+        idProduct: product.extreme,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'GOLD',
+        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
+        idProduct: product.mirrorBlack,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'DIAMANTE',
+        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
+        idProduct: product.kuvaRing,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'DIAMANTE',
+        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
+        idProduct: product.extreme,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'DIAMANTE',
+        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
+        idProduct: product.mirrorBlack,
+        idZone: zone.barranquilla,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1316,7 +1064,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.kuvaRing,
-        idZone: zone.ejeCafetero,
+        idZone: zone.barranquilla,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1325,7 +1073,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.extreme,
-        idZone: zone.ejeCafetero,
+        idZone: zone.barranquilla,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1334,7 +1082,259 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorBlack,
-        idZone: zone.ejeCafetero,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'IDEAL',
+        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.kuvaRing,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'IDEAL',
+        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.extreme,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'IDEAL',
+        description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.mirrorBlack,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'PLUS',
+        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
+        idProduct: product.kuvaRing,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'PLUS',
+        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
+        idProduct: product.extreme,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'PLUS',
+        description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
+        idProduct: product.mirrorBlack,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'ESTELAR',
+        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
+        idProduct: product.kuvaRing,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'ESTELAR',
+        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
+        idProduct: product.extreme,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'ESTELAR',
+        description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
+        idProduct: product.mirrorBlack,
+        idZone: zone.barranquilla,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'SILVER',
+        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
+        idProduct: product.wally,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'SILVER',
+        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
+        idProduct: product.kuvaRing,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'SILVER',
+        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
+        idProduct: product.extreme,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'SILVER',
+        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
+        idProduct: product.mirrorBlack,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'SILVER',
+        description: '2 HORAS + ALBUM MENSAJES+ 50 PORTAFOTOS',
+        idProduct: product.mirrorLinux,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'GOLD',
+        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
+        idProduct: product.wally,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'GOLD',
+        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
+        idProduct: product.kuvaRing,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'GOLD',
+        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
+        idProduct: product.extreme,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'GOLD',
+        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
+        idProduct: product.mirrorBlack,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'GOLD',
+        description: '3 HORAS + ALBUM MENSAJES + 70 PORTAFOTOS',
+        idProduct: product.mirrorLinux,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'DIAMANTE',
+        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
+        idProduct: product.wally,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'DIAMANTE',
+        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
+        idProduct: product.kuvaRing,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'DIAMANTE',
+        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
+        idProduct: product.extreme,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'DIAMANTE',
+        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
+        idProduct: product.mirrorBlack,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'DIAMANTE',
+        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
+        idProduct: product.mirrorLinux,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'LIGHT',
+        description: '6 HORAS + ALBUM MENSAJES + 100 PORTAFOTOS + TELEFONO',
+        idProduct: product.wally,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'LIGHT',
+        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.kuvaRing,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'LIGHT',
+        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.extreme,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuidv4(),
+        name: 'LIGHT',
+        description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
+        idProduct: product.mirrorBlack,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1343,7 +1343,7 @@ module.exports = {
         name: 'LIGHT',
         description: '1 HORA PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorLinux,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1352,7 +1352,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.wally,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1361,7 +1361,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.kuvaRing,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1370,7 +1370,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.extreme,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1379,7 +1379,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorBlack,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1388,7 +1388,7 @@ module.exports = {
         name: 'IDEAL',
         description: '2 HORAS PHOTOBOOTH + 2 HORAS 360',
         idProduct: product.mirrorLinux,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1397,7 +1397,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.wally,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1406,7 +1406,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.kuvaRing,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1415,7 +1415,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.extreme,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1424,7 +1424,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.mirrorBlack,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1433,7 +1433,7 @@ module.exports = {
         name: 'PLUS',
         description: '2 HORAS PHOTOBOOTH/360 + 2 HORAS DE GUEST PHONE (TEL DE MENSAJES)',
         idProduct: product.mirrorLinux,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1442,7 +1442,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.wally,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1451,7 +1451,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.kuvaRing,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1460,7 +1460,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.extreme,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1469,7 +1469,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.mirrorBlack,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -1478,7 +1478,7 @@ module.exports = {
         name: 'ESTELAR',
         description: '4 HORAS PHOTOBOOTH + 2 HORAS 360  + ALBUM MENSAJES + 100 PORTAFOTOS',
         idProduct: product.mirrorLinux,
-        idZone: zone.ejeCafetero,
+        idZone: zone.ejeCafetero,state: 'ACTIVO',
         createdAt: new Date(),
         updatedAt: new Date()
       }

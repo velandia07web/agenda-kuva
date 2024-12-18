@@ -28,6 +28,8 @@ const validatorCreateItem = [
     .withMessage('El campo id product es obligatorio')
     .isString()
     .withMessage('El campo id product debe ser una cadena de texto'),
+  check('state')
+      .optional(),
   validateResults // Esta función es la que se encarga de manejar los resultados de la validación
 ]
 
@@ -70,6 +72,8 @@ const validatorUpdateItem = [
     .withMessage('El campo id product es obligatorio')
     .isString()
     .withMessage('El campo id product debe ser una cadena de texto'),
+  check('state')
+      .optional(),
   validateResults
 ]
 

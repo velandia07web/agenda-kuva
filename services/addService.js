@@ -27,7 +27,8 @@ const createAdd = async function (body) {
     return await Add.create({
       name: body.name,
       price: body.price,
-      idTypePrice: body.idTypePrice
+      idTypePrice: body.idTypePrice,
+      state: "ACTIVO"
     })
   } catch (error) {
     throw new Error(`Error al crear el add: ${error.message}`)
@@ -40,7 +41,8 @@ const updateAdd = async function (id, body) {
     const updateData = {
       name: body.name,
       price: body.price,
-      idTypePrice: body.idTypePrice
+      idTypePrice: body.idTypePrice,
+      state: "ACTIVO"
     }
 
     // Actualizar el usuario solo con los campos presentes en updateData
@@ -52,15 +54,28 @@ const updateAdd = async function (id, body) {
 
 const deleteAdd = async function (id) {
   try {
-    const deletedCount = await Add.destroy({ where: { id } })
-    if (deletedCount === 0) {
-      throw new Error(`Add con id ${id} no encontrado`)
+    const add = await Add.findOne({ where: { id } });
+
+    if (!add) {
+      throw new Error(`Add con id ${id} no encontrado`);
     }
-    return deletedCount
+
+    const newState = add.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+
+    const updatedCount = await Add.update(
+      { state: newState },
+      { where: { id } }
+    );
+
+    if (updatedCount[0] === 0) {
+      throw new Error(`No se pudo actualizar el estado del Add con id ${id}`);
+    }
+
+    return { id, newState };
   } catch (error) {
-    throw new Error(`Error al eliminar el Add: ${error.message}`)
+    throw new Error(`Error al alternar el estado del Add: ${error.message}`);
   }
-}
+};
 
 module.exports = {
   getAllAdds,
