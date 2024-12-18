@@ -55,7 +55,7 @@ const getVentas = async () => {
                     fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
                 }
 
-                const pass = await Pass.findOne({ where: { clientId: client.id } });
+                const pass = await Pass.findOne({ where: { quotationId: quotation.id } });
                 let totalAbono = 0
                 if (pass) {
                     totalAbono = await PassPayment.sum('payment', { where: { idPass: pass.id } });
@@ -132,7 +132,7 @@ const getSale = async (id) => {
             fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
         }
 
-        const pass = await Pass.findOne({ where: { clientId: client.id } });
+        const pass = await Pass.findOne({ where: { quotationId: quotation.id } });
         let totalAbono = 0
         if (pass) {
             totalAbono = await PassPayment.sum('payment', { where: { idPass: pass.id } });

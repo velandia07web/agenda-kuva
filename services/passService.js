@@ -1,7 +1,26 @@
-const { Pass } = require('../models');
+const { Pass , PassPayment} = require('../models');
 
 const createPass = async (data) => {
-    return await Pass.create(data);
+    const transaction = await sequelize.transaction();
+    try {
+        const pass = await Pass.create({
+            quotationId: data.quotationId,
+        }, { transaction });
+
+        const paymentsData = data.payments.map(payment => ({
+            idPass: pass.id,
+            payment,
+        }));
+
+        await PassPayment.bulkCreate(paymentsData, { transaction });
+
+        await transaction.commit();
+
+        return { pass, payments: paymentsData };
+    } catch (error) {
+        await transaction.rollback();
+        throw new Error(`Error al crear el Pass y los pagos: ${error.message}`);
+    }
 };
 
 const getPassById = async (id) => {

@@ -9,11 +9,11 @@ module.exports = {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4
             },
-            clientId: {
+            quotationId: {
                 allowNull: false,
                 type: Sequelize.UUID,
                 references: {
-                    model: 'Clients',
+                    model: 'Quotation',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
