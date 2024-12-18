@@ -11,7 +11,8 @@ router.post('/quotations',createQuotation)
       .get('/',getAllQuotation)
       .get('/email/:id', sendQuotationEmail)
       .get('/:id',  getQuotation)
-      .get('/state/:state',  getQuotationsByState);
+      .get('/state/:state',  getQuotationsByState)
+      .delete('/:id',  inactivateQuotation);
 
 
       router.get('/:id/respond', async (req, res) => {
@@ -52,6 +53,6 @@ router.post('/quotations',createQuotation)
     });
 
 router.put('/:id',  updateQuotation)
-      .patch('/:id/inactivate',  inactivateQuotation);
+      
 
 module.exports = router;
