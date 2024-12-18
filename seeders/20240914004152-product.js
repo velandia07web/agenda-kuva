@@ -478,6 +478,7 @@ module.exports = {
       imagen: product.imagen,
       description: product.description,
       idZone: product.idZone,
+      count: 10000,
       state: "ACTIVO",
       createdAt: product.createdAt,
       updatedAt: product.updatedAt
