@@ -99,7 +99,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     idPaymentsDate: {
       type: DataTypes.UUID,
-      allowNull: false
+      allowNull: true
     },
   }, {
     sequelize,

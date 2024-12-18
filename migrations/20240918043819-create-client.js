@@ -88,7 +88,7 @@ module.exports = {
       },
       idPaymentsDate: {
         type: Sequelize.UUID,
-        allowNull: false
+        allowNull: true
       },
       createdAt: {
         allowNull: false,
