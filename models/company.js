@@ -58,7 +58,15 @@ module.exports = (sequelize, DataTypes) => {
         cupo: {
           type: DataTypes.FLOAT,
           allowNull: false
-        }
+        },
+        typePayment:{
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        idPaymentsDate: {
+          type: DataTypes.UUID,
+          allowNull: false
+        },
       },
       {
         sequelize,

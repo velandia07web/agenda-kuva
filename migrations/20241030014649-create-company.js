@@ -66,6 +66,14 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
+      typePayment:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      idPaymentsDate: {
+        type: Sequelize.UUID,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

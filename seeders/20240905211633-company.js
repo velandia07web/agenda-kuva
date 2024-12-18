@@ -25,6 +25,10 @@ module.exports = {
       },
     ];
 
+    const date = await queryInterface.sequelize.query(
+      'SELECT id FROM `PaymentsDates`;',
+      { type: queryInterface.sequelize.QueryTypes.SELECT }
+    )
     await queryInterface.bulkInsert("TypeDocuments", typeDocuments, {});
 
     const companies = [
@@ -41,6 +45,8 @@ module.exports = {
         idTypeDocument: 1,
         numberDocument: 838238,
         cupo: 6000000,
+        typePayment: "A CUOTAS",
+        idPaymentsDate: date[0].id,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
