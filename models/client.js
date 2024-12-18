@@ -25,6 +25,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'associatedCompany'
       });
 
+      Client.belongsTo(models.PaymentsDate, {
+        foreignKey: 'idPaymentsDate',
+        as: 'paymentsDate'
+      });
+
     }
   }
   Client.init({
@@ -87,7 +92,15 @@ module.exports = (sequelize, DataTypes) => {
     state:{
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    typePayment:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    idPaymentsDate: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'Client',

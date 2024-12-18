@@ -321,8 +321,25 @@ const getOneQuotation = async (id) => {
 
 
 const getAllQuotations = async () => {
-    return Quotation.findAll();
-}
+    try {
+        const today = new Date();
+        const thirtyDaysAgo = new Date(today);
+        thirtyDaysAgo.setDate(today.getDate() - 30);
+
+        await Quotation.update(
+            { state: 'Rechazada' },
+            {
+                where: {
+                    state: 'Pendiente',
+                    createdAt: { [Op.lt]: thirtyDaysAgo }
+                }
+            }
+        );
+        return Quotation.findAll();
+    } catch (error) {
+        throw new Error(`Error al obtener o actualizar cotizaciones: ${error.message}`);
+    }
+};
 
 const updateQuotation = async (id, updatedData) => {
     const quotation = await Quotation.findByPk(id);
