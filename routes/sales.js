@@ -5,7 +5,7 @@ const path = require('path');
 const {
     getVenta,
     createSale,
-    getAllSales,
+    getSale,
     updateSale,
     deleteSale,
     sendPdfByEmail
