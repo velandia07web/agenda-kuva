@@ -50,11 +50,8 @@ const getVentas = async () => {
                 const methodOfPayment = client.typePayment;
 
                 const paymentDateDetails = await PaymentsDate.findByPk(client.idPaymentsDate);
-                if (!paymentDateDetails) {
-                    throw new Error(`No se encontró la configuración de fecha de pago para el cliente con ID ${client.id}.`);
-                }
                 let fechaDePago = new Date(quotation.createdAt);
-                if (paymentDateDetails.numberDays) {
+                if (paymentDateDetails) {
                     fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
                 }
 
@@ -130,11 +127,8 @@ const getSale = async (id) => {
         const methodOfPayment = client.typePayment;
 
         const paymentDateDetails = await PaymentsDate.findByPk(client.idPaymentsDate);
-        if (!paymentDateDetails) {
-            throw new Error(`No se encontró la configuración de fecha de pago para el cliente con ID ${client.id}.`);
-        }
         let fechaDePago = new Date(quotation.createdAt);
-        if (paymentDateDetails.numberDays) {
+        if (paymentDateDetails) {
             fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
         }
 
