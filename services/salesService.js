@@ -57,10 +57,11 @@ const getVentas = async () => {
                 fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
 
                 const pass = await Pass.findOne({ where: { clientId: client.id } });
-                if (!pass) {
-                    throw new Error(`No se encontró un pase asociado al cliente con ID ${client.id}.`);
+                let totalAbono = 0
+                if (pass) {
+                    totalAbono = await PassPayment.sum('payment', { where: { idPass: pass.id } });
                 }
-                const totalAbono = await PassPayment.sum('payment', { where: { idPass: pass.id } });
+                
 
                 return {
                     saleId: sale.id,
@@ -135,14 +136,14 @@ const getSale = async (id) => {
         fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
 
         const pass = await Pass.findOne({ where: { clientId: client.id } });
-        if (!pass) {
-            throw new Error(`No se encontró un pase asociado al cliente con ID ${client.id}.`);
+        let totalAbono = 0
+        if (pass) {
+            totalAbono = await PassPayment.sum('payment', { where: { idPass: pass.id } });
         }
-
-        const totalAbono = await PassPayment.sum('payment', { where: { idPass: pass.id } });
 
         return {
             saleId: sale.id,
+            sale,
             totalNet,
             IVA,
             subtotal,
