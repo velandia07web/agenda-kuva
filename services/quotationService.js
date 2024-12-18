@@ -249,8 +249,8 @@ const sendQuotationEmail = async (quotationId) => {
             throw new Error(`No se encontró el cliente asociado con la cotización ${quotationId}`);
         }
 
-        const approveUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=approved`;
-        const rejectUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=rejected`;
+        const approveUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=Aprobado`;
+        const rejectUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=Rechazada`;
         const tax = quotation.subtotal * 0.19;
 
         const htmlTemplate = await ejs.renderFile(
@@ -267,7 +267,7 @@ const sendQuotationEmail = async (quotationId) => {
             }
         );
 
-        await sendMail(client.email, 'Tu Cotización', htmlTemplate);
+        await sendMail("luisandresperez8@gmail.com", 'Tu Cotización', htmlTemplate);
 
         console.log(`Correo enviado a ${client.email} para la cotización ${quotationId}`);
     } catch (error) {
@@ -333,11 +333,28 @@ const updateQuotation = async (id, updatedData) => {
 }
 
 const inactivateQuotation = async (id) => {
-    const quotation = await Quotation.findByPk(id);
+    try {
+        const quotation = await Quotation.findOne({ where: { id } });
 
-    if (!quotation) return null;
+        if (!quotation) {
+            throw new Error(`Cotización con id ${id} no encontrada`);
+        }
 
-    return quotation.update({ state: 'inactive' });
+        const newState = quotation.etapa === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+
+        const updatedCount = await Quotation.update(
+            { etapa: newState },
+            { where: { id } }
+        );
+
+        if (updatedCount[0] === 0) {
+            throw new Error(`No se pudo actualizar el estado de la cotización con id ${id}`);
+        }
+
+        return { id, newState };
+    } catch (error) {
+        throw new Error(`Error al alternar el estado de la cotización: ${error.message}`);
+    }
 }
 
 const getQuotationsByState = async (state) => {

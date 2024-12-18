@@ -5,8 +5,23 @@ module.exports = (sequelize, DataTypes) => {
     class Sale extends Model {
         static associate(models) {
             Sale.belongsTo(models.Quotation, {
-                foreignKey: 'quotationId',
+                foreignKey: 'idQuotation',
                 as: 'Quotation'
+            });
+            
+            Sale.belongsTo(models.PaymentsDate, {
+                foreignKey: 'idPaymentsDate',
+                as: 'PaymentsDate'
+            });
+
+            Sale.belongsTo(models.Pass, {
+                foreignKey: 'idPass',
+                as: 'Pass'
+            });
+
+            Sale.belongsTo(models.Invoice, {
+                foreignKey: 'idInvoice',
+                as: 'Invoice'
             });
         }
     }
@@ -17,66 +32,55 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        quotationId: {
+        idQuotation: {
             type: DataTypes.UUID,
             allowNull: false
         },
-        subtotal: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
-        totalWithIVA: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
-        IVA: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
-        totalNet: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
-        shippingCost: {
-            type: DataTypes.FLOAT,
-            allowNull: true
-        },
-        paymentMethod: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        paymentTerm: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
-        debt: {
-            type: DataTypes.FLOAT,
-            allowNull: true
-        },
-        daysLate: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
-        paymentMade: {
-            type: DataTypes.FLOAT,
-            allowNull: true
-        },
-        bankAccountId: {
+        idPaymentsDate: {
             type: DataTypes.UUID,
             allowNull: true
         },
-        purchaseOrder: {
-            type: DataTypes.STRING,
+        arrearsDays: {
+            type: DataTypes.INTEGER,
             allowNull: true
         },
-        invoiceNumber: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+        timelyPaymentDate: {
+            type: DataTypes.DATE,
+            allowNull: true
+        },
+        idPass: {
+            type: DataTypes.UUID,
+            allowNull: true
+        },
+        pendingPayment: {
+            type: DataTypes.FLOAT,
+            allowNull: true
+        },
+        idInvoice: {
+            type: DataTypes.UUID,
+            allowNull: true
+        },
+        dateInvoice: {
+            type: DataTypes.DATE,
+            allowNull: true
         },
         state: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
+        },
+        etapa: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
         }
     }, {
         sequelize,

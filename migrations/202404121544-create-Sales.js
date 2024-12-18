@@ -9,7 +9,7 @@ module.exports = {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4
             },
-            quotationId: {
+            idQuotation: {
                 allowNull: false,
                 type: Sequelize.UUID,
                 references: {
@@ -19,61 +19,49 @@ module.exports = {
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
-            subtotal: {
-                allowNull: false,
-                type: Sequelize.FLOAT
-            },
-            totalWithIVA: {
-                allowNull: false,
-                type: Sequelize.FLOAT
-            },
-            IVA: {
-                allowNull: false,
-                type: Sequelize.FLOAT
-            },
-            totalNet: {
-                allowNull: false,
-                type: Sequelize.FLOAT
-            },
-            shippingCost: {
+            idPaymentsDate: {
                 allowNull: true,
-                type: Sequelize.FLOAT
+                type: Sequelize.UUID,
+                //references: {model: 'PaymentsDates',key: 'id'},
+                onUpdate: 'CASCADE',
+                onDelete: 'CASCADE'
             },
-            paymentMethod: {
-                allowNull: false,
-                type: Sequelize.STRING
-            },
-            paymentTerm: {
+            arrearsDays: {
                 allowNull: true,
                 type: Sequelize.INTEGER
             },
-            debt: {
+            timelyPaymentDate: {
+                allowNull: true,
+                type: Sequelize.DATE
+            },
+            idPass: {
+                allowNull: true,
+                type: Sequelize.UUID,
+                //references: {model: 'Passes',key: 'id'},
+                onUpdate: 'CASCADE',
+                onDelete: 'CASCADE'
+            },
+            pendingPayment: {
                 allowNull: true,
                 type: Sequelize.FLOAT
             },
-            daysLate: {
+            idInvoice: {
                 allowNull: true,
-                type: Sequelize.INTEGER
+                type: Sequelize.UUID,
+                //references: {model: 'Invoices',key: 'id'},
+                onUpdate: 'CASCADE',
+                onDelete: 'CASCADE'
             },
-            paymentMade: {
+            dateInvoice: {
                 allowNull: true,
-                type: Sequelize.FLOAT
-            },
-            bankAccountId: {
-                allowNull: true,
-                type: Sequelize.UUID
-            },
-            purchaseOrder: {
-                allowNull: true,
-                type: Sequelize.STRING
-            },
-            invoiceNumber: {
-                allowNull: false,
-                type: Sequelize.STRING,
-                unique: true
+                type: Sequelize.DATE
             },
             state: {
-                allowNull: false,
+                allowNull: true,
+                type: Sequelize.STRING
+            },
+            etapa: {
+                allowNull: true,
                 type: Sequelize.STRING
             },
             createdAt: {
@@ -86,7 +74,6 @@ module.exports = {
             }
         });
     },
-
     async down(queryInterface, Sequelize) {
         await queryInterface.dropTable('Sales');
     }
