@@ -74,6 +74,10 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: true
       },
+      state: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

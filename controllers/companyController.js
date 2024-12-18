@@ -46,7 +46,7 @@ const updateCompany = async (req, res) => {
 const deleteCompany = async (req, res) => {
     try {
         const deletedCompany = await companyService.deleteCompany(req.params.id);
-        return res.status(200).json({ status: 200, message: 'Empresa eliminada', data: deletedCompany });
+        return res.status(200).json({ status: 200, message: 'Empresa activada/desactivada', data: deletedCompany });
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message });
     }

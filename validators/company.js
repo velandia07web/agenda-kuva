@@ -57,7 +57,9 @@ const validatorCreateItem = [
     check('cupo')
         .optional(),
     check('numberDocument')
-        .optional(),  
+        .optional(),
+    check('state')
+        .optional(),
 
     validateResults,
 ];
@@ -123,6 +125,8 @@ const validatorUpdateItem = [
         .isUUID(4)
         .withMessage('El campo clientId debe ser un UUID válido'),
     check('typePayment')
+        .optional(),
+    check('state')
         .optional(),
 
     validateResults,

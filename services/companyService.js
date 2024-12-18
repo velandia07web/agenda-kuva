@@ -20,7 +20,8 @@ const getOneCompany = async (id) => {
 
 const createCompany = async (body) => {
     try {
-        return await Company.create(body);
+        const companyData = { ...body, state: "ACTIVO" };
+        return await Company.create(companyData);
     } catch (error) {
         throw new Error(`Error al crear la empresa: ${error.message}`);
     }

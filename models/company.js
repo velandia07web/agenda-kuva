@@ -67,6 +67,10 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.UUID,
           allowNull: true
         },
+        state:{
+          type: DataTypes.STRING,
+          allowNull: false,
+        }
       },
       {
         sequelize,
