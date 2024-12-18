@@ -1,4 +1,4 @@
-const { Pass , PassPayment} = require('../models');
+const { Pass , PassPayment, sequelize } = require('../models');
 
 const createPass = async (data) => {
     const transaction = await sequelize.transaction();

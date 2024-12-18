@@ -12,10 +12,10 @@ module.exports = {
             quotationId: {
                 allowNull: false,
                 type: Sequelize.UUID,
-                references: {
-                    model: 'Quotation',
-                    key: 'id'
-                },
+                //references: {
+                //    model: 'Quotation',
+                //   key: 'id'
+                //},
                 onUpdate: 'CASCADE',
                 onDelete: 'CASCADE'
             },
