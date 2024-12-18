@@ -34,7 +34,8 @@ const createClient = async function (body) {
       idSocialMedia: body.idSocialMedia,
       cupoDisponible: body.cupoDisponible,
       cupoCopado: body.cupoCopado,
-      state: "ACTIVO"
+      state: "ACTIVO",
+      typePayment: body.typePayment
     })
   } catch (error) {
     throw new Error(`Error al crear el cliente: ${error.message}`)
@@ -56,7 +57,8 @@ const updateClient = async function (id, body) {
       idUser: body.idUser,
       idSocialMedia: body.idSocialMedia,
       cupoDisponible: body.cupoDisponible,
-      cupoCopado: body.cupoCopado
+      cupoCopado: body.cupoCopado,
+      typePayment: body.typePayment
     }, { where: { id } })
   } catch (error) {
     throw new Error(`Error al actualizar el cliente: ${error.message}`)
