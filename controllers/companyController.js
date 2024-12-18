@@ -43,12 +43,28 @@ const updateCompany = async (req, res) => {
     }
 };
 
-const deleteCompany = async (req, res) => {
+const deleteCompany = async (id) => {
     try {
-        const deletedCompany = await companyService.deleteCompany(req.params.id);
-        return res.status(200).json({ status: 200, message: 'Empresa activada/desactivada', data: deletedCompany });
+        const company = await Company.findOne({ where: { id } });
+
+        if (!company) {
+            throw new Error(`Empresa con id ${id} no encontrada`);
+        }
+
+        const newState = company.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
+
+        const updatedCount = await Company.update(
+            { state: newState },
+            { where: { id } }
+        );
+
+        if (updatedCount[0] === 0) {
+            throw new Error(`No se pudo actualizar el estado de la empresa con id ${id}`);
+        }
+
+        return { id, newState };
     } catch (error) {
-        return res.status(500).json({ status: 500, message: error.message });
+        throw new Error(`Error al alternar el estado de la empresa: ${error.message}`);
     }
 };
 
