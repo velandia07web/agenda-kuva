@@ -53,8 +53,10 @@ const getVentas = async () => {
                 if (!paymentDateDetails) {
                     throw new Error(`No se encontró la configuración de fecha de pago para el cliente con ID ${client.id}.`);
                 }
-                const fechaDePago = new Date(quotation.createdAt);
-                fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
+                let fechaDePago = new Date(quotation.createdAt);
+                if (paymentDateDetails.numberDays) {
+                    fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
+                }
 
                 const pass = await Pass.findOne({ where: { clientId: client.id } });
                 let totalAbono = 0
@@ -131,9 +133,10 @@ const getSale = async (id) => {
         if (!paymentDateDetails) {
             throw new Error(`No se encontró la configuración de fecha de pago para el cliente con ID ${client.id}.`);
         }
-
-        const fechaDePago = new Date(quotation.createdAt);
-        fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
+        let fechaDePago = new Date(quotation.createdAt);
+        if (paymentDateDetails.numberDays) {
+            fechaDePago.setDate(fechaDePago.getDate() + paymentDateDetails.numberDays);
+        }
 
         const pass = await Pass.findOne({ where: { clientId: client.id } });
         let totalAbono = 0
