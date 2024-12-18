@@ -11,8 +11,8 @@ module.exports = {
 
     const typePrice = {}
     typePrices.forEach(price => {
-      if (price.name === 'Precio Publico') typePrice.publico = price.id
-      if (price.name === 'Precio con Descuento') typePrice.descuento = price.id
+      if (price.name === 'Evento Social') typePrice.publico = price.id
+      if (price.name === 'Evento empresarial') typePrice.descuento = price.id
     })
 
     return queryInterface.bulkInsert('Adds', [
