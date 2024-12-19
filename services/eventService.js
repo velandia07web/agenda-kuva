@@ -26,17 +26,17 @@ const getEventById = async (id) => {
                 {
                     model: User,
                     as: 'Coordinator',
-                    attributes: ['id', 'name', 'email']
+                    attributes: ['id', 'name', 'email', 'cedula']
                 },
                 {
                     model: User,
                     as: 'Designer',
-                    attributes: ['id', 'name', 'email']
+                    attributes: ['id', 'name', 'email', 'cedula']
                 },
                 {
                     model: User,
                     as: 'Logistic',
-                    attributes: ['id', 'name', 'email']
+                    attributes: ['id', 'name', 'email', 'cedula']
                 },
                 {
                     model: EventAdd,
@@ -46,7 +46,7 @@ const getEventById = async (id) => {
                         as: 'add',
                         attributes: ['name']
                     }],
-                    attributes: ['id']
+                    attributes: ['id', 'quantity']
                 },
                 {
                     model: EventPack,
@@ -54,7 +54,7 @@ const getEventById = async (id) => {
                     include: [{
                         model: Pack,
                         as: 'Pack',
-                        attributes: ['name']
+                        attributes: ['name', 'description']
                     }],
                     attributes: ['id']
                 },
@@ -64,9 +64,9 @@ const getEventById = async (id) => {
                     include: [{
                         model: Product,
                         as: 'Product',
-                        attributes: ['name']
+                        attributes: ['name', 'description']
                     }],
-                    attributes: ['id']
+                    attributes: ['id', 'quantity']
                 }
             ]
         });
@@ -89,30 +89,37 @@ const getEventById = async (id) => {
             coordinator: event.Coordinator ? {
                 id: event.Coordinator.id,
                 name: event.Coordinator.name,
-                email: event.Coordinator.email
+                email: event.Coordinator.email,
+                cedula: event.Coordinator.cedula
             } : null,
             designer: event.Designer ? {
                 id: event.Designer.id,
                 name: event.Designer.name,
-                email: event.Designer.email
+                email: event.Designer.email,
+                cedula: event.Designer.cedula
             } : null,
             logistic: event.Logistic ? {
                 id: event.Logistic.id,
                 name: event.Logistic.name,
-                email: event.Logistic.email
+                email: event.Logistic.email,
+                cedula: event.Logistic.cedula
             } : null,
             personName: event.personName,
             personPhone: event.personPhone,
             eventImage: event.eventImage,
             eventDescription: event.eventDescription,
             eventAdds: event.EventAdd.map(ea => ({
-                name: ea.Add?.name
+                name: ea.Add?.name,
+                quantity: ea.quantity
             })),
             eventPacks: event.EventPack.map(ep => ({
-                name: ep.Pack?.name
+                name: ep.Pack?.name,
+                description: ep.Pack?.description
             })),
             eventProducts: event.EventProduct.map(ep => ({
-                name: ep.Product?.name
+                name: ep.Product?.name,
+                description: ep.Product?.description,
+                quantity: ep.quantity
             })),
             createdAt: event.createdAt,
             updatedAt: event.updatedAt
