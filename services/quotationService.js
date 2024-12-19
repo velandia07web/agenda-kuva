@@ -142,16 +142,20 @@ const createQuotation = async (data) => {
             const company = await Company.findByPk(client.idCompany, { transaction });
             if (!company) throw new Error('No se encontró la empresa asociada al cliente');
 
-            if (company.cupo < totalNet) {
-                throw new Error('Cupo insuficiente en la empresa para realizar esta cotización');
+            if(company.typePayment === 'CUOTAS'){
+                if (company.cupo < totalNet) {
+                    throw new Error('Cupo insuficiente en la empresa para realizar esta cotización');
+                }
             }
         } else {
             totalNet = (parseFloat(quotationSubtotal) || 0)
                 - (parseFloat(discount) || 0);
 
-            if (client.cupoDisponible < totalNet) {
-                throw new Error('Cupo disponible insuficiente para realizar esta cotización');
-            }    
+            if(client.typePayment === 'CUOTAS'){
+                if (client.cupoDisponible < totalNet) {
+                    throw new Error('Cupo disponible insuficiente para realizar esta cotización');
+                }   
+            } 
         }
 
         const quotation = await Quotation.create(
