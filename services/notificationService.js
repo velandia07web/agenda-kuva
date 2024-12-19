@@ -109,6 +109,19 @@ module.exports = {
             console.error('Error en getAllNotifications:', error.message);
             throw new Error('Error al obtener las notificaciones: ' + error.message);
         }
+    },
+
+    async getNotificationsByUserId(userId) {
+        try {
+            const notifications = await Notification.findAll({
+                where: { userId },
+                order: [['createdAt', 'DESC']]
+            });
+            return notifications;
+        } catch (error) {
+            console.error('Error en getNotificationsByUserId:', error.message);
+            throw new Error('Error al obtener las notificaciones por usuario: ' + error.message);
+        }
     }
 };
 
