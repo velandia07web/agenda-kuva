@@ -6,6 +6,7 @@ const router = Router()
 router
   .get('/', zoneController.getAllZones)
   .get('/zones-with-products', zoneController.getZonesWithProducts)
+  .get('/zones-with-packs', zoneController.getZonesWithPacks)
   .get('/cities', validatorGet, zoneController.getZones)
   .get('/:id', validatorGetItem, zoneController.getOneZones)
   .post('/', validatorCreateItem, zoneController.createZones)

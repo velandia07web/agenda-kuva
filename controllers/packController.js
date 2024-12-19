@@ -80,11 +80,30 @@ const getPricePacks = async function (req, res) {
   }
 };
 
+const getPacksByZone = async function (req, res) {
+  try {
+    const { idZone } = req.params;
+    const packs = await packService.getPacksWithPricesByZone(idZone);
+    return res.status(200).json({
+      status: 200,
+      message: 'Packs por zona obtenidos exitosamente',
+      data: packs,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: 500,
+      message: 'Error al obtener los packs por zona',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllPacks,
   getOnePacks,
   createPacks,
   updatePack,
   deletePack,
-  getPricePacks
+  getPricePacks,
+  getPacksByZone
 }

@@ -1,4 +1,4 @@
-const { Zone, City, Product } = require('../models')
+const { Zone, City, Product, Pack } = require('../models')
 
 const getAllZones = async function () {
   try {
@@ -104,6 +104,29 @@ const getZonesWithProducts = async function () {
   }
 };
 
+const getZonesWithPacks = async function () {
+  try {
+    const zones = await Zone.findAll({
+      attributes: ['id', 'name'],
+      include: [{
+        model: Pack,
+        as: 'Pack',
+        attributes: [],
+        required: true,
+      }],
+      where: {
+        state: 'ACTIVO',
+      },
+      group: ['Zone.id'],
+      raw: true,
+    });
+
+    return zones;
+  } catch (error) {
+    throw new Error(`Error al obtener las zonas con packs: ${error.message}`);
+  }
+};
+
 module.exports = {
   getAllZones,
   getOneZone,
@@ -111,5 +134,6 @@ module.exports = {
   updateZone,
   deleteZone,
   getZone,
-  getZonesWithProducts
+  getZonesWithProducts,
+  getZonesWithPacks
 }

@@ -10,6 +10,7 @@ router
   .get('/', packController.getAllPacks)
   .get('/prices', packController.getPricePacks)
   .get('/:id', validatorGetItem, packController.getOnePacks)
+  .get('/zone/:idZone', packController.getPacksByZone)
 
 
 router

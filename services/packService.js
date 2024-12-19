@@ -102,11 +102,39 @@ const getPricePacks = async function () {
   }
 };
 
+const getPacksWithPricesByZone = async function (idZone) {
+  try {
+    const packs = await Pack.findAll({
+      where: { idZone },
+      include: [
+        {
+          model: PricePack,
+          as: 'PricePack',
+          attributes: ['id', 'price'],
+        },
+      ],
+      attributes: ['id', 'name', 'description'],
+    });
+
+    return packs.map(pack => {
+      return pack.PricePack.map(price => ({
+        id: price.id,
+        name: pack.name,
+        description: pack.description,
+        price: price.price,
+      }));
+    }).flat();
+  } catch (error) {
+    throw new Error(`Error al obtener los packs y precios por zona: ${error.message}`);
+  }
+};
+
 module.exports = {
   getAllPacks,
   getOnePack,
   createPack,
   updatePack,
   deletePack,
-  getPricePacks
+  getPricePacks,
+  getPacksWithPricesByZone
 }

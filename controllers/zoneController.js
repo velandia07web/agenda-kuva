@@ -83,6 +83,15 @@ const getZonesWithProducts = async function (req, res) {
   }
 }
 
+const getZonesWithPacks = async function (req, res) {
+  try {
+    const zones = await zoneServices.getZonesWithPacks()
+    return res.status(200).json({ status: 200, message: 'Zonas con packs:', data: zones })
+  } catch (error) {
+    return res.status(500).json({ status: 500, message: 'Error al obtener las zonas con packs.', error: error.message })
+  }
+}
+
 module.exports = {
   getAllZones,
   getOneZones,
@@ -90,5 +99,6 @@ module.exports = {
   updateZones,
   deleteZones,
   getZones,
-  getZonesWithProducts
+  getZonesWithProducts,
+  getZonesWithPacks
 }
