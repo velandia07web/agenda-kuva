@@ -1,4 +1,4 @@
-const { Event, Quotation, Notification, User } = require('../models');
+const { Event, Quotation, Notification, User, Sale, PaymentsDate } = require('../models');
 const { Op } = require('sequelize');
 
 module.exports = {
@@ -53,5 +53,51 @@ module.exports = {
             console.error('Error en generateNotifications:', error.message);
             throw new Error('Error al generar notificaciones: ' + error.message);
         }
+    },
+
+    async notifyQuotationPayments() {
+        try {
+            const today = new Date();
+            const twoDaysLater = new Date(today);
+            twoDaysLater.setDate(today.getDate() + 2);
+
+            const sales = await Sale.findAll({
+                include: [
+                    {
+                        model: Quotation,
+                        as: 'Quotation',
+                        attributes: ['id', 'userId']
+                    },
+                    {
+                        model: PaymentsDate,
+                        as: 'PaymentsDate',
+                        attributes: ['numberDays']
+                    }
+                ]
+            });
+
+            const notifications = [];
+
+            for (const sale of sales) {
+                const paymentDueDate = new Date(sale.createdAt);
+                paymentDueDate.setDate(paymentDueDate.getDate() + sale.PaymentsDate.numberDays);
+
+                if (paymentDueDate <= twoDaysLater && paymentDueDate >= today) {
+                    const description = `El pago de la cotización ${sale.Quotation.id} está próximo a vencer`;
+                    const notification = await Notification.create({
+                        userId: sale.Quotation.userId,
+                        description
+                    });
+                    notifications.push(notification);
+                }
+            }
+
+            return notifications;
+        } catch (error) {
+            console.error('Error en notifyQuotationPayments:', error.message);
+            throw new Error('Error al generar notificaciones de pagos: ' + error.message);
+        }
     }
 };
+
+

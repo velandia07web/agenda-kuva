@@ -110,7 +110,7 @@ const getPacksWithPricesByZone = async function (idZone) {
         {
           model: PricePack,
           as: 'PricePack',
-          attributes: ['id', 'price'],
+          attributes: ['id', 'price', 'priceDeadHour'],
         },
       ],
       attributes: ['id', 'name', 'description'],
@@ -122,6 +122,7 @@ const getPacksWithPricesByZone = async function (idZone) {
         name: pack.name,
         description: pack.description,
         price: price.price,
+        priceDeadHour: price.priceDeadHour
       }));
     }).flat();
   } catch (error) {
