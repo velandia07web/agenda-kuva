@@ -1,11 +1,23 @@
-const { Pass , PassPayment, sequelize } = require('../models');
+const { Pass , PassPayment, Quotation, Sale, sequelize } = require('../models');
 
 const createPass = async (data) => {
     const transaction = await sequelize.transaction();
     try {
+        const quotation = await Quotation.findByPk(data.quotationId);
+        if (!quotation) {
+            throw new Error('Cotización no encontrada');
+        }
+
         let pass = await Pass.findOne({
             where: { quotationId: data.quotationId },
         });
+
+        let totalAbono = 0;
+        if (pass) {
+            totalAbono = await PassPayment.sum('payment', { 
+                where: { idPass: pass.id } 
+            }) || 0;
+        }
 
         if (!pass) {
             pass = await Pass.create(
@@ -16,15 +28,38 @@ const createPass = async (data) => {
             );
         }
 
+        const nuevoTotal = totalAbono + data.payment;
+        
+        if (nuevoTotal > quotation.totalNet) {
+            const excedente = nuevoTotal - quotation.totalNet;
+            throw new Error(`El pago excede el total. Reduce el pago en ${excedente} para igualar el total.`);
+        }
+
         const paymentData = {
             idPass: pass.id,
             payment: data.payment,
             file: data.file,
         };
-
+        
         await PassPayment.create(paymentData, { transaction });
-        await transaction.commit();
 
+        let sale = await Sale.findOne({
+            where: { idQuotation: data.quotationId },
+        });
+
+        if (sale) {
+            if (totalAbono === 0 && data.payment > 0) {
+                await sale.update({ 
+                    state: 'venta abierta' 
+                }, { transaction });
+            } else if (nuevoTotal === quotation.totalNet) {
+                await sale.update({ 
+                    state: 'venta cerrada' 
+                }, { transaction });
+            }
+        }
+
+        await transaction.commit();
         return { pass, payment: paymentData };
     } catch (error) {
         await transaction.rollback();
