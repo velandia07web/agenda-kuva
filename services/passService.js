@@ -76,8 +76,8 @@ const createPass = async (data) => {
             htmlContent,
             attachments: [
                 {
-                    filename: data.file.originalname,
-                    path: data.file.path
+                    filename: data.file,
+                    path: data.file
                 }
             ]
         };
