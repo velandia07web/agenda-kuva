@@ -11,7 +11,7 @@ const EMAIL_USER = process.env.EMAIL_USER
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
 
-async function sendMail (to, subject, htmlContent) {
+async function sendMail (to, subject, htmlContent, attachments = []) {
   try {
     const accessToken = await oAuth2Client.getAccessToken();
     console.log('Access Token-----------------------------------------------:', accessToken.token);
@@ -29,16 +29,19 @@ async function sendMail (to, subject, htmlContent) {
     })
 
     const mailOptions = {
-      from: `Kuva ${EMAIL_USER}`,
+      from: `Kuva <${EMAIL_USER}>`,
       to,
       subject,
       html: htmlContent,
-      attachments: [{
-        filename: 'logo.png',
-        path: path.join(__dirname, '../email/img/logo.png'),
-        cid: 'logoImage'
-      }]
-    }
+      attachments: [
+          ...(attachments || []), // Agrega los attachments solo si existen
+          {
+              filename: 'logo.png',
+              path: path.join(__dirname, '../email/img/logo.png'),
+              cid: 'logoImage'
+          }
+      ]
+  };  
 
     const result = await transporter.sendMail(mailOptions)
     return result

@@ -1,4 +1,7 @@
 const { Pass , PassPayment, Quotation, Sale, sequelize } = require('../models');
+const sendMail = require('../email/email');
+const path = require('path');
+const ejs = require('ejs');
 
 const createPass = async (data) => {
     const transaction = await sequelize.transaction();
@@ -59,7 +62,30 @@ const createPass = async (data) => {
             }
         }
 
+        const emailTemplatePath = path.join(__dirname, '../email/templates/paymentConfirmation.ejs');
+        const htmlContent = await ejs.renderFile(emailTemplatePath, {
+            name: quotation.customerName || 'Cliente',
+            payment: data.payment,
+            totalNet: quotation.totalNet,
+            totalAbono: nuevoTotal
+        });
+
+        const mailOptions = {
+            to: quotation.email,
+            subject: 'Confirmación de pago recibido',
+            htmlContent,
+            attachments: [
+                {
+                    filename: data.file.originalname,
+                    path: data.file.path
+                }
+            ]
+        };
+
+        await sendMail(mailOptions.to, mailOptions.subject, mailOptions.htmlContent, mailOptions.attachments);
+
         await transaction.commit();
+
         return { pass, payment: paymentData };
     } catch (error) {
         await transaction.rollback();
