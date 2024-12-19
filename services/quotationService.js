@@ -184,7 +184,8 @@ const createQuotation = async (data) => {
                     total: event.total,
                     quotationId: quotation.id,
                     days: event.days,
-                    transportPrice: event.transportPrice
+                    transportPrice: event.transportPrice,
+                    status: "evento sin completar"
                 },
                 { transaction }
             );

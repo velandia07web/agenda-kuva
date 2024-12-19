@@ -153,6 +153,20 @@ const updateEventById = async (id, updateData) => {
                 return obj;
             }, {});
 
+        const currentDate = new Date();
+        const startDate = new Date(event.dateStart);
+
+        if (currentDate < startDate) {
+            filteredData.status = 'evento abierto';
+        }
+
+        if (updateData.dateStart) {
+            const newStartDate = new Date(updateData.dateStart);
+            if (currentDate < newStartDate) {
+                filteredData.status = 'evento abierto';
+            }
+        }
+
         await event.update(filteredData);
 
         return await getEventById(id);
