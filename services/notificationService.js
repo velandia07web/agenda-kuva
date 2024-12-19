@@ -97,6 +97,18 @@ module.exports = {
             console.error('Error en notifyQuotationPayments:', error.message);
             throw new Error('Error al generar notificaciones de pagos: ' + error.message);
         }
+    },
+
+    async getAllNotifications() {
+        try {
+            const notifications = await Notification.findAll({
+                order: [['createdAt', 'DESC']]
+            });
+            return notifications;
+        } catch (error) {
+            console.error('Error en getAllNotifications:', error.message);
+            throw new Error('Error al obtener las notificaciones: ' + error.message);
+        }
     }
 };
 

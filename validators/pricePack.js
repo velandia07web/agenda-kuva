@@ -41,11 +41,13 @@ const validatorUpdateItem = [
     .withMessage('El campo price no debe estar vacío')
     .isInt({ min: 0 })
     .withMessage('El campo price debe ser un número entero positivo'),
-  check('idPack')
+    check('priceDeadHour')
     .exists({ checkFalsy: true })
-    .withMessage('El campo id pack es obligatorio')
-    .isString()
-    .withMessage('El campo id pack debe ser una cadena de texto'),
+    .withMessage('El campo priceDeadHour es obligatorio')
+    .notEmpty()
+    .withMessage('El campo priceDeadHour no debe estar vacío')
+    .isInt({ min: 0 })
+    .withMessage('El campo priceDeadHour debe ser un número entero positivo'),
   validateResults
 ]
 
