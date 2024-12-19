@@ -1,19 +1,34 @@
 const passService = require('../services/passService');
+const upload = require('../config/uploadConfig');
+const uploadMiddleware = upload.single('file');
 
 const createPass = async (req, res) => {
     try {
-        const pass = await passService.createPass(req.body);
-        return res.status(201).json({
+        const { quotationId, payment } = req.body;
+        const file = req.file ? req.file.path : null;
+
+        if (!quotationId || !payment || !file) {
+            throw new Error("Todos los campos (quotationId, payment, file) son obligatorios.");
+        }
+
+        const data = {
+            quotationId,
+            payment: parseFloat(payment),
+            file: "",
+        };
+
+        const result = await passService.createPass(data);
+
+        res.status(201).json({
             status: 201,
-            message: 'Pase creado con éxito',
-            data: pass
+            message: "Pase creado exitosamente",
+            data: result,
         });
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({
+        res.status(500).json({
             status: 500,
-            message: 'Error al crear el pase',
-            error: error.message
+            message: "Error al crear el pase",
+            error: error.message,
         });
     }
 };
@@ -100,5 +115,6 @@ module.exports = {
     getPass,
     getAllPasses,
     updatePass,
-    deletePass
+    deletePass,
+    uploadMiddleware
 };

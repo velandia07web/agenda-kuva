@@ -4,12 +4,15 @@ const {
     getPass,
     getAllPasses,
     updatePass,
-    deletePass
+    deletePass,
+    uploadMiddleware
 } = require('../controllers/passController');
+
+
 
 const router = express.Router();
 
-router.post('/', createPass);
+router.post('/',uploadMiddleware,createPass);
 router.get('/:id', getPass);
 router.get('/', getAllPasses);
 router.put('/:id', updatePass);
