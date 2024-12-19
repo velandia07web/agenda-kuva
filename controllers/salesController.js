@@ -129,11 +129,32 @@ const sendPdfByEmail = async (req, res) => {
     }
 };
 
+const getSalesByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const sales = await salesService.getSalesByUserId(userId);
+        
+        return res.status(200).json({
+            status: 200,
+            message: 'Ventas obtenidas con éxito',
+            data: sales
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            status: 500,
+            message: 'Error al obtener las ventas',
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
     getVenta,
     createSale,
     getSale,
     updateSale,
     deleteSale,
-    sendPdfByEmail
+    sendPdfByEmail,
+    getSalesByUserId
 };

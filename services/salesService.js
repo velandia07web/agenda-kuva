@@ -1,4 +1,4 @@
-const { Sale, Quotation,Client, Event, Pass, PaymentsDate, PassPayment } = require('../models');
+const { Sale, Quotation,Client, Event, Pass, PaymentsDate, PassPayment, Invoice } = require('../models');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const { google } = require('googleapis');
@@ -220,6 +220,84 @@ const sendPdfByEmail = async (to, subject, htmlContent, pdfPath) => {
     }
 };
 
+const getSalesByUserId = async (userId) => {
+    try {
+        const sales = await Sale.findAll({
+            include: [
+                {
+                    model: Quotation,
+                    as: 'Quotation',
+                    where: { userId: userId },
+                    include: [
+                        { 
+                            model: Client, 
+                            as: 'Client' 
+                        },
+                        { 
+                            model: Event, 
+                            as: 'Events' 
+                        },
+                        {
+                            model: Pass,
+                            as: 'Pass'
+                        },
+                    ]
+                },
+                { 
+                    model: PaymentsDate, 
+                    as: 'PaymentsDate' 
+                },
+                {
+                    model: Invoice,
+                    as: 'Invoice'
+                }
+            ]
+        });
+
+        if (!sales || sales.length === 0) {
+            throw new Error(`No se encontraron ventas para el usuario con ID ${userId}`);
+        }
+
+        const salesData = await Promise.all(
+            sales.map(async (sale) => {
+                const quotation = sale.Quotation;
+                const totalTransport = quotation.Events.reduce(
+                    (sum, event) => sum + event.transportPrice, 
+                    0
+                );
+
+                let totalPayments = 0;
+                if (quotation.Pass) {
+                    totalPayments = await PassPayment.sum('payment', {
+                        where: { idPass: quotation.Pass.id }
+                    });
+                }
+
+                return {
+                    saleId: sale.id,
+                    quotationid: quotation.id,
+                    clientName: quotation.Client.name,
+                    totalNet: quotation.totalNet,
+                    IVA: quotation.IVA,
+                    subtotal: quotation.subtotal,
+                    totalTransport,
+                    pendingPayment: quotation.totalNet - totalPayments,
+                    totalPayments: totalPayments || 0,
+                    state: sale.state,
+                    etapa: sale.etapa,
+                    paymentDate: sale.PaymentsDate?.paymentDate,
+                    invoiceDate: sale.dateInvoice,
+                    createdAt: sale.createdAt
+                };
+            })
+        );
+
+        return salesData;
+    } catch (error) {
+        throw new Error(`Error al obtener las ventas del usuario: ${error.message}`);
+    }
+};
+
 
 module.exports = {
     getVentas,
@@ -227,5 +305,6 @@ module.exports = {
     getSale,
     updateSale,
     deleteSale,
-    sendPdfByEmail
+    sendPdfByEmail,
+    getSalesByUserId
 };

@@ -8,7 +8,8 @@ const {
     getSale,
     updateSale,
     deleteSale,
-    sendPdfByEmail
+    sendPdfByEmail,
+    getSalesByUserId
 } = require('../controllers/salesController');
 
 
@@ -16,6 +17,7 @@ const router = express.Router();
 
 router.get('/', getVenta);
 router.post('/', createSale);
+router.get('/user/:userId', getSalesByUserId);
 router.get('/:id', getSale);
 router.put('/:id', updateSale);
 router.delete('/:id', deleteSale);

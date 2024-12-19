@@ -8,9 +8,12 @@ const createPass = async (data) => {
         });
 
         if (!pass) {
-            pass = await Pass.create({
-                quotationId: data.quotationId,
-            }, { transaction });
+            pass = await Pass.create(
+                {
+                    quotationId: data.quotationId,
+                },
+                { transaction }
+            );
         }
 
         const paymentData = {
@@ -26,6 +29,23 @@ const createPass = async (data) => {
     } catch (error) {
         await transaction.rollback();
         throw new Error(`Error al crear o actualizar el Pass: ${error.message}`);
+    }
+};
+
+const getPassFile = async (idPass) => {
+    try {
+        const payment = await PassPayment.findOne({
+            where: { idPass },
+            attributes: ['file'],
+        });
+
+        if (!payment) {
+            throw new Error(`No se encontró un archivo asociado al pase con id ${idPass}`);
+        }
+
+        return payment.file;
+    } catch (error) {
+        throw new Error(`Error al recuperar el archivo del pase: ${error.message}`);
     }
 };
 
@@ -73,5 +93,6 @@ module.exports = {
     getPassById,
     getAllPasses,
     updatePass,
-    deletePass
+    deletePass,
+    getPassFile
 };

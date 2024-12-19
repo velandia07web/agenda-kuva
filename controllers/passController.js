@@ -14,7 +14,7 @@ const createPass = async (req, res) => {
         const data = {
             quotationId,
             payment: parseFloat(payment),
-            file: "",
+            file: req.file.path,
         };
 
         const result = await passService.createPass(data);
@@ -110,11 +110,38 @@ const deletePass = async (req, res) => {
     }
 };
 
+const path = require('path');
+
+const getPassFileController = async (req, res) => {
+    try {
+        const { idPass } = req.params;
+
+        const filePath = await passService.getPassFile(idPass);
+
+        if (!filePath) {
+            return res.status(404).json({
+                status: 404,
+                message: "Archivo no encontrado",
+            });
+        }
+
+        const absolutePath = path.resolve(filePath);
+        return res.status(200).sendFile(absolutePath);
+    } catch (error) {
+        res.status(500).json({
+            status: 500,
+            message: "Error al recuperar el archivo",
+            error: error.message,
+        });
+    }
+};
+
 module.exports = {
     createPass,
     getPass,
     getAllPasses,
     updatePass,
     deletePass,
-    uploadMiddleware
+    uploadMiddleware,
+    getPassFileController
 };

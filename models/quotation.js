@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'clientId',
                 as: 'Client'
             });
+
+            Quotation.hasOne(models.Pass, {
+                foreignKey: 'quotationId',
+                as: 'Pass'
+            });
         }
     }
 
