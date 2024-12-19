@@ -29,8 +29,9 @@ const createPass = async (data) => {
     }
 };
 
-const getPassById = async (id) => {
-    return await Pass.findByPk(id, {
+const getPassById = async (quotationId) => {
+    return await Pass.findOne({
+        where: { quotationId },
         include: [
             {
                 model: PassPayment,
