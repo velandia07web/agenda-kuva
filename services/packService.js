@@ -118,7 +118,7 @@ const getPacksWithPricesByZone = async function (idZone) {
 
     return packs.map(pack => {
       return pack.PricePack.map(price => ({
-        id: price.id,
+        id: pack.id,
         name: pack.name,
         description: pack.description,
         price: price.price,
