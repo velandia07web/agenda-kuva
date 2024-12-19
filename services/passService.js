@@ -30,11 +30,25 @@ const createPass = async (data) => {
 };
 
 const getPassById = async (id) => {
-    return await Pass.findByPk(id);
+    return await Pass.findByPk(id, {
+        include: [
+            {
+                model: PassPayment,
+                as: 'PassPayments',
+            },
+        ],
+    });
 };
 
 const getAllPasses = async () => {
-    return await Pass.findAll();
+    return await Pass.findAll({
+        include: [
+            {
+                model: PassPayment,
+                as: 'PassPayments',
+            },
+        ],
+    });
 };
 
 const updatePass = async (id, data) => {

@@ -4,8 +4,8 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class Pass extends Model {
         static associate(models) {
-            //Pass.belongsTo(models.Quotation, {foreignKey: 'quotationId',as: 'Quotation'});
-            //Pass.hasMany(models.PassPayment, {foreignKey: 'idPass',as: 'PassPayments'});
+            Pass.belongsTo(models.Quotation, {foreignKey: 'quotationId',as: 'Quotation'});
+            Pass.hasMany(models.PassPayment, {foreignKey: 'idPass',as: 'PassPayments'});
         }
     }
 

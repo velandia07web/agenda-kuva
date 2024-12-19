@@ -4,7 +4,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class PassPayment extends Model {
         static associate(models) {
-            //PassPayment.belongsTo(models.Pass, {foreignKey: 'idPass',as: 'Pass'});
+            PassPayment.belongsTo(models.Pass, {foreignKey: 'idPass',as: 'Pass'});
         }
     }
 
