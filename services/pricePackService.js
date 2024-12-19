@@ -33,8 +33,8 @@ const updatePricePack = async function (id, body) {
   try {
     return await PricePack.update({
       price: body.price,
-      idPack: body.idPack
-    }, { where: { id } })
+      priceDeadHour: body.priceDeadHour
+    }, { where: { idPack: id } })
   } catch (error) {
     throw new Error(`Error al actualizar el Price Pack: ${error.message}`)
   }
