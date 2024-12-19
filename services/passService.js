@@ -35,7 +35,7 @@ const createPass = async (data) => {
 const getPassFile = async (idPass) => {
     try {
         const payment = await PassPayment.findOne({
-            where: { idPass },
+            where: { id: idPass },
             attributes: ['file'],
         });
 
