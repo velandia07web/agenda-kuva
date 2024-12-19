@@ -8,6 +8,36 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'quotationId',
                 as: 'Quotation'
             });
+            
+            Event.belongsTo(models.User, {
+                foreignKey: 'coordinatorId',
+                as: 'Coordinator'
+            });
+
+            Event.belongsTo(models.User, {
+                foreignKey: 'designerId',
+                as: 'Designer'
+            });
+
+            Event.belongsTo(models.User, {
+                foreignKey: 'logisticId',
+                as: 'Logistic'
+            });
+
+            Event.hasMany(models.EventAdd, {
+                foreignKey: 'eventId',
+                as: 'EventAdd'
+            });
+
+            Event.hasMany(models.EventPack, {
+                foreignKey: 'eventId',
+                as: 'EventPack'
+            });
+
+            Event.hasMany(models.EventProduct, {
+                foreignKey: 'eventId',
+                as: 'EventProduct'
+            });
         }
     }
 
@@ -48,6 +78,42 @@ module.exports = (sequelize, DataTypes) => {
         transportPrice: {
             allowNull: false,
             type: DataTypes.INTEGER
+        },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        coordinatorId: {
+            type: DataTypes.UUID,
+            allowNull: true
+        },
+        designerId: {
+            type: DataTypes.UUID,
+            allowNull: true
+        },
+        logisticId: {
+            type: DataTypes.UUID,
+            allowNull: true
+        },
+        personName: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        personPhone: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        eventImage: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        eventDescription: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        location: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     }, {
         sequelize,

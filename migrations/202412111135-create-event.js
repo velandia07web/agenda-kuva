@@ -47,6 +47,60 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.INTEGER
             },
+            status: {
+                allowNull: true,
+                type: Sequelize.STRING
+            },
+            coordinatorId: {
+                allowNull: true,
+                type: Sequelize.UUID,
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                },
+                onUpdate: 'CASCADE',
+                onDelete: 'SET NULL'
+            },
+            designerId: {
+                allowNull: true,
+                type: Sequelize.UUID,
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                },
+                onUpdate: 'CASCADE',
+                onDelete: 'SET NULL'
+            },
+            logisticId: {
+                allowNull: true,
+                type: Sequelize.UUID,
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                },
+                onUpdate: 'CASCADE',
+                onDelete: 'SET NULL'
+            },
+            personName: {
+                allowNull: true,
+                type: Sequelize.STRING
+            },
+            personPhone: {
+                allowNull: true,
+                type: Sequelize.STRING
+            },
+            eventImage: {
+                allowNull: true,
+                type: Sequelize.STRING
+            },
+            eventDescription: {
+                allowNull: true,
+                type: Sequelize.TEXT
+            },
+            location: {
+                allowNull: true,
+                type: Sequelize.STRING
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
