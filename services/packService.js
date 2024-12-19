@@ -113,7 +113,7 @@ const getPacksWithPricesByZone = async function (idZone) {
           attributes: ['id', 'price', 'priceDeadHour'],
         },
       ],
-      attributes: ['id', 'name', 'description'],
+      attributes: ['id', 'name', 'description', 'idProduct'],
     });
 
     return packs.map(pack => {
@@ -122,7 +122,8 @@ const getPacksWithPricesByZone = async function (idZone) {
         name: pack.name,
         description: pack.description,
         price: price.price,
-        priceDeadHour: price.priceDeadHour
+        priceDeadHour: price.priceDeadHour,
+        idProduct: pack.idProduct
       }));
     }).flat();
   } catch (error) {
