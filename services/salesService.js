@@ -293,6 +293,7 @@ const getSalesByUserId = async (userId) => {
                     etapa: sale.etapa,
                     paymentDate: sale.PaymentsDate?.paymentDate,
                     invoiceDate: sale.dateInvoice,
+                    methodOfPayment: quotation.Client.typePayment,
                     createdAt: sale.createdAt
                 };
             })
