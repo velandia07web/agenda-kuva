@@ -167,9 +167,9 @@ const updateEventById = async (id, updateData) => {
 
         await event.update(filteredData);
 
-        if (updateData.users) {
+        if (updateData.eventUsers) {
             const existingUserIds = event.EventUsers.map(eu => eu.userId);
-            const newUserIds = updateData.users.map(user => user.id);
+            const newUserIds = updateData.eventUsers.map(user => user.id);
 
             const usersToRemove = existingUserIds.filter(userId => !newUserIds.includes(userId));
             if (usersToRemove.length > 0) {
@@ -195,6 +195,7 @@ const updateEventById = async (id, updateData) => {
         throw new Error(`Error al actualizar el evento: ${error.message}`);
     }
 };
+
 
 
 
