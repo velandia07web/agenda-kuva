@@ -1,3 +1,4 @@
+const { name } = require('ejs');
 const { Event, Quotation, User, City, EventAdd,EventProduct,EventPack, Add, Pack, Product, EventUser } = require('../models');
 
 const getAllEvents = async () => {
@@ -79,7 +80,7 @@ const getEventById = async (id) => {
             if (eu.role === 'logistic') acc.logistic = eu.User;
             return acc;
         }, {});
-        
+
         return {
             id: event.id,
             name: event.name,
@@ -91,9 +92,6 @@ const getEventById = async (id) => {
             transportPrice: event.transportPrice,
             location: event.location,
             quotationReference: event.Quotation?.reference,
-            coordinator: roles.coordinator || null,
-            designer: roles.designer || null,
-            logistic: roles.logistic || null,
             personName: event.personName,
             personPhone: event.personPhone,
             eventImage: event.eventImage,
@@ -110,6 +108,13 @@ const getEventById = async (id) => {
                 name: ep.Product?.name,
                 description: ep.Product?.description,
                 quantity: ep.quantity
+            })),
+            eventUsers: event.EventUsers.map(eu => ({
+                role: eu.role,
+                id: eu.User?.id,
+                name: eu.User?.name,
+                email: eu.User?.email,
+                cedula: eu.User?.cedula
             })),
             createdAt: event.createdAt,
             updatedAt: event.updatedAt
