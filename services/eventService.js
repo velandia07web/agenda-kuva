@@ -167,28 +167,17 @@ const updateEventById = async (id, updateData) => {
 
         await event.update(filteredData);
 
-        if (updateData.roles) {
-            for (const role in updateData.roles) {
-                const userId = updateData.roles[role];
-                const eventUser = event.EventUsers.find(eu => eu.role === role);
-
-                if (eventUser) {
-                    await eventUser.update({ userId });
-                } else {
-                    await EventUser.create({
-                        eventId: event.id,
-                        userId,
-                        role
-                    });
-                }
-            }
+        if (updateData.users) {
+            const userIds = updateData.users.map(user => user.id);
+            await event.setUsers(userIds);
         }
 
         return await getEventById(id);
     } catch (error) {
-        throw error;
+        throw new Error(`Error al actualizar el evento: ${error.message}`);
     }
 };
+
 
 
 module.exports = {
