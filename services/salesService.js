@@ -1,4 +1,4 @@
-const { Sale, Quotation,Client, Event, Pass, PaymentsDate, PassPayment, Invoice } = require('../models');
+const { Sale, Quotation,Client, Event, Pass, PaymentsDate, PassPayment, Invoice, Company } = require('../models');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const { google } = require('googleapis');
