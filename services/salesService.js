@@ -74,7 +74,7 @@ const getVentas = async () => {
                     totalPayments: totalAbono,
                     state: sale.state,
                     etapa: sale.etapa,
-                    methodOfPayment,
+                    methodOfPayment: client.typePayment,
                     fechaDePago,
                     totalAbono
                 };
@@ -151,7 +151,7 @@ const getSale = async (id) => {
             IVA,
             subtotal,
             totalTransport,
-            methodOfPayment,
+            methodOfPayment: client.typePayment,
             fechaDePago,
             totalAbono,
         };
