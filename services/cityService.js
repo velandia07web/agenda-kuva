@@ -23,6 +23,7 @@ const createCity = async function (body) {
     return await City.create({
       name: body.name,
       idZone: body.idZone,
+      transportPrice: body.transportPrice,
       state: "ACTIVO"
     })
   } catch (error) {

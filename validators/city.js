@@ -20,6 +20,8 @@ const validatorCreateItem = [
     .withMessage('El campo id debe ser un UUID válido'),
   check('state')
     .optional(),
+  check('transportPrice')
+    .optional(),
   validateResults
 ]
 
