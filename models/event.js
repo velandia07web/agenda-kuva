@@ -24,9 +24,8 @@ module.exports = (sequelize, DataTypes) => {
                 as: 'EventProduct'
             });
 
-            Event.belongsToMany(models.User, {
-                through: models.EventUser,
-                as: 'Users',
+            Event.hasMany(models.EventUser, {
+                as: 'EventUsers',
                 foreignKey: 'eventId'
             });
         }

@@ -26,6 +26,7 @@ const getEventById = async (id) => {
                 {
                     model: EventUser,
                     as: 'EventUsers',
+                    required: false,
                     include: [
                         {
                             model: User,
