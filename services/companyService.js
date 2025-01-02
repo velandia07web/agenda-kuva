@@ -1,14 +1,17 @@
 const { Company } = require('../models');
 
-const getAllCompanies = async () => {
+const getAllCompanies = async (state = null) => {
     try {
+        const whereCondition = state ? { state } : {};
         return await Company.findAndCountAll({
+            where: whereCondition,
             order: [['name', 'ASC']],
         });
     } catch (error) {
         throw new Error(`Error al obtener las empresas: ${error.message}`);
     }
 };
+
 
 const getOneCompany = async (id) => {
     try {

@@ -3,12 +3,14 @@ const companyService = require('../services/companyService');
 
 const getAllCompanies = async (req, res) => {
     try {
-        const companies = await companyService.getAllCompanies();
+        const { state } = req.query;
+        const companies = await companyService.getAllCompanies(state);
         return res.status(200).json({ status: 200, data: companies });
     } catch (error) {
         return res.status(500).json({ status: 500, message: error.message });
     }
 };
+
 
 const getOneCompany = async (req, res) => {
     try {
