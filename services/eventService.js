@@ -44,7 +44,7 @@ const getEventById = async (id) => {
                         as: 'add',
                         attributes: ['name']
                     }],
-                    attributes: ['id','name', 'quantity']
+                    attributes: ['id', 'quantity']
                 },
                 {
                     model: EventPack,
@@ -79,7 +79,7 @@ const getEventById = async (id) => {
             if (eu.role === 'logistic') acc.logistic = eu.User;
             return acc;
         }, {});
-
+        
         return {
             id: event.id,
             name: event.name,
@@ -99,7 +99,7 @@ const getEventById = async (id) => {
             eventImage: event.eventImage,
             eventDescription: event.eventDescription,
             eventAdds: event.EventAdd.map(ea => ({
-                name: ea.Add?.name,
+                name: ea.add?.name,
                 quantity: ea.quantity
             })),
             eventPacks: event.EventPack.map(ep => ({
