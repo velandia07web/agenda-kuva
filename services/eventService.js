@@ -44,7 +44,7 @@ const getEventById = async (id) => {
                         as: 'add',
                         attributes: ['name']
                     }],
-                    attributes: ['id', 'quantity']
+                    attributes: ['id','name', 'quantity']
                 },
                 {
                     model: EventPack,
