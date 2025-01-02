@@ -64,10 +64,16 @@ const getVentas = async () => {
 
                 return {
                     saleId: sale.id,
+                    quotationId: quotation.id,
+                    clientName: client.name,
                     totalNet,
                     IVA,
                     subtotal,
                     totalTransport,
+                    pendingPayment: totalNet - totalAbono,
+                    totalPayments: totalAbono,
+                    state: sale.state,
+                    etapa: sale.etapa,
                     methodOfPayment,
                     fechaDePago,
                     totalAbono

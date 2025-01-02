@@ -3,12 +3,22 @@ const zoneServices = require('../services/zoneServices')
 
 const getAllZones = async function (req, res) {
   try {
-    const allZones = await zoneServices.getAllZones()
-    return res.status(200).json({ status: 200, message: 'Zonas:', data: allZones })
+    const { state } = req.query;
+    const allZones = await zoneServices.getAllZones(state);
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Zonas obtenidas exitosamente',
+      data: allZones
+    });
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al obtener las zonas.', error: error.message })
+    return res.status(500).json({
+      status: 500,
+      message: 'Error al obtener las zonas.',
+      error: error.message
+    });
   }
-}
+};
 
 const getOneZones = async function (req, res) {
   try {

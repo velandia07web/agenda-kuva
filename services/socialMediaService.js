@@ -1,14 +1,17 @@
 const { SocialMedia } = require('../models')
 
-const getAllSocialMedias = async function () {
+const getAllSocialMedias = async function (stateFilter = null) {
   try {
+    const whereClause = stateFilter ? { state: stateFilter } : {};
+
     return await SocialMedia.findAndCountAll({
+      where: whereClause,
       order: [['name', 'ASC']]
-    })
+    });
   } catch (error) {
-    throw new Error(`Error al obtener los social medias: ${error.message}`)
+    throw new Error(`Error al obtener los social medias: ${error.message}`);
   }
-}
+};
 
 const getOneSocialMedia = async function (id) {
   try {

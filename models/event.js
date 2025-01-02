@@ -8,21 +8,6 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'quotationId',
                 as: 'Quotation'
             });
-            
-            Event.belongsTo(models.User, {
-                foreignKey: 'coordinatorId',
-                as: 'Coordinator'
-            });
-
-            Event.belongsTo(models.User, {
-                foreignKey: 'designerId',
-                as: 'Designer'
-            });
-
-            Event.belongsTo(models.User, {
-                foreignKey: 'logisticId',
-                as: 'Logistic'
-            });
 
             Event.hasMany(models.EventAdd, {
                 foreignKey: 'eventId',
@@ -37,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
             Event.hasMany(models.EventProduct, {
                 foreignKey: 'eventId',
                 as: 'EventProduct'
+            });
+
+            Event.belongsToMany(models.User, {
+                through: models.EventUser,
+                as: 'Users',
+                foreignKey: 'eventId'
             });
         }
     }
@@ -81,18 +72,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         status: {
             type: DataTypes.STRING,
-            allowNull: true
-        },
-        coordinatorId: {
-            type: DataTypes.UUID,
-            allowNull: true
-        },
-        designerId: {
-            type: DataTypes.UUID,
-            allowNull: true
-        },
-        logisticId: {
-            type: DataTypes.UUID,
             allowNull: true
         },
         personName: {

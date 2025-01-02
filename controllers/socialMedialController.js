@@ -3,12 +3,23 @@ const socialMediaService = require('../services/socialMediaService')
 
 const getAllSocialMedias = async function (req, res) {
   try {
-    const allSocialMedias = await socialMediaService.getAllSocialMedias()
-    return res.status(200).json({ status: 200, message: 'Social Medias:', data: allSocialMedias })
+    const { state } = req.query;
+    const allSocialMedias = await socialMediaService.getAllSocialMedias(state);
+
+    return res.status(200).json({
+      status: 200,
+      message: 'Social Medias obtenidas exitosamente',
+      data: allSocialMedias
+    });
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al obtener los social medias.', error: error.message })
+    return res.status(500).json({
+      status: 500,
+      message: 'Error al obtener los social medias.',
+      error: error.message
+    });
   }
-}
+};
+
 
 const getOneSocialMedias = async function (req, res) {
   try {

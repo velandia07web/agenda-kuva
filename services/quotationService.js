@@ -272,7 +272,7 @@ const sendQuotationEmail = async (quotationId) => {
             }
         );
 
-        await sendMail("luisandresperez8@gmail.com", 'Tu Cotización', htmlTemplate);
+        await sendMail(quotation.email, 'Tu Cotización', htmlTemplate);
 
         console.log(`Correo enviado a ${client.email} para la cotización ${quotationId}`);
     } catch (error) {

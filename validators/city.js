@@ -56,6 +56,8 @@ const validatorUpdateItem = [
     .withMessage('El campo idZone solo puede contener letras, números y espacios'),
   check('state')
     .optional(),
+  check('transportPrice')
+    .optional(),  
   validateResults
 ]
 

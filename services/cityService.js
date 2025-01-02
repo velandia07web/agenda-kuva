@@ -34,7 +34,8 @@ const updateCity = async function (id, body) {
   try {
     return await City.update({
       name: body.name,
-      idZone: body.idZone
+      idZone: body.idZone,
+      transportPrice: body.transportPrice,
     }, { where: { id } })
   } catch (error) {
     throw new Error(`Error al actualizar el ciudad: ${error.message}`)

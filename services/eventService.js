@@ -24,19 +24,16 @@ const getEventById = async (id) => {
                     attributes: ['reference', 'clientId', 'userId']
                 },
                 {
-                    model: User,
-                    as: 'Coordinator',
-                    attributes: ['id', 'name', 'email', 'cedula']
-                },
-                {
-                    model: User,
-                    as: 'Designer',
-                    attributes: ['id', 'name', 'email', 'cedula']
-                },
-                {
-                    model: User,
-                    as: 'Logistic',
-                    attributes: ['id', 'name', 'email', 'cedula']
+                    model: EventUser,
+                    as: 'EventUsers',
+                    include: [
+                        {
+                            model: User,
+                            as: 'User',
+                            attributes: ['id', 'name', 'email', 'cedula']
+                        }
+                    ],
+                    attributes: ['role']
                 },
                 {
                     model: EventAdd,
@@ -75,6 +72,13 @@ const getEventById = async (id) => {
             throw new Error('Evento no encontrado');
         }
 
+        const roles = event.EventUsers.reduce((acc, eu) => {
+            if (eu.role === 'coordinator') acc.coordinator = eu.User;
+            if (eu.role === 'designer') acc.designer = eu.User;
+            if (eu.role === 'logistic') acc.logistic = eu.User;
+            return acc;
+        }, {});
+
         return {
             id: event.id,
             name: event.name,
@@ -86,24 +90,9 @@ const getEventById = async (id) => {
             transportPrice: event.transportPrice,
             location: event.location,
             quotationReference: event.Quotation?.reference,
-            coordinator: event.Coordinator ? {
-                id: event.Coordinator.id,
-                name: event.Coordinator.name,
-                email: event.Coordinator.email,
-                cedula: event.Coordinator.cedula
-            } : null,
-            designer: event.Designer ? {
-                id: event.Designer.id,
-                name: event.Designer.name,
-                email: event.Designer.email,
-                cedula: event.Designer.cedula
-            } : null,
-            logistic: event.Logistic ? {
-                id: event.Logistic.id,
-                name: event.Logistic.name,
-                email: event.Logistic.email,
-                cedula: event.Logistic.cedula
-            } : null,
+            coordinator: roles.coordinator || null,
+            designer: roles.designer || null,
+            logistic: roles.logistic || null,
             personName: event.personName,
             personPhone: event.personPhone,
             eventImage: event.eventImage,
@@ -129,11 +118,15 @@ const getEventById = async (id) => {
     }
 };
 
-
 const updateEventById = async (id, updateData) => {
     try {
-        const event = await Event.findByPk(id);
-        
+        const event = await Event.findByPk(id, {
+            include: [{
+                model: EventUser,
+                as: 'EventUsers'
+            }]
+        });
+
         if (!event) {
             throw new Error('Evento no encontrado');
         }
@@ -141,7 +134,6 @@ const updateEventById = async (id, updateData) => {
         const allowedFields = [
             'name', 'status', 'dateStart', 'dateEnd', 'days',
             'total', 'transportPrice', 'location', 'cityId',
-            'coordinatorId', 'designerId', 'logisticId',
             'personName', 'personPhone', 'eventImage',
             'eventDescription'
         ];
@@ -169,11 +161,29 @@ const updateEventById = async (id, updateData) => {
 
         await event.update(filteredData);
 
+        if (updateData.roles) {
+            for (const role in updateData.roles) {
+                const userId = updateData.roles[role];
+                const eventUser = event.EventUsers.find(eu => eu.role === role);
+
+                if (eventUser) {
+                    await eventUser.update({ userId });
+                } else {
+                    await EventUser.create({
+                        eventId: event.id,
+                        userId,
+                        role
+                    });
+                }
+            }
+        }
+
         return await getEventById(id);
     } catch (error) {
         throw error;
     }
 };
+
 
 module.exports = {
     getAllEvents,

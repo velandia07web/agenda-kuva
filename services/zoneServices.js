@@ -1,16 +1,20 @@
 const { Zone, City, Product, Pack } = require('../models')
 
-const getAllZones = async function () {
+const getAllZones = async function (stateFilter = null) {
   try {
+    const whereClause = stateFilter ? { state: stateFilter } : {};
+
     const zones = await Zone.findAndCountAll({
+      where: whereClause,
       order: [['name', 'ASC']]
-    })
-    return zones
+    });
+
+    return zones;
   } catch (error) {
-    console.error(`Error al obtener las zonas: ${error.message}`)
-    throw new Error(`Error al obtener las zonas: ${error.message}`)
+    console.error(`Error al obtener las zonas: ${error.message}`);
+    throw new Error(`Error al obtener las zonas: ${error.message}`);
   }
-}
+};
 
 const getOneZone = async function (id) {
   try {
