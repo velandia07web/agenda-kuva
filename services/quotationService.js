@@ -281,6 +281,48 @@ const sendQuotationEmail = async (quotationId) => {
     }
 };
 
+
+const sendQuotationEmailOne = async (quotationId, email) => {
+    try {
+        const quotation = await Quotation.findByPk(quotationId, {
+            include: [{ model: Client, as: 'Client' }],
+        });
+        if (!quotation) {
+            throw new Error(`No se encontró la cotización con ID ${quotationId}`);
+        }
+
+        const client = quotation.Client;
+        if (!client) {
+            throw new Error(`No se encontró el cliente asociado con la cotización ${quotationId}`);
+        }
+
+        const approveUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=Aprobado`;
+        const rejectUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=Rechazada`;
+        const tax = quotation.subtotal * 0.19;
+
+        const htmlTemplate = await ejs.renderFile(
+            path.join(__dirname, "../email/templates/quotation.ejs"),
+            {
+                clientName: client.name,
+                reference: quotation.reference,
+                subtotal: quotation.subtotal,
+                tax,
+                discount: quotation.discount,
+                totalNet: quotation.totalNet,
+                approveUrl,
+                rejectUrl,
+            }
+        );
+
+        await sendMail(email, 'Tu Cotización', htmlTemplate);
+
+        console.log(`Correo enviado a ${client.email} para la cotización ${quotationId}`);
+    } catch (error) {
+        console.error(`Error al enviar el correo: ${error.message}`);
+        throw new Error(`Error al enviar el correo para la cotización ${quotationId}`);
+    }
+};
+
 const getOneQuotation = async (id) => {
     return Quotation.findByPk(id, {
         include: [
@@ -390,5 +432,6 @@ module.exports = {
     updateQuotation,
     inactivateQuotation,
     getQuotationsByState,
-    sendQuotationEmail
+    sendQuotationEmail,
+    sendQuotationEmailOne
 };

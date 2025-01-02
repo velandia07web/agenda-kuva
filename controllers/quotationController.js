@@ -105,6 +105,30 @@ const getQuotationsByState = async function (req, res) {
     }
 }
 
+const sendQuotationEmailOne = async function (req, res) {
+    try {
+        const { id } = req.params;
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ status: 400, message: 'El campo "email" es obligatorio.' });
+        }
+
+        await quotationService.sendQuotationEmailOne(id, email);
+
+        return res.status(200).json({
+            status: 200,
+            message: `Correo enviado exitosamente a ${email} para la cotización con ID ${id}.`,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: 500,
+            message: 'Error al enviar el correo de la cotización.',
+            error: error.message,
+        });
+    }
+};
+
 module.exports = {
     createQuotation,
     getQuotation,
@@ -112,5 +136,6 @@ module.exports = {
     updateQuotation,
     inactivateQuotation,
     getQuotationsByState,
-    sendQuotationEmail
+    sendQuotationEmail,
+    sendQuotationEmailOne
 };

@@ -1,7 +1,7 @@
 const express = require('express');
 const { Quotation, Sale } = require('../models');
 const { v4: uuidv4 } = require('uuid');
-const { createQuotation,sendQuotationEmail, getQuotation, getAllQuotation,updateQuotation,inactivateQuotation,getQuotationsByState} = require('../controllers/quotationController');
+const { createQuotation,sendQuotationEmail, getQuotation, getAllQuotation,updateQuotation,inactivateQuotation,getQuotationsByState, sendQuotationEmailOne} = require('../controllers/quotationController');
 const authMiddlewareRol = require("../middlewares/sessionRol");
 const router = express.Router();
 
@@ -12,6 +12,7 @@ router.post('/quotations',createQuotation)
       .get('/email/:id', sendQuotationEmail)
       .get('/:id',  getQuotation)
       .get('/state/:state',  getQuotationsByState)
+      .post('/quotations/email/:id', sendQuotationEmailOne)
       .delete('/:id',  inactivateQuotation);
 
 
