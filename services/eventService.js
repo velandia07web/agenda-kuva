@@ -1,4 +1,4 @@
-const { Event, Quotation, User, City, EventAdd,EventProduct,EventPack, Add, Pack, Product } = require('../models');
+const { Event, Quotation, User, City, EventAdd,EventProduct,EventPack, Add, Pack, Product, EventUser } = require('../models');
 
 const getAllEvents = async () => {
     try {
