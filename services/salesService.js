@@ -18,7 +18,13 @@ const getVentas = async () => {
                     model: Quotation,
                     as: 'Quotation',
                     include: [
-                        { model: Client, as: 'Client' },
+                        { model: Client, as: 'Client', include: [
+                            {
+                                model: Company,
+                                as: 'associatedCompany',
+                                required: false
+                            }
+                        ]},
                         { model: Event, as: 'Events' }
                     ]
                 },
@@ -74,7 +80,7 @@ const getVentas = async () => {
                     totalPayments: totalAbono,
                     state: sale.state,
                     etapa: sale.etapa,
-                    methodOfPayment: client.typePayment,
+                    methodOfPayment: client.typePayment || client.associatedCompany.typePayment,
                     fechaDePago,
                     totalAbono
                 };
@@ -103,7 +109,13 @@ const getSale = async (id) => {
                     model: Quotation,
                     as: 'Quotation',
                     include: [
-                        { model: Client, as: 'Client' },
+                        { model: Client, as: 'Client', include: [
+                            {
+                                model: Company,
+                                as: 'associatedCompany',
+                                required: false
+                            }
+                        ] },
                         { model: Event, as: 'Events' },
                     ],
                 },
@@ -151,7 +163,7 @@ const getSale = async (id) => {
             IVA,
             subtotal,
             totalTransport,
-            methodOfPayment: client.typePayment,
+            methodOfPayment: client.typePayment || client.associatedCompany.typePayment,
             fechaDePago,
             totalAbono,
         };
@@ -237,7 +249,14 @@ const getSalesByUserId = async (userId) => {
                     include: [
                         { 
                             model: Client, 
-                            as: 'Client' 
+                            as: 'Client',
+                            include: [
+                                {
+                                    model: Company,
+                                    as: 'associatedCompany',
+                                    required: false
+                                }
+                            ]
                         },
                         { 
                             model: Event, 
@@ -293,7 +312,7 @@ const getSalesByUserId = async (userId) => {
                     etapa: sale.etapa,
                     paymentDate: sale.PaymentsDate?.paymentDate,
                     invoiceDate: sale.dateInvoice,
-                    methodOfPayment: quotation.Client.typePayment,
+                    methodOfPayment: quotation.Client.typePayment || quotation.Client.associatedCompany.typePayment,
                     createdAt: sale.createdAt
                 };
             })
