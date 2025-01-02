@@ -168,8 +168,26 @@ const updateEventById = async (id, updateData) => {
         await event.update(filteredData);
 
         if (updateData.users) {
-            const userIds = updateData.users.map(user => user.id);
-            await event.setUsers(userIds);
+            const existingUserIds = event.EventUsers.map(eu => eu.userId);
+            const newUserIds = updateData.users.map(user => user.id);
+
+            const usersToRemove = existingUserIds.filter(userId => !newUserIds.includes(userId));
+            if (usersToRemove.length > 0) {
+                await EventUser.destroy({
+                    where: {
+                        eventId: event.id,
+                        userId: usersToRemove
+                    }
+                });
+            }
+
+            const usersToAdd = newUserIds.filter(userId => !existingUserIds.includes(userId));
+            for (const userId of usersToAdd) {
+                await EventUser.create({
+                    eventId: event.id,
+                    userId
+                });
+            }
         }
 
         return await getEventById(id);
@@ -177,6 +195,7 @@ const updateEventById = async (id, updateData) => {
         throw new Error(`Error al actualizar el evento: ${error.message}`);
     }
 };
+
 
 
 
