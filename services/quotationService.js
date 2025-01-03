@@ -46,48 +46,44 @@ const createQuotation = async (data) => {
 
             const packsTotal = await Promise.all(
                 packs.map(async (pack) => {
-                    const packData = await Pack.findByPk(pack.id, {
-                        include: [{ model: PricePack, as: 'PricePack' }],
-                        transaction,
-                    });
-                    if (!packData || !packData.PricePack || packData.PricePack.length === 0) {
-                        throw new Error(`Pack con ID ${pack.id} no encontrado o sin PricePack válido`);
+                    const packData = await Pack.findByPk(pack.id, { transaction });
+                    if (!packData) throw new Error(`Pack con ID ${pack.id} no encontrado`);
+                    if (packData.state !== 'ACTIVO') {
+                        throw new Error(`Pack con ID ${pack.id} no está ACTIVO`);
                     }
-                    const price = parseFloat(packData.PricePack[0]?.dataValues?.price || 0);
-                    if (isNaN(price)) {
-                        throw new Error(`Precio inválido para Pack con ID ${pack.id}`);
-                    }
-                    return price;
+                    const pricePack = await PricePack.findOne({ where: { idPack: pack.id }, transaction });
+                    if (!pricePack) throw new Error(`Precio no encontrado para el Pack con ID ${pack.id}`);
+                    return parseFloat(pricePack.price || 0);
                 })
             );
             const packsTotalSum = packsTotal.reduce((sum, value) => sum + value, 0);
 
             const productsTotal = await Promise.all(
                 products.map(async (product) => {
-                    const productData = await Product.findByPk(product.id, {
-                        include: [
-                            {
-                                model: ProductPrice,
-                                as: 'ProductPrices',
-                                where: { hour: product.hour },
-                            },
-                        ],
+                    const productData = await Product.findByPk(product.id, { transaction });
+                    if (!productData) throw new Error(`Producto con ID ${product.id} no encontrado`);
+                    if (productData.state !== 'ACTIVO') {
+                        throw new Error(`Producto con ID ${product.id} no está ACTIVO`);
+                    }
+                    if (productData.count <= 0) {
+                        throw new Error(`Producto con ID ${product.id} no tiene suficiente inventario`);
+                    }
+                    if (product.quantity > productData.count) {
+                        throw new Error(`Cantidad solicitada (${product.quantity}) excede el inventario disponible (${productData.count}) para el producto ${product.id}`);
+                    }
+            
+                    await productData.update({
+                        count: productData.count - product.quantity
+                    }, { transaction });
+            
+                    const productPrice = await ProductPrice.findOne({
+                        where: { product_id: product.id, hour: product.hour },
                         transaction,
                     });
-
-                    if (!productData || !productData.ProductPrices || productData.ProductPrices.length === 0) {
-                        throw new Error(`Product con ID ${product.id} y hora ${product.hour} no encontrado`);
-                    }
-
-                    const price = parseFloat(productData.ProductPrices[0]?.price || 0);
-                    const quantity = parseInt(product.quantity || 0, 10);
-                    if (isNaN(price) || isNaN(quantity)) {
-                        throw new Error(`Datos inválidos para Product con ID ${product.id}`);
-                    }
-                    return price * quantity;
+                    if (!productPrice) throw new Error(`Precio no encontrado para el Producto con ID ${product.id}`);
+                    return parseFloat(productPrice.price || 0) * parseInt(product.quantity || 0, 10);
                 })
             );
-
             const productsTotalSum = productsTotal.reduce((sum, value) => sum + value, 0);
 
             const addsTotal = await Promise.all(
@@ -243,8 +239,50 @@ const createQuotation = async (data) => {
 const sendQuotationEmail = async (quotationId) => {
     try {
         const quotation = await Quotation.findByPk(quotationId, {
-            include: [{ model: Client, as: 'Client' }],
+            include: [
+                {
+                    model: Client,
+                    as: 'Client',
+                },
+                {
+                    model: Event,
+                    as: 'Events',
+                    include: [
+                        {
+                            model: EventAdd,
+                            as: 'EventAdd',
+                            include: [
+                                {
+                                    model: Add,
+                                    as: 'add',
+                                },
+                            ],
+                        },
+                        {
+                            model: EventProduct,
+                            as: 'EventProduct',
+                            include: [
+                                {
+                                    model: Product,
+                                    as: 'Product',
+                                },
+                            ],
+                        },
+                        {
+                            model: EventPack,
+                            as: 'EventPack',
+                            include: [
+                                {
+                                    model: Pack,
+                                    as: 'Pack',
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         });
+
         if (!quotation) {
             throw new Error(`No se encontró la cotización con ID ${quotationId}`);
         }
@@ -258,6 +296,12 @@ const sendQuotationEmail = async (quotationId) => {
         const rejectUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=Rechazada`;
         const tax = quotation.subtotal * 0.19;
 
+        const eventDetails = quotation.Events.map(event => ({
+            products: event.EventProduct?.map(ep => ep.Product?.name || 'Producto sin nombre').join(', ') || 'Sin productos',
+            packs: event.EventPack?.map(ep => ep.Pack?.name || 'Pack sin nombre').join(', ') || 'Sin packs',
+            adds: event.EventAdd?.map(ea => ea.add?.name || 'Añadido sin nombre').join(', ') || 'Sin añadidos',
+        }));
+
         const htmlTemplate = await ejs.renderFile(
             path.join(__dirname, "../email/templates/quotation.ejs"),
             {
@@ -269,10 +313,11 @@ const sendQuotationEmail = async (quotationId) => {
                 totalNet: quotation.totalNet,
                 approveUrl,
                 rejectUrl,
+                eventDetails,
             }
         );
 
-        await sendMail(quotation.email, 'Tu Cotización', htmlTemplate);
+        await sendMail(client.email, 'Tu Cotización', htmlTemplate);
 
         console.log(`Correo enviado a ${client.email} para la cotización ${quotationId}`);
     } catch (error) {
@@ -281,12 +326,59 @@ const sendQuotationEmail = async (quotationId) => {
     }
 };
 
-
 const sendQuotationEmailOne = async (quotationId, email) => {
     try {
         const quotation = await Quotation.findByPk(quotationId, {
-            include: [{ model: Client, as: 'Client' }],
+            include: [
+                {
+                    model: Client,
+                    as: 'Client',
+                },
+                {
+                    model: Event,
+                    as: 'Events',
+                    include: [
+                        {
+                            model: EventAdd,
+                            as: 'EventAdd',
+                            include: [
+                                {
+                                    model: Add,
+                                    as: 'add',
+                                    attributes: ['name'],
+                                },
+                            ],
+                            attributes: ['id', 'quantity'],
+                        },
+                        {
+                            model: EventProduct,
+                            as: 'EventProduct',
+                            include: [
+                                {
+                                    model: Product,
+                                    as: 'Product',
+                                    attributes: ['name', 'description'],
+                                },
+                            ],
+                            attributes: ['id', 'quantity'],
+                        },
+                        {
+                            model: EventPack,
+                            as: 'EventPack',
+                            include: [
+                                {
+                                    model: Pack,
+                                    as: 'Pack',
+                                    attributes: ['name', 'description'],
+                                },
+                            ],
+                            attributes: ['id'],
+                        },
+                    ],
+                },
+            ],
         });
+
         if (!quotation) {
             throw new Error(`No se encontró la cotización con ID ${quotationId}`);
         }
@@ -300,6 +392,12 @@ const sendQuotationEmailOne = async (quotationId, email) => {
         const rejectUrl = `http://localhost:3310/api/quotation/${quotation.id}/respond?response=Rechazada`;
         const tax = quotation.subtotal * 0.19;
 
+        const eventDetails = quotation.Events?.map(event => ({
+            products: event.EventProduct?.map(ep => ep.Product?.name || 'Producto sin nombre').join(', ') || 'Sin productos',
+            packs: event.EventPack?.map(ep => ep.Pack?.name || 'Pack sin nombre').join(', ') || 'Sin packs',
+            adds: event.EventAdd?.map(ea => ea.add?.name || 'Añadido sin nombre').join(', ') || 'Sin añadidos',
+        })) || [];
+
         const htmlTemplate = await ejs.renderFile(
             path.join(__dirname, "../email/templates/quotation.ejs"),
             {
@@ -311,12 +409,13 @@ const sendQuotationEmailOne = async (quotationId, email) => {
                 totalNet: quotation.totalNet,
                 approveUrl,
                 rejectUrl,
+                eventDetails,
             }
         );
 
         await sendMail(email, 'Tu Cotización', htmlTemplate);
 
-        console.log(`Correo enviado a ${client.email} para la cotización ${quotationId}`);
+        console.log(`Correo enviado a ${email} para la cotización ${quotationId}`);
     } catch (error) {
         console.error(`Error al enviar el correo: ${error.message}`);
         throw new Error(`Error al enviar el correo para la cotización ${quotationId}`);

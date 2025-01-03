@@ -1,19 +1,94 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffaf0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #f4a261;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #f4a261;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .btn-approve {
+            background-color: green;
+        }
+        .btn-reject {
+            background-color: red;
+        }
+        .event-details {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #fef6e7;
+            border: 1px solid #f4a261;
+            border-radius: 5px;
+        }
+        .event-details h4 {
+            margin: 0 0 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f4a261;
+            color: #fff;
+        }
+    </style>
+</head>
 <body>
-<h1>Cotización para <%= clientName %></h1>
-<p>Referencia: <%= reference %></p>
-<p>Subtotal: $<%= subtotal %></p>
-<p>Impuestos: $<%= tax %></p>
-<p>Descuento: $<%= discount %></p>
-<p>Total Neto: $<%= totalNet %></p>
-<img src="cid:logoImage" alt="Logo" />
+    <div class="container">
+        <div class="header">
+            <h1>Cotización para <%= clientName %></h1>
+        </div>
+        <div class="content">
+            <p>Referencia: <strong><%= reference %></strong></p>
+            <p>Subtotal: <strong>$<%= subtotal.toFixed(2) %></strong></p>
+            <p>Impuestos: <strong>$<%= tax.toFixed(2) %></strong></p>
+            <p>Descuento: <strong>$<%= discount.toFixed(2) %></strong></p>
+            <p>Total Neto: <strong>$<%= totalNet.toFixed(2) %></strong></p>
 
-<p>Estimado <%= clientName %>,</p>
-<p>Por favor, revise la cotización y seleccione una opción:</p>
+            <h3>Detalles del Evento:</h3>
+            <% eventDetails.forEach((event, index) => { %>
+                <div class="event-details">
+                    <h4>Evento <%= index + 1 %></h4>
+                    <p><strong>Productos:</strong> <%= event.products %></p>
+                    <p><strong>Packs:</strong> <%= event.packs %></p>
+                    <p><strong>Añadidos:</strong> <%= event.adds %></p>
+                </div>                
+            <% }); %>
 
-<a href="<%= approveUrl %>" style="padding: 10px; color: white; background-color: green; text-decoration: none;">Aprobar</a>
-<a href="<%= rejectUrl %>" style="padding: 10px; color: white; background-color: red; text-decoration: none;">Rechazar</a>
-
-<p>Gracias,</p>
+            <p>Por favor, revise la cotización y seleccione una opción:</p>
+            <a href="<%= approveUrl %>" class="btn btn-approve">Aprobar</a>
+            <a href="<%= rejectUrl %>" class="btn btn-reject">Rechazar</a>
+        </div>
+        <div class="footer">
+            <p>Gracias por elegirnos</p>
+        </div>
+    </div>
 </body>
 </html>

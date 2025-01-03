@@ -22,34 +22,64 @@ router.post('/quotations',createQuotation)
             const { response } = req.query;
     
             if (!['Aprobado', 'Rechazada'].includes(response)) {
-                return res.status(400).json({ error: 'Estado invalido.' });
+                return res.status(400).send(`
+                    <div style="font-family: Arial, sans-serif; text-align: center; margin: 50px auto; max-width: 600px; color: #333;">
+                        <h1 style="color: red;">Error</h1>
+                        <p>Estado inválido. Solo se permiten las opciones <strong>Aprobado</strong> o <strong>Rechazada</strong>.</p>
+                    </div>
+                `);
             }
     
             const quotation = await Quotation.findByPk(id);
             if (!quotation) {
-                return res.status(404).json({ error: 'Cotización no encontrada.' });
+                return res.status(404).send(`
+                    <div style="font-family: Arial, sans-serif; text-align: center; margin: 50px auto; max-width: 600px; color: #333;">
+                        <h1 style="color: red;">Error</h1>
+                        <p>No se encontró la cotización con el ID: <strong>${id}</strong>.</p>
+                        <p>Cierre la pestaña y vuelva a la lista de cotizaciones.</p>
+                    </div>
+                `);
             }
     
             quotation.state = response;
             await quotation.save();
-
+    
             if (response === 'Aprobado') {
                 const sale = await Sale.create({
                     id: uuidv4(),
                     idQuotation: id,
-                    state: 'venta sin completar', 
+                    state: 'venta sin completar',
                     etapa: 'ACTIVO',
-                    createdAt: new Date(), 
+                    createdAt: new Date(),
                     updatedAt: new Date(),
                 });
     
-                return res.send(`<h1>Cotización ${response} creada correctamente el ID de venta: ${sale.id}</h1>`);
+                return res.send(`
+                    <div style="font-family: Arial, sans-serif; text-align: center; margin: 50px auto; max-width: 600px; color: #333;">
+                        <h1 style="color: green;">Cotización Aprobada</h1>
+                        <p>La cotización ha sido aprobada exitosamente.</p>
+                        <p>ID de la nueva venta: <strong>${sale.id}</strong></p>
+                        <p>Cierre la pestaña y vuelva a la lista de cotizaciones.</p>
+                    </div>
+                `);
             }
     
-            res.send(`<h1>Cotización ${response}  correctamente!</h1>`);
+            res.send(`
+                <div style="font-family: Arial, sans-serif; text-align: center; margin: 50px auto; max-width: 600px; color: #333;">
+                    <h1 style="color: orange;">Cotización ${response}</h1>
+                    <p>La cotización ha sido <strong>${response.toLowerCase()}</strong> correctamente.</p>
+                    <p>Cierre la pestaña y vuelva a la lista de cotizaciones.</p>
+                </div>
+            `);
         } catch (error) {
             console.error(error);
-            res.status(500).send('<h1>Ha ocurrido un error.</h1>');
+            res.status(500).send(`
+                <div style="font-family: Arial, sans-serif; text-align: center; margin: 50px auto; max-width: 600px; color: #333;">
+                    <h1 style="color: red;">Error</h1>
+                    <p>Ha ocurrido un error inesperado. Por favor, inténtelo de nuevo más tarde.</p>
+                    <p>Cierre la pestaña y vuelva a la lista de cotizaciones.</p>
+                </div>
+            `);
         }
     });
 
