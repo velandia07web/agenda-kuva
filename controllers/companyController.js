@@ -1,5 +1,6 @@
 const { matchedData } = require('express-validator');
 const companyService = require('../services/companyService');
+const { Company } = require('../models');
 
 const getAllCompanies = async (req, res) => {
     try {
@@ -45,28 +46,33 @@ const updateCompany = async (req, res) => {
     }
 };
 
-const deleteCompany = async (id) => {
+const deleteCompany = async (req, res) => {
     try {
-        const company = await Company.findOne({ where: { id } });
+        const { id } = req.params;
 
+        const company = await Company.findOne({ where: { id } });
         if (!company) {
-            throw new Error(`Empresa con id ${id} no encontrada`);
+            return res.status(404).json({ error: `Empresa con id ${id} no encontrada` });
         }
 
         const newState = company.state === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
 
-        const updatedCount = await Company.update(
+        const [updatedCount] = await Company.update(
             { state: newState },
             { where: { id } }
         );
 
-        if (updatedCount[0] === 0) {
-            throw new Error(`No se pudo actualizar el estado de la empresa con id ${id}`);
+        if (updatedCount === 0) {
+            return res.status(400).json({ error: `No se pudo actualizar el estado de la empresa con id ${id}` });
         }
 
-        return { id, newState };
+        return res.status(200).json({ id, newState });
     } catch (error) {
-        throw new Error(`Error al alternar el estado de la empresa: ${error.message}`);
+        console.error('Error al alternar el estado de la empresa:', error);
+
+        return res.status(500).json({
+            error: 'Ocurrió un error al alternar el estado de la empresa. Por favor, intenta nuevamente.',
+        });
     }
 };
 

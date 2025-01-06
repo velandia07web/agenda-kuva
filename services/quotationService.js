@@ -431,7 +431,7 @@ const getOneQuotation = async (id) => {
                 include: [
                     {
                         model: EventAdd,
-                        as: 'EventAdds',
+                        as: 'EventAdd',
                         include: [
                             {
                                 model: Add,
@@ -441,7 +441,7 @@ const getOneQuotation = async (id) => {
                     },
                     {
                         model: EventProduct,
-                        as: 'EventProducts',
+                        as: 'EventProduct',
                         include: [
                             {
                                 model: Product,
@@ -451,7 +451,7 @@ const getOneQuotation = async (id) => {
                     },
                     {
                         model: EventPack,
-                        as: 'EventPacks',
+                        as: 'EventPack',
                         include: [
                             {
                                 model: Pack,
