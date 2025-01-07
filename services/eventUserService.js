@@ -18,7 +18,7 @@ const deleteEventUser = async (eventId, userId) => {
 const getUsersNotInEvent = async (eventId) => {
     try {
         const users = await User.findAll({
-            attributes: ['id', 'name'],
+            attributes: ['id', 'name', 'lastName'],
             where: {
                 id: {
                     [Op.notIn]: sequelize.literal(
