@@ -178,6 +178,7 @@ const updateEventById = async (id, updateData) => {
 
         await event.update(filteredData);
 
+        // Actualización de usuarios del evento
         if (updateData.eventUsers) {
             let eventUsersArray;
 
@@ -190,8 +191,6 @@ const updateEventById = async (id, updateData) => {
             }
 
             const existingUserIds = event.EventUsers.map(eu => eu.userId);
-            const newUserIds = eventUsersArray.map(user => user.id);
-
             const usersToAdd = eventUsersArray.filter(user => !existingUserIds.includes(user.id));
             if (usersToAdd.length > 0) {
                 for (const user of usersToAdd) {
@@ -204,6 +203,22 @@ const updateEventById = async (id, updateData) => {
             }
         }
 
+        // Recargar usuarios del evento después de actualizarlos
+        await event.reload({
+            include: [
+                {
+                    model: EventUser,
+                    as: 'EventUsers',
+                    include: {
+                        model: User,
+                        as: 'User',
+                        attributes: ['email']
+                    }
+                }
+            ]
+        });
+
+        // Validación de campos completos
         const requiredFields = [
             'name', 'status', 'dateStart', 'dateEnd', 'days',
             'total', 'location', 'eventImage', 'eventDescription'
@@ -232,6 +247,7 @@ const updateEventById = async (id, updateData) => {
         throw new Error(`Error al actualizar el evento: ${error.message}`);
     }
 };
+
 
 
 module.exports = {
