@@ -125,13 +125,23 @@ const getEventById = async (id) => {
     }
 };
 
+const sendMail = require("../email/email");
+const eventEmailTemplate = require('../email/templates/eventEmailTemplate.ejs');
+
 const updateEventById = async (id, updateData) => {
     try {
         const event = await Event.findByPk(id, {
-            include: [{
-                model: EventUser,
-                as: 'EventUsers'
-            }]
+            include: [
+                {
+                    model: EventUser,
+                    as: 'EventUsers',
+                    include: {
+                        model: User,
+                        as: 'User',
+                        attributes: ['email']
+                    }
+                }
+            ]
         });
 
         if (!event) {
@@ -168,29 +178,25 @@ const updateEventById = async (id, updateData) => {
 
         await event.update(filteredData);
 
-        if (updateData.eventUsers) {
-            let eventUsersArray;
-        
-            try {
-                eventUsersArray = typeof updateData.eventUsers === 'string'
-                    ? JSON.parse(updateData.eventUsers)
-                    : updateData.eventUsers;
-            } catch (error) {
-                throw new Error('El formato de eventUsers no es válido. Debe ser un arreglo o un JSON válido.');
-            }
-            const existingUserIds = event.EventUsers.map(eu => eu.userId);
-            const newUserIds = eventUsersArray.map(user => user.id);
-            const usersToAdd = newUserIds.filter(userId => !existingUserIds.includes(userId));
-            if (usersToAdd.length > 0) {
-                for (const userId of usersToAdd) {
-                    await EventUser.create({
-                        eventId: event.id,
-                        userId
-                    });
+        const requiredFields = [
+            'name', 'status', 'dateStart', 'dateEnd', 'days',
+            'total', 'transportPrice', 'location', 'personName',
+            'personPhone', 'eventImage', 'eventDescription'
+        ];
+
+        const isComplete = requiredFields.every(field => event[field] !== null && event[field] !== undefined);
+
+        if (isComplete) {
+            const eventDetails = await getEventById(id);
+            const emailHtml = eventEmailTemplate(eventDetails);
+            
+            for (const eventUser of event.EventUsers) {
+                const userEmail = eventUser.User?.email;
+                if (userEmail) {
+                    await sendMail(userEmail, 'Información del Evento Actualizada', emailHtml);
                 }
             }
         }
-        
 
         return await getEventById(id);
     } catch (error) {

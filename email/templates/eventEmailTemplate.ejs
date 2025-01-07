@@ -1,0 +1,47 @@
+module.exports = (eventDetails) => `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; }
+        .header { text-align: center; }
+        .content { margin-top: 20px; }
+        .footer { margin-top: 20px; text-align: center; font-size: 12px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="cid:logoImage" alt="Logo" style="max-width: 200px;">
+            <h1>Detalles del Evento</h1>
+        </div>
+        <div class="content">
+            <p><strong>Nombre del Evento:</strong> ${eventDetails.name}</p>
+            <p><strong>Fecha de Inicio:</strong> ${new Date(eventDetails.dateStart).toLocaleString()}</p>
+            <p><strong>Fecha de Fin:</strong> ${new Date(eventDetails.dateEnd).toLocaleString()}</p>
+            <p><strong>Días:</strong> ${eventDetails.days}</p>
+            <p><strong>Localización:</strong> ${eventDetails.location}</p>
+            <p><strong>Descripción:</strong> ${eventDetails.eventDescription}</p>
+            <h3>Participantes:</h3>
+            <ul>
+                ${eventDetails.eventUsers.map(user => `
+                    <li>${user.name} - ${user.email} (${user.role})</li>
+                `).join('')}
+            </ul>
+            <h3>Productos:</h3>
+            <ul>
+                ${eventDetails.eventProducts.map(product => `
+                    <li>${product.name} - ${product.description} (${product.quantity})</li>
+                `).join('')}
+            </ul>
+        </div>
+        <div class="footer">
+            <p>Este es un mensaje automático. Por favor, no responder.</p>
+        </div>
+    </div>
+</body>
+</html>
+`;
