@@ -27,6 +27,28 @@ const deleteEventUser = async (req, res) => {
     }
 };
 
+const getUsersNotInEvent = async (req, res) => {
+    try {
+        const { eventId } = req.params;
+
+        const users = await eventUserService.getUsersNotInEvent(eventId);
+
+        return res.status(200).json({
+            status: 200,
+            data: users,
+            message: 'Usuarios recuperados exitosamente'
+        });
+    } catch (error) {
+        console.error('Error en getUsersNotInEvent:', error);
+        return res.status(500).json({
+            status: 500,
+            message: 'Error al obtener los usuarios',
+            error: error.message
+        });
+    }
+};
+
 module.exports = {
-    deleteEventUser
+    deleteEventUser,
+    getUsersNotInEvent
 };
