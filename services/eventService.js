@@ -186,19 +186,21 @@ const updateEventById = async (id, updateData) => {
         const isComplete = requiredFields.every(field => event[field] !== null && event[field] !== undefined);
 
         if (isComplete) {
-            await event.update({ status: 'evento cerrado' });
+            if(event.eventUsers.length > 0) {
+                await event.update({ status: 'evento cerrado' });
 
-            const eventDetails = await getEventById(id);
-            const emailHtml = eventEmailTemplate(eventDetails);
-            
-            for (const eventUser of event.EventUsers) {
-                const userEmail = eventUser.User?.email;
-                if (userEmail) {
-                    await sendMail(userEmail, 'Información del Evento Actualizada', emailHtml);
+                const eventDetails = await getEventById(id);
+                const emailHtml = eventEmailTemplate(eventDetails);
+                
+                for (const eventUser of event.EventUsers) {
+                    const userEmail = eventUser.User?.email;
+                    if (userEmail) {
+                        await sendMail(userEmail, 'Información del Evento Actualizada', emailHtml);
+                    }
                 }
             }
         }
-        
+
         if (updateData.eventUsers) {
             let eventUsersArray;
 
