@@ -205,8 +205,7 @@ const updateEventById = async (id, updateData) => {
 
         const requiredFields = [
             'name', 'status', 'dateStart', 'dateEnd', 'days',
-            'total', 'transportPrice', 'location', 'personName',
-            'personPhone', 'eventImage', 'eventDescription'
+            'total', 'location', 'eventImage', 'eventDescription'
         ];
 
         const isComplete = requiredFields.every(field => event[field] !== null && event[field] !== undefined);
