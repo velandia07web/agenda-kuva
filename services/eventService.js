@@ -177,6 +177,7 @@ const updateEventById = async (id, updateData) => {
         }
 
         await event.update(filteredData);
+
         if (updateData.eventUsers) {
             let eventUsersArray;
 
@@ -215,11 +216,13 @@ const updateEventById = async (id, updateData) => {
 
             const eventDetails = await getEventById(id);
             const emailHtml = eventEmailTemplate(eventDetails);
-            
-            for (const eventUser of event.EventUsers) {
-                const userEmail = eventUser.User?.email;
-                if (userEmail) {
-                    await sendMail(userEmail, 'Información del Evento Actualizada', emailHtml);
+
+            if (event.EventUsers && event.EventUsers.length > 0) {
+                for (const eventUser of event.EventUsers) {
+                    const userEmail = eventUser.User?.email;
+                    if (userEmail) {
+                        await sendMail(userEmail, 'Información del Evento Actualizada', emailHtml);
+                    }
                 }
             }
         }
@@ -229,6 +232,7 @@ const updateEventById = async (id, updateData) => {
         throw new Error(`Error al actualizar el evento: ${error.message}`);
     }
 };
+
 
 module.exports = {
     getAllEvents,
