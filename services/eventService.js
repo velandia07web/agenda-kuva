@@ -177,6 +177,28 @@ const updateEventById = async (id, updateData) => {
         }
 
         await event.update(filteredData);
+
+        const requiredFields = [
+            'name', 'status', 'dateStart', 'dateEnd', 'days',
+            'total', 'location', 'eventImage', 'eventDescription'
+        ];
+
+        const isComplete = requiredFields.every(field => event[field] !== null && event[field] !== undefined);
+
+        if (isComplete) {
+            await event.update({ status: 'evento cerrado' });
+
+            const eventDetails = await getEventById(id);
+            const emailHtml = eventEmailTemplate(eventDetails);
+            
+            for (const eventUser of event.EventUsers) {
+                const userEmail = eventUser.User?.email;
+                if (userEmail) {
+                    await sendMail(userEmail, 'Información del Evento Actualizada', emailHtml);
+                }
+            }
+        }
+        
         if (updateData.eventUsers) {
             let eventUsersArray;
 
@@ -202,28 +224,6 @@ const updateEventById = async (id, updateData) => {
                 }
             }
         }
-
-        const requiredFields = [
-            'name', 'status', 'dateStart', 'dateEnd', 'days',
-            'total', 'location', 'eventImage', 'eventDescription'
-        ];
-
-        const isComplete = requiredFields.every(field => event[field] !== null && event[field] !== undefined);
-
-        if (isComplete) {
-            await event.update({ status: 'evento cerrado' });
-
-            const eventDetails = await getEventById(id);
-            const emailHtml = eventEmailTemplate(eventDetails);
-            
-            for (const eventUser of event.EventUsers) {
-                const userEmail = eventUser.User?.email;
-                if (userEmail) {
-                    await sendMail(userEmail, 'Información del Evento Actualizada', emailHtml);
-                }
-            }
-        }
-
         return await getEventById(id);
     } catch (error) {
         throw new Error(`Error al actualizar el evento: ${error.message}`);
