@@ -215,6 +215,7 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone, idCity) 
   try {
     const city = await City.findByPk(idCity, {
       attributes: ['transportPrice'],
+      where: { state: 'ACTIVO' },
     });
 
     if (!city) {
@@ -224,7 +225,7 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone, idCity) 
     const transportPrice = city.transportPrice;
 
     const products = await Product.findAll({
-      where: { idZone: idZone, count: { [Op.gt]: 0 } },
+      where: { idZone: idZone, count: { [Op.gt]: 0 }, state: 'ACTIVO' },
       include: [
         {
           model: ProductPrice,
@@ -267,7 +268,7 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone, idCity) 
     }));
 
     const adds = await Add.findAll({
-      where: { idTypePrice: idTypePrice },
+      where: { idTypePrice: idTypePrice, state: 'ACTIVO' },
       attributes: ['id', 'name', 'price'],
     });
 
@@ -278,7 +279,7 @@ const getProductsDataByTypePrice = async function (idTypePrice, idZone, idCity) 
     }));
 
     const packs = await Pack.findAll({
-      where: { idZone: idZone },
+      where: { idZone: idZone, state: 'ACTIVO' },
       attributes: ['id', 'name', 'description', 'idProduct'],
       include: [
         {

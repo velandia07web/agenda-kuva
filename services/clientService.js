@@ -128,6 +128,7 @@ const getAllClientsWithCompany = async function () {
         },
       ],
       attributes: ['id', 'name', 'celphone', 'email', 'idTypeClient'],
+      where: { state: 'ACTIVO' },
     });
 
     if (!clientsWithCompanies.length) {
