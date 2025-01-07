@@ -55,7 +55,7 @@ const getEventById = async (id) => {
                         as: 'Pack',
                         attributes: ['name', 'description']
                     }],
-                    attributes: ['id']
+                    attributes: ['id', 'quantity']
                 },
                 {
                     model: EventProduct,
@@ -102,7 +102,8 @@ const getEventById = async (id) => {
             })),
             eventPacks: event.EventPack.map(ep => ({
                 name: ep.Pack?.name,
-                description: ep.Pack?.description
+                description: ep.Pack?.description,
+                quantity: ep.quantity
             })),
             eventProducts: event.EventProduct.map(ep => ({
                 name: ep.Product?.name,

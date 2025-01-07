@@ -193,7 +193,7 @@ const createQuotation = async (data) => {
             await Promise.all([
                 ...event.packs.map((pack) =>
                     EventPack.create(
-                        { id: uuidv4(), eventId: eventCreate.id, quotationId: quotation.id, packId: pack.id, quantityDeadHours: pack.quantityDeadHours },
+                        { id: uuidv4(), eventId: eventCreate.id, quotationId: quotation.id, packId: pack.id, quantityDeadHours: pack.quantityDeadHours, quantity: pack.quantity },
                         { transaction }
                     )
                 ),
@@ -372,7 +372,7 @@ const sendQuotationEmailOne = async (quotationId, email) => {
                                     attributes: ['name', 'description'],
                                 },
                             ],
-                            attributes: ['id'],
+                            attributes: ['id', 'quantity'],
                         },
                     ],
                 },

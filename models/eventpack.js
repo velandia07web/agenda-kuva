@@ -33,7 +33,11 @@ module.exports = (sequelize, DataTypes) => {
         quantityDeadHours: {
             type: DataTypes.INTEGER,
             allowNull: true,
-        }
+        },
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
     }, {
         sequelize,
         modelName: 'EventPack',
