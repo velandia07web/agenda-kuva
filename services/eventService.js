@@ -178,6 +178,36 @@ const updateEventById = async (id, updateData) => {
 
         await event.update(filteredData);
 
+        // Actualización de usuarios del evento
+        if (updateData.eventUsers) {
+            let eventUsersArray;
+
+            try {
+                eventUsersArray = typeof updateData.eventUsers === 'string'
+                    ? JSON.parse(updateData.eventUsers)
+                    : updateData.eventUsers;
+            } catch (error) {
+                throw new Error('El formato de eventUsers no es válido. Debe ser un arreglo o un JSON válido.');
+            }
+
+            // Eliminar usuarios no incluidos en la nueva lista
+            const existingUserIds = event.EventUsers.map(eu => eu.userId);
+            const newUserIds = eventUsersArray.map(user => user.id);
+
+            // Agregar nuevos usuarios
+            const usersToAdd = eventUsersArray.filter(user => !existingUserIds.includes(user.id));
+            if (usersToAdd.length > 0) {
+                for (const user of usersToAdd) {
+                    await EventUser.create({
+                        eventId: event.id,
+                        userId: user.id,
+                        role: user.role // Asegúrate de incluir el campo `role` si aplica
+                    });
+                }
+            }
+        }
+
+        // Validación de campos completos
         const requiredFields = [
             'name', 'status', 'dateStart', 'dateEnd', 'days',
             'total', 'transportPrice', 'location', 'personName',
@@ -186,6 +216,7 @@ const updateEventById = async (id, updateData) => {
 
         const isComplete = requiredFields.every(field => event[field] !== null && event[field] !== undefined);
 
+        // Enviar correo si los datos están completos
         if (isComplete) {
             const eventDetails = await getEventById(id);
             const emailHtml = eventEmailTemplate(eventDetails);
@@ -203,6 +234,7 @@ const updateEventById = async (id, updateData) => {
         throw new Error(`Error al actualizar el evento: ${error.message}`);
     }
 };
+
 
 
 
