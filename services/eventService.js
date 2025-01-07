@@ -187,6 +187,7 @@ const updateEventById = async (id, updateData) => {
 
         if (isComplete) {
             if(event.eventUsers.length > 0) {
+                console.log('Evento completo y envio el correo --------------------------');
                 await event.update({ status: 'evento cerrado' });
 
                 const eventDetails = await getEventById(id);
@@ -198,6 +199,8 @@ const updateEventById = async (id, updateData) => {
                         await sendMail(userEmail, 'Información del Evento Actualizada', emailHtml);
                     }
                 }
+            }else{
+                console.log('Evento no completo y no envio el correo --------------------------');
             }
         }
 
