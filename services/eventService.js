@@ -169,9 +169,20 @@ const updateEventById = async (id, updateData) => {
         await event.update(filteredData);
 
         if (updateData.eventUsers) {
+            // Asegúrate de que eventUsers sea un arreglo
+            let eventUsersArray;
+        
+            try {
+                eventUsersArray = typeof updateData.eventUsers === 'string'
+                    ? JSON.parse(updateData.eventUsers)
+                    : updateData.eventUsers;
+            } catch (error) {
+                throw new Error('El formato de eventUsers no es válido. Debe ser un arreglo o un JSON válido.');
+            }
+        
             const existingUserIds = event.EventUsers.map(eu => eu.userId);
-            const newUserIds = updateData.eventUsers.map(user => user.id);
-
+            const newUserIds = eventUsersArray.map(user => user.id);
+        
             const usersToRemove = existingUserIds.filter(userId => !newUserIds.includes(userId));
             if (usersToRemove.length > 0) {
                 await EventUser.destroy({
@@ -181,7 +192,7 @@ const updateEventById = async (id, updateData) => {
                     }
                 });
             }
-
+        
             const usersToAdd = newUserIds.filter(userId => !existingUserIds.includes(userId));
             for (const userId of usersToAdd) {
                 await EventUser.create({

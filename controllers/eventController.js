@@ -69,7 +69,7 @@ const upload = multer({ storage });
 const updateEventById = async (req, res) => {
     try {
         const { id } = req.params;
-        const updateData = req.body;
+        const updateData = { ...req.body };
 
         if (req.file) {
             updateData.eventImage = `/uploads/events/${req.file.filename}`;
