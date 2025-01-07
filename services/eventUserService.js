@@ -25,7 +25,7 @@ const getUsersNotInEvent = async (eventId) => {
                         `(SELECT userId FROM EventUsers WHERE eventId = '${eventId}')`
                     )
                 },
-                active: true
+                state: 'ACTIVO'
             },
             order: [['name', 'ASC']]
         });
