@@ -12,7 +12,7 @@ router
 
 router
   .post('/', validatorCreateItem, zoneController.createCities)
-  .put('/:id', authMiddlewareRol(['Superadministrador']), validatorUpdateItem, zoneController.updateCities)
+  .put('/:id', authMiddlewareRol(['Superadministrador', 'Administrador']), validatorUpdateItem, zoneController.updateCities)
   .delete('/:id', authMiddlewareRol(['Superadministrador']), validatorDeleteItem, zoneController.deleteCities)
 
 module.exports = router

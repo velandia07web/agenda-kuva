@@ -12,7 +12,7 @@ router
 
 router
   .post('/', authMiddlewareRol(['Superadministrador']), validatorCreateItem, stadeEventController.createStadeEvents)
-  .put('/:id', authMiddlewareRol(['Superadministrador']), validatorUpdateItem, stadeEventController.updateStadeEvents)
+  .put('/:id', authMiddlewareRol(['Superadministrador', 'Administrador']), validatorUpdateItem, stadeEventController.updateStadeEvents)
   .delete('/:id', authMiddlewareRol(['Superadministrador']), validatorDeleteItem, stadeEventController.deleteStadeEvents)
 
 module.exports = router

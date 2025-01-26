@@ -177,8 +177,6 @@ const updateEventById = async (id, updateData) => {
         }
 
         await event.update(filteredData);
-
-        // Actualización de usuarios del evento
         if (updateData.eventUsers) {
             let eventUsersArray;
 
@@ -202,8 +200,6 @@ const updateEventById = async (id, updateData) => {
                 }
             }
         }
-
-        // Recargar usuarios del evento después de actualizarlos
         await event.reload({
             include: [
                 {
@@ -217,8 +213,6 @@ const updateEventById = async (id, updateData) => {
                 }
             ]
         });
-
-        // Validación de campos completos
         const requiredFields = [
             'name', 'status', 'dateStart', 'dateEnd', 'days',
             'total', 'location', 'eventImage', 'eventDescription'

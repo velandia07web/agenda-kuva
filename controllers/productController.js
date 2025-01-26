@@ -1,6 +1,7 @@
 const { matchedData } = require('express-validator')
 const productService = require('../services/productService')
 const jwt = require('jsonwebtoken');
+const path = require('path');
 
 const getAllProducts = async function (req, res) {
   try {
@@ -34,11 +35,42 @@ const getOneProducts = async function (req, res) {
 
 const createProducts = async function (req, res) {
   try {
-    const validData = matchedData(req)
-    const createProduct = await productService.createProduct(validData)
-    return res.status(201).json({ status: 201, message: 'Product creado satisfactoriamente', data: createProduct })
+    const productData = {
+      ...req.body,
+      imagen: req.file ? `/CabinaImagenes/${req.file.filename}` : null
+    };
+
+    if (typeof productData.prices === 'string') {
+      try {
+        productData.prices = JSON.parse(productData.prices);
+      } catch (e) {
+        console.error('Error parsing prices:', e);
+        productData.prices = [];
+      }
+    }
+
+    const createProduct = await productService.createProduct(productData);
+    return res.status(201).json({ 
+      status: 201, 
+      message: 'Product creado satisfactoriamente', 
+      data: createProduct 
+    });
   } catch (error) {
-    return res.status(500).json({ status: 500, message: 'Error al crear el product.', error: error.message })
+    if (req.file) {
+      const fs = require('fs').promises;
+      const filePath = path.join('utils/CabinaImagenes', req.file.filename);
+      try {
+        await fs.unlink(filePath);
+      } catch (deleteError) {
+        console.error('Error eliminando archivo:', deleteError);
+      }
+    }
+
+    return res.status(500).json({ 
+      status: 500, 
+      message: 'Error al crear el product.', 
+      error: error.message 
+    });
   }
 }
 

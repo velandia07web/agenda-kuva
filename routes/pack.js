@@ -15,7 +15,7 @@ router
 
 router
   .post('/', authMiddlewareRol(['Superadministrador']), validatorCreateItem, packController.createPacks)
-  .put('/:id', authMiddlewareRol(['Superadministrador']), validatorUpdateItem, packController.updatePack)
+  .put('/:id', authMiddlewareRol(['Superadministrador', 'Administrador']), validatorUpdateItem, packController.updatePack)
   .delete('/:id', authMiddlewareRol(['Superadministrador']), validatorDeleteItem, packController.deletePack)
 
 module.exports = router
